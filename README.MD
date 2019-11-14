@@ -1,0 +1,1 @@
+This is going to be our super awesome venture into the lands of an online shop without a backend.
