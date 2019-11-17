@@ -1,0 +1,5 @@
+function productCartListViewComponents() {
+    return (`
+        productCartListViewComponents
+    `);
+}

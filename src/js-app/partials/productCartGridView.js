@@ -1,5 +1,0 @@
-function productCartGridViewPartial() {
-    return (`
-        productCartGridViewPartial
-    `);
-}

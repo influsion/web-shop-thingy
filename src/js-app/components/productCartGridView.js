@@ -1,0 +1,5 @@
+function productCartGridViewComponents() {
+    return (`
+        productCartGridViewComponents
+    `);
+}

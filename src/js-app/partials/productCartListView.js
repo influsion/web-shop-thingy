@@ -1,5 +1,0 @@
-function productCartListViewPartial() {
-    return (`
-        productCartListViewPartial
-    `);
-}
