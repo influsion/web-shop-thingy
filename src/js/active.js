@@ -1,6 +1,6 @@
 /*********************************************************************************
 
-    Template Name: Boighor Bookshop Responsive Bootstrap4 Template 
+    Template Name: Boighor Bookshop Responsive Bootstrap4 Template
     Version: 1.0
 
 **********************************************************************************/
@@ -43,7 +43,7 @@
 (function($) {
     'use strict';
 
-    
+
 
 /*============ Scroll Up Activation ============*/
     $.scrollUp({
@@ -115,7 +115,7 @@
               breakpoint: 576,
               settings: {
                 dots: false,
-                slidesToShow: 1,  
+                slidesToShow: 1,
                 centerPadding: '0px',
                 }
             },
@@ -259,37 +259,9 @@
             }
         }
     });
-  
 
-/*=============  Product Activation  ==============*/
-    $('.furniture--4').owlCarousel({
-        loop:true,
-        margin: 0,
-        nav:true,
-        autoplay: false,
-        autoplayTimeout: 10000,
-        items:4,
-        navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-        dots: false,
-        lazyLoad: true,
-        responsive:{
-            0:{
-              items:1
-            },
-            576:{
-              items:2
-            },
-            768:{
-              items:3
-            },
-			992:{
-                items:4
-            },
-            1920:{
-              items:4
-            }
-        }
-    });
+
+
 
 
 /*============= Cartbox Toggler ==============*/
@@ -358,26 +330,7 @@
     settingToggler();
 
 
-/*=============  Slider Activation  ==============*/
-    $('.slide__activation').owlCarousel({
-        loop:true,
-        margin: 0,
-        nav:true,
-        autoplay: false,
-        autoplayTimeout: 10000,
-        items:1,
-        navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-        dots: false,
-        lazyLoad: true,
-        responsive:{
-        0:{
-          items:1
-        },
-        1920:{
-          items:1
-        }
-        }
-    });
+
 
 
 /*============= Setting Option ==============*/
@@ -475,7 +428,7 @@
     });
 
 
-/*====== Price Slider Active ======*/ 
+/*====== Price Slider Active ======*/
     $('#slider-range').slider({
         range: true,
         min: 10,
@@ -492,7 +445,7 @@
 /*====== Dropdown ======*/
     $('.dropdown').parent('.drop').css('position' , 'relative');
 
-	
+
 /*====== slick slider ======*/
 	$('.center').slick({
 	  centerMode: true,
@@ -547,4 +500,3 @@
 
 
 })(jQuery);
-

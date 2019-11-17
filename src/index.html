@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html class="no-js" lang="zxx">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>404 | Bookshop Responsive Bootstrap4 Template</title>
+	<title>Home | Shop</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,20 +12,19 @@
 	<link rel="apple-touch-icon" href="images/icon.png">
 
 	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/main.css">
 
-	<!-- Cusom css -->
-   <link rel="stylesheet" href="css/custom.css">
-
+	<!-- TODO: Возможно удалим modernizr -->
 	<!-- Modernizer js -->
-	<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+	<!-- <script src="js/vendor/modernizr-3.5.0.min.js"></script> -->
 </head>
 <body>
 	<!--[if lte IE 9]>
@@ -34,12 +33,11 @@
 
 	<!-- Main wrapper -->
 	<div class="wrapper" id="wrapper">
-		
 		<!-- Header -->
-		<header id="wn__header" class="oth-page header__area header__absolute sticky__header">
+		<header id="wn__header" class="header__area header__absolute sticky__header">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-4 col-sm-4 col-7 col-lg-2">
+					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 						<div class="logo">
 							<a href="index.html">
 								<img src="images/logo/logo.png" alt="logo images">
@@ -49,117 +47,18 @@
 					<div class="col-lg-8 d-none d-lg-block">
 						<nav class="mainmenu__nav">
 							<ul class="meninmenu d-flex justify-content-start">
-								<li class="drop with--one--item"><a href="index.html">Home</a></li>
-								<li class="drop"><a href="#">Shop</a>
-									<div class="megamenu mega03">
-										<ul class="item item03">
-											<li class="title">Shop Layout</li>
-											<li><a href="shop-grid.html">Shop Grid</a></li>
-											<li><a href="single-product.html">Single Product</a></li>
-										</ul>
-										<ul class="item item03">
-											<li class="title">Shop Page</li>
-											<li><a href="my-account.html">My Account</a></li>
-											<li><a href="cart.html">Cart Page</a></li>
-											<li><a href="checkout.html">Checkout Page</a></li>
-											<li><a href="wishlist.html">Wishlist Page</a></li>
-											<li><a href="error404.html">404 Page</a></li>
-											<li><a href="faq.html">Faq Page</a></li>
-										</ul>
-										<ul class="item item03">
-											<li class="title">Bargain Books</li>
-											<li><a href="shop-grid.html">Bargain Bestsellers</a></li>
-											<li><a href="shop-grid.html">Activity Kits</a></li>
-											<li><a href="shop-grid.html">B&N Classics</a></li>
-											<li><a href="shop-grid.html">Books Under $5</a></li>
-											<li><a href="shop-grid.html">Bargain Books</a></li>
-										</ul>
-									</div>
-								</li>
-								<li class="drop"><a href="shop-grid.html">Books</a>
-									<div class="megamenu mega03">
-										<ul class="item item03">
-											<li class="title">Categories</li>
-											<li><a href="shop-grid.html">Biography </a></li>
-											<li><a href="shop-grid.html">Business </a></li>
-											<li><a href="shop-grid.html">Cookbooks </a></li>
-											<li><a href="shop-grid.html">Health & Fitness </a></li>
-											<li><a href="shop-grid.html">History </a></li>
-										</ul>
-										<ul class="item item03">
-											<li class="title">Customer Favourite</li>
-											<li><a href="shop-grid.html">Mystery</a></li>
-											<li><a href="shop-grid.html">Religion & Inspiration</a></li>
-											<li><a href="shop-grid.html">Romance</a></li>
-											<li><a href="shop-grid.html">Fiction/Fantasy</a></li>
-											<li><a href="shop-grid.html">Sleeveless</a></li>
-										</ul>
-										<ul class="item item03">
-											<li class="title">Collections</li>
-											<li><a href="shop-grid.html">Science </a></li>
-											<li><a href="shop-grid.html">Fiction/Fantasy</a></li>
-											<li><a href="shop-grid.html">Self-Improvemen</a></li>
-											<li><a href="shop-grid.html">Home & Garden</a></li>
-											<li><a href="shop-grid.html">Humor Books</a></li>
-										</ul>
-									</div>
-								</li>
-								<li class="drop"><a href="shop-grid.html">Kids</a>
-									<div class="megamenu mega02">
-										<ul class="item item02">
-											<li class="title">Top Collections</li>
-											<li><a href="shop-grid.html">American Girl</a></li>
-											<li><a href="shop-grid.html">Diary Wimpy Kid</a></li>
-											<li><a href="shop-grid.html">Finding Dory</a></li>
-											<li><a href="shop-grid.html">Harry Potter</a></li>
-											<li><a href="shop-grid.html">Land of Stories</a></li>
-										</ul>
-										<ul class="item item02">
-											<li class="title">More For Kids</li>
-											<li><a href="shop-grid.html">B&N Educators</a></li>
-											<li><a href="shop-grid.html">B&N Kids' Club</a></li>
-											<li><a href="shop-grid.html">Kids' Music</a></li>
-											<li><a href="shop-grid.html">Toys & Games</a></li>
-											<li><a href="shop-grid.html">Hoodies</a></li>
-										</ul>
-									</div>
-								</li>
-								<li class="drop"><a href="#">Pages</a>
-									<div class="megamenu dropdown">
-										<ul class="item item01">
-											<li><a href="about.html">About Page</a></li>
-											<li class="label2"><a href="portfolio.html">Portfolio</a>
-												<ul>
-													<li><a href="portfolio.html">Portfolio</a></li>
-													<li><a href="portfolio-details.html">Portfolio Details</a></li>
-												</ul>
-											</li>
-											<li><a href="my-account.html">My Account</a></li>
-											<li><a href="cart.html">Cart Page</a></li>
-											<li><a href="checkout.html">Checkout Page</a></li>
-											<li><a href="wishlist.html">Wishlist Page</a></li>
-											<li><a href="error404.html">404 Page</a></li>
-											<li><a href="faq.html">Faq Page</a></li>
-											<li><a href="team.html">Team Page</a></li>
-										</ul>
-									</div>
-								</li>
-								<li class="drop"><a href="blog.html">Blog</a>
-									<div class="megamenu dropdown">
-										<ul class="item item01">
-											<li><a href="blog.html">Blog Page</a></li>
-											<li><a href="blog-details.html">Blog Details</a></li>
-										</ul>
-									</div>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
+								<li class=""><a class="mainmenu-link" href="#home">Home</a></li>
+								<li class=""><a class="mainmenu-link" href="#shop">Shop</a></li>
+								<li class=""><a class="mainmenu-link" href="#faq">FAQ</a></li>
+								<li class=""><a class="mainmenu-link" href="#contact">Contact</a></li>
+								<li class=""><a class="mainmenu-link" href="#about">About</a></li>
 							</ul>
 						</nav>
 					</div>
-					<div class="col-md-8 col-sm-8 col-5 col-lg-2">
+					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li class="shop_search"><a class="search__active" href="#"></a></li>
-							<li class="wishlist"><a href="#"></a></li>
+							<!-- <li class="wishlist"><a href="#"></a></li> -->
 							<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
 								<!-- Start Shopping Cart -->
 								<div class="block-minicart minicart__active">
@@ -236,7 +135,7 @@
 								</div>
 								<!-- End Shopping Cart -->
 							</li>
-							<li class="setting__bar__icon"><a class="setting__active" href="#"></a>
+							<!-- <li class="setting__bar__icon"><a class="setting__active" href="#"></a>
 								<div class="searchbar__content setting__block">
 									<div class="content-inner">
 										<div class="switcher-currency">
@@ -303,7 +202,7 @@
 										</div>
 									</div>
 								</div>
-							</li>
+							</li> -->
 						</ul>
 					</div>
 				</div>
@@ -351,12 +250,14 @@
 				<!-- End Mobile Menu -->
 	            <div class="mobile-menu d-block d-lg-none">
 	            </div>
-	            <!-- Mobile Menu -->	
-			</div>		
+	            <!-- Mobile Menu -->
+			</div>
 		</header>
 		<!-- //Header -->
+
+		<!-- !!! TODO: Search Popup НЕ УДАЛЯТЬ !!! -->
 		<!-- Start Search Popup -->
-		<div class="box-search-content search_active block-bg close__top">
+		<div class="brown--color box-search-content search_active block-bg close__top">
 			<form id="search_mini_form" class="minisearch" action="#">
 				<div class="field__search">
 					<input type="text" placeholder="Search entire store here...">
@@ -370,52 +271,8 @@
 			</div>
 		</div>
 		<!-- End Search Popup -->
-        <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area bg-image--5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="bradcaump__inner text-center">
-                        	<h2 class="bradcaump-title">404</h2>
-                            <nav class="bradcaump-content">
-                              <a class="breadcrumb_item" href="index.html">Home</a>
-                              <span class="brd-separetor">/</span>
-                              <span class="breadcrumb_item active">404</span>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Bradcaump area -->
 
-		<!-- Start Error Area -->
-		<section class="page_error section-padding--lg bg--white">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="error__inner text-center">
-							<div class="error__logo">
-								<a href="#"><img src="images/others/404.png" alt="error images"></a>
-							</div>
-							<div class="error__content">
-								<h2>error - not found</h2>
-								<p>It looks like you are lost! Try searching here</p>
-								<div class="search_form_wrapper">
-									<form action="#">
-										<div class="form__box">
-											<input type="text" placeholder="Search...">
-											<button><i class="fa fa-search"></i></button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Error Area -->
+		<main class="main"></main>
 
 		<!-- Footer Area -->
 		<footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
@@ -438,13 +295,12 @@
 										<li><a href="#"><i class="bi bi-linkedin"></i></a></li>
 										<li><a href="#"><i class="bi bi-youtube"></i></a></li>
 									</ul>
+
 									<ul class="mainmenu d-flex justify-content-center">
-										<li><a href="index.html">Trending</a></li>
-										<li><a href="index.html">Best Seller</a></li>
-										<li><a href="index.html">All Product</a></li>
-										<li><a href="index.html">Wishlist</a></li>
-										<li><a href="index.html">Blog</a></li>
-										<li><a href="index.html">Contact</a></li>
+										<li><a href="#">Shop</a></li>
+										<li><a href="#">FAQ</a></li>
+										<li><a href="#">Contact</a></li>
+										<li><a href="#">About</a></li>
 									</ul>
 								</div>
 							</div>
@@ -473,15 +329,252 @@
 		</footer>
 		<!-- //Footer Area -->
 
+		<!-- QUICKVIEW PRODUCT -->
+		<div id="quickview-wrapper">
+		    <!-- Modal -->
+		    <div class="modal fade" id="productmodal" tabindex="-1" role="dialog">
+		        <div class="modal-dialog modal__container" role="document">
+		            <div class="modal-content">
+		                <div class="modal-header modal__header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		                </div>
+		                <div class="modal-body">
+		                    <div class="modal-product">
+		                        <!-- Start product images -->
+		                        <div class="product-images">
+		                            <div class="main-image images">
+		                                <img alt="big images" src="images/product/big-img/1.jpg">
+		                            </div>
+		                        </div>
+		                        <!-- end product images -->
+		                        <div class="product-info">
+		                            <h1>Simple Fabric Bags</h1>
+		                            <div class="rating__and__review">
+		                                <ul class="rating">
+		                                    <li><span class="ti-star"></span></li>
+		                                    <li><span class="ti-star"></span></li>
+		                                    <li><span class="ti-star"></span></li>
+		                                    <li><span class="ti-star"></span></li>
+		                                    <li><span class="ti-star"></span></li>
+		                                </ul>
+		                                <div class="review">
+		                                    <a href="#">4 customer reviews</a>
+		                                </div>
+		                            </div>
+		                            <div class="price-box-3">
+		                                <div class="s-price-box">
+		                                    <span class="new-price">$17.20</span>
+		                                    <span class="old-price">$45.00</span>
+		                                </div>
+		                            </div>
+		                            <div class="quick-desc">
+		                                Designed for simplicity and made from high quality materials. Its sleek geometry and material combinations creates a modern look.
+		                            </div>
+		                            <div class="select__color">
+		                                <h2>Select color</h2>
+		                                <ul class="color__list">
+		                                    <li class="red"><a title="Red" href="#">Red</a></li>
+		                                    <li class="gold"><a title="Gold" href="#">Gold</a></li>
+		                                    <li class="orange"><a title="Orange" href="#">Orange</a></li>
+		                                    <li class="orange"><a title="Orange" href="#">Orange</a></li>
+		                                </ul>
+		                            </div>
+		                            <div class="select__size">
+		                                <h2>Select size</h2>
+		                                <ul class="color__list">
+		                                    <li class="l__size"><a title="L" href="#">L</a></li>
+		                                    <li class="m__size"><a title="M" href="#">M</a></li>
+		                                    <li class="s__size"><a title="S" href="#">S</a></li>
+		                                    <li class="xl__size"><a title="XL" href="#">XL</a></li>
+		                                    <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
+		                                </ul>
+		                            </div>
+		                            <div class="social-sharing">
+		                                <div class="widget widget_socialsharing_widget">
+		                                    <h3 class="widget-title-modal">Share this product</h3>
+		                                    <ul class="social__net social__net--2 d-flex justify-content-start">
+		                                        <li class="facebook"><a href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
+		                                        <li class="linkedin"><a href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
+		                                        <li class="pinterest"><a href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
+		                                        <li class="tumblr"><a href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
+		                                    </ul>
+		                                </div>
+		                            </div>
+		                            <div class="addtocart-btn">
+		                                <a href="#">Add to cart</a>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<!-- END QUICKVIEW PRODUCT -->
 	</div>
 	<!-- //Main wrapper -->
 
-	<!-- JS Files -->
+	<!-- JS Files of template-->
 	<script src="js/vendor/jquery-3.2.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/active.js"></script>
-	
+
+	<!-- JS Files -->
+	<script src="js-app/helpers.js"></script>
+	<script src="js-app/pageController.js"></script>
+
+	<!-- Partials -->
+	<script src="js-app/partials/productCartGridView.js"></script>
+	<script src="js-app/partials/productCartListView.js"></script>
+
+	<!-- Pages -->
+	<script src="js-app/pages/about.js"></script>
+	<script src="js-app/pages/cart.js"></script>
+	<script src="js-app/pages/checkout.js"></script>
+	<script src="js-app/pages/contact.js"></script>
+	<script src="js-app/pages/faq.js"></script>
+	<script src="js-app/pages/home.js"></script>
+	<script src="js-app/pages/product.js"></script>
+	<script src="js-app/pages/result.js"></script>
+	<script src="js-app/pages/shop.js"></script>
+
+	<!-- Main -->
+	<script src="js-app/main.js"></script>
+
+	<!-- Google Map js -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo"></script>
+	<script>
+		// When the window has finished loading create our google map below
+		google.maps.event.addDomListener(window, 'load', init);
+
+		function init() {
+			// Basic options for a simple Google Map
+			// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+			var mapOptions = {
+				// How zoomed in you want the map to start at (always required)
+				zoom: 12,
+
+				scrollwheel: false,
+
+				// The latitude and longitude to center the map (always required)
+				center: new google.maps.LatLng(23.7286, 90.3854), // New York
+
+				// How you would like to style the map.
+				// This is where you would paste any style found on Snazzy Maps.
+					styles:
+				[
+
+					{
+						"featureType": "administrative",
+						"elementType": "labels.text.fill",
+						"stylers": [
+							{
+								"color": "#444444"
+							}
+						]
+					},
+					{
+						"featureType": "landscape",
+						"elementType": "all",
+						"stylers": [
+							{
+								"color": "#f2f2f2"
+							}
+						]
+					},
+					{
+						"featureType": "poi",
+						"elementType": "all",
+						"stylers": [
+							{
+								"visibility": "off"
+							}
+						]
+					},
+					{
+						"featureType": "road",
+						"elementType": "all",
+						"stylers": [
+							{
+								"saturation": -100
+							},
+							{
+								"lightness": 45
+							}
+						]
+					},
+					{
+						"featureType": "road.highway",
+						"elementType": "all",
+						"stylers": [
+							{
+								"visibility": "simplified"
+							}
+						]
+					},
+					{
+						"featureType": "road.arterial",
+						"elementType": "labels.icon",
+						"stylers": [
+							{
+								"visibility": "off"
+							}
+						]
+					},
+					{
+						"featureType": "transit",
+						"elementType": "all",
+						"stylers": [
+							{
+								"visibility": "off"
+							}
+						]
+					},
+					{
+						"featureType": "transit.station.bus",
+						"elementType": "labels.icon",
+						"stylers": [
+							{
+								"saturation": "-16"
+							}
+						]
+					},
+					{
+						"featureType": "water",
+						"elementType": "all",
+						"stylers": [
+							{
+								"color": "#04b7ff"
+							},
+							{
+								"visibility": "on"
+							}
+						]
+					}
+				]
+			};
+
+			// Get the HTML DOM element that will contain your map
+			// We are using a div with id="map" seen below in the <body>
+			var mapElement = document.getElementById('googleMap');
+
+			// Create the Google Map using our element and options defined above
+			var map = new google.maps.Map(mapElement, mapOptions);
+
+			// Let's also add a marker while we're at it
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(23.7286, 90.3854),
+				map: map,
+				title: 'Dcare!',
+				icon: 'images/icons/map.png',
+				animation:google.maps.Animation.BOUNCE
+
+			});
+		}
+	</script>
+
+	<div class="page-script"></div>
 </body>
 </html>

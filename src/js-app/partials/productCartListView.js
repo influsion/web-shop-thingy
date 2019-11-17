@@ -1,0 +1,5 @@
+function productCartListViewPartial() {
+    return (`
+        productCartListViewPartial
+    `);
+}
