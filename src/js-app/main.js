@@ -4,7 +4,7 @@ const global = {
     basket: [],
 };
 
-const findElemets = function() {
+const findElements = function() {
     global.$app = $('#wrapper');
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
@@ -29,8 +29,8 @@ const bindEvents = function() {
 
 // Main
 (() => {
-    console.log('----------------------------')
-    findElemets();
+    console.log('----------------------------');
+    findElements();
     bindEvents();
 
     pageController.init(global.$menuLinks);

@@ -1,3 +1,6 @@
+"use strict";
+
+
 function renderFaqPage(e, $target) {
     function template(data) {
         return (`
