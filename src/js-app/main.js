@@ -1,6 +1,8 @@
 'use strict';
 
-const global = {};
+const global = {
+    basket: [],
+};
 
 const findElemets = function() {
     global.$app = $('#wrapper');
@@ -20,7 +22,8 @@ const findElemets = function() {
 };
 
 const bindEvents = function() {
-    global.$menuLinks.on('click', (e) => pageController.setActivePage(e, $(e.target)));
+    // Switch page
+    global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 };
 
 

@@ -5,8 +5,8 @@
       "image": "./images/products/AN515-52-54KW.jpg",
       "description": "Экран 15.6” IPS (1920x1080) Full HD, матовый / Intel Core i5-8300H (2.3 - 4.0 ГГц) / RAM 8 ГБ / HDD 1 ТБ + SSD 128 ГБ / nVidia GeForce GTX 1060, 6 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / веб-камера / без ОС / 2.7 кг / черный",
       "price": "25555",
-      "category": "computers & notebooks",
-      "subcategory": "laptop",
+      "category": "computers-notebooks",
+      "subcategory": "notebooks",
       "brand": "acer",
       "origin": "china"
     },
@@ -16,8 +16,8 @@
       "image": "./images/products/hp_6bn09ea.jpg",
       "description": "Экран 15.6” (1920x1080) Full HD, матовый / AMD Ryzen 5 2500U (2.0 - 3.6 ГГц) / RAM 8 ГБ / SSD 256 ГБ / AMD Radeon Vega 8 / без ОД / LAN / Wi-Fi / Bluetooth / веб-камера / DOS / 1.78 кг / черный",
       "price": "10499",
-      "category": "computers & notebooks",
-      "subcategory": "laptop",
+      "category": "computers-notebooks",
+      "subcategory": "notebooks",
       "brand": "hp",
       "origin": "china"
     },
@@ -27,9 +27,9 @@
       "image": "./images/products/Dell_Inspiron_3582.jpg",
       "description": "Экран 15.6`` TN (1366x768) WXGA HD, глянцевый с антибликовым покрытием / Intel Celeron N4000 (1.1 - 2.6 ГГц) / RAM 4 ГБ / HDD 500 ГБ / Intel UHD Graphics 600 / без ОД / Wi-Fi / Bluetooth / веб-камера / Linux / 2.28 кг / черный",
       "price": "5555",
-      "category": "computers & notebooks",
-      "subcategory": "laptop",
-      "brand": "dell inspiron",
+      "category": "computers-notebooks",
+      "subcategory": "notebooks",
+      "brand": "dell",
       "origin": "china"
     },
     {
@@ -38,8 +38,8 @@
       "image": "./images/products/Asus-X509FL-BQ053.jpg",
       "description": "Экран 15.6`` IPS (1920x1080) Full HD, матовый / Intel Core i5-8265U (1.6 - 3.9 ГГц) / RAM 8 ГБ / SSD 256 ГБ / nVidia GeForce MX250, 2 ГБ / без ОД / Wi-Fi / Bluetooth / веб-камера / без ОС / 1.9 кг / серый",
       "price": "16777",
-      "category": "computers & notebooks",
-      "subcategory": "laptop",
+      "category": "computers-notebooks",
+      "subcategory": "notebooks",
       "brand": "asus",
       "origin": "china"
     },
@@ -49,7 +49,7 @@
       "image": "./images/products/Lenovo-ZA410066UA.jpg",
       "description": "Экран 7`` TN (1024x600) MultiTouch / MediaTek MT8321A/D (1.3 ГГц) / RAM 1 ГБ / 16 ГБ встроенной памяти + microSD / 3G / Wi-Fi / Bluetooth 4.0 / основная камера 2 Мп, фронтальная - 0.3 Мп / A-GPS / Android 8.0 (Oreo Go edition) / 272 г / черный",
       "price": "1999",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "tablets",
       "brand": "lenovo",
       "origin": "china"
@@ -60,7 +60,7 @@
       "image": "./images/products/SM-T725NZKASEK.jpg",
       "description": "Экран 10.5`` Super AMOLED (2560x1600) емкостный MultiTouch / Qualcomm Snapdragon 670 (2x2.0 ГГц + 6x1.7 ГГц) / RAM 4 ГБ / 64 ГБ встроенной памяти + microSD / 3G / 4G / Wi-Fi / Bluetooth 5.0 / основная камера 13 Мп, фронтальная - 8 Мп / GPS / ГЛОНАСС / Android 9.0 (Pie) / 400 г / черный",
       "price": "15999",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "tablets",
       "brand": "samsung",
       "origin": "korea"
@@ -71,7 +71,7 @@
       "image": "./images/products/Huawei-AGS2-L09.jpg",
       "description": "Экран 10.1`` IPS (1920x1200) MultiTouch / HiSilicon Kirin 659 (2.36 ГГц + 1.7 ГГц) / RAM 4 ГБ / 64 ГБ встроенной памяти + microSD / 3G / LTE / Wi-Fi / Bluetooth 4.2 / основная камера 5 Мп, фронтальная 2 Мп / GPS / ГЛОНАСС / поддержка 2-х СИМ-карт / Android 8.0 (EMUI) / 465 г / черный",
       "price": "7999",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "tablets",
       "brand": "huawei",
       "origin": "china"
@@ -82,7 +82,7 @@
       "image": "./images/products/Assistant-AP-108.jpg",
       "description": "Экран 10`` IPS (1920x1200) Multi-Touch / MediaTek MT6750 (1.5 ГГц) / RAM 2 ГБ / 32 ГБ встроенной памяти + поддержка microSD / 3G / LTE / Wi-Fi / Bluetooth / основная камера 5 Мп, фронтальная - 2 Мп / GPS / поддержка 2-х СИМ-карт / Android 8.0 (Oreo) / 520 г / черный",
       "price": "3999",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "tablets",
       "brand": "assistance",
       "origin": "china"
@@ -93,9 +93,9 @@
       "image": "./images/products/PocketBook641Aqua2.jpg",
       "description": "Диагональ дисплея: 6`` / Количество градаций серого: 16 / Тип матрицы: E Ink Carta / Разрешение: 1024х758 / Встроенная память: 8 ГБ / Вес: 180 г",
       "price": "3599",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "e-books",
-      "brand": "pocket book",
+      "brand": "pocket-book",
       "origin": "switzerland"
     },
     {
@@ -104,9 +104,9 @@
       "image": "./images/products/Pocketbook627TouchLux4.jpg",
       "description": "Диагональ дисплея: 6`` Количество градаций серого: 16 / Тип матрицы: E Ink Carta HD / Разрешение: 1024х758 / Встроенная память: 8 ГБ / Вес: 155 г",
       "price": "4016",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "e-books",
-      "brand": "pocketbook",
+      "brand": "pocket-book",
       "origin": "switzerland"
     },
     {
@@ -115,9 +115,9 @@
       "image": "./images/products/ONYX-BOOX-Note.jpg",
       "description": "Диагональ дисплея: 10.3`` / Тип матрицы: E Ink Mobius Carta / Разрешение: 1872x1404 / Встроенная память: 32 ГБ / Вес: 325 г",
       "price": "18999",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "e-books",
-      "brand": "onyx boox",
+      "brand": "onyx-boox",
       "origin": "china"
     },
     {
@@ -126,9 +126,9 @@
       "image": "./images/products/Amazon-Kindle-All-new10th-Gen.jpg",
       "description": "Сенсорный экран с подсветкой 6`` | Плотность пикселей 167 PPI | Память 4 Gb | Wi-Fi | Форматы книг: Kindle (AZW), TXT, PDF, unprotected MOBI, PRC natively, HTML, DOC, DOCX (требуется конвертация) | microUSB | Размер: 160 x 113 x 8.7 мм, Вес: 174 г | Белый",
       "price": "2668",
-      "category": "computers & notebooks",
+      "category": "computers-notebooks",
       "subcategory": "e-books",
-      "brand": "amazon kindle",
+      "brand": "amazon-kindle",
       "origin": "usa"
     },
     {
@@ -395,4 +395,4 @@
       "brand": "beko",
       "origin": "turkey"
     },
-  ]
+]

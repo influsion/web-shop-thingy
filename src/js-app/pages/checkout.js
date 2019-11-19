@@ -26,10 +26,11 @@ function renderCheckoutPage(e, $target) {
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="wn_checkout_wrap">
-                                <div class="checkout_info">
+                                <!-- TODO: Registration block -->
+                                <!-- <div class="checkout_info">
                                     <span>Returning customer ?</span>
                                     <a class="showlogin" href="#">Click here to login</a>
-                                </div>
+                                </div> -->
                                 <div class="checkout_login">
                                     <form class="wn__checkout__form" action="#">
                                         <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
@@ -52,10 +53,6 @@ function renderCheckoutPage(e, $target) {
                                             <a href="#">Lost your password?</a>
                                         </div>
                                     </form>
-                                </div>
-                                <div class="checkout_info">
-                                    <span>Have a coupon? </span>
-                                    <a class="showcoupon" href="#">Click here to enter your code</a>
                                 </div>
                                 <div class="checkout_coupon">
                                     <form action="#">

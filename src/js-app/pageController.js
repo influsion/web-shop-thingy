@@ -6,16 +6,16 @@ const pageController = {
     },
 
     pagesController: {
-        '#home': $target => renderHomePage($target),
-        '#shop': $target => renderShopPage($target),
-        '#faq': $target => renderFaqPage($target),
-        '#contact': $target => renderContactPage($target),
-        '#about': $target => renderAboutPage($target),
+        '#home': (e, $target) => renderHomePage(e, $target),
+        '#shop': (e, $target) => renderShopPage(e, $target),
+        '#faq': (e, $target) => renderFaqPage(e, $target),
+        '#contact': (e, $target) => renderContactPage(e, $target),
+        '#about': (e, $target) => renderAboutPage(e, $target),
 
-        '#product': $target => renderProductPage($target),
-        '#cart': $target => renderCartPage($target),
-        '#checkout': $target => renderCheckoutPage($target),
-        '#result': $target => renderResultPage($target),
+        '#product': (e, $target) => renderProductPage(e, $target),
+        '#cart': (e, $target) => renderCartPage(e, $target),
+        '#checkout': (e, $target) => renderCheckoutPage(e, $target),
+        '#result': (e, $target) => renderResultPage(e, $target),
     },
 
     setActivePage(e = null, $target = null) {

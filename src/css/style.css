@@ -2453,16 +2453,17 @@ nav.menu {
         bottom: 11px;
         right: 11px; }
     .product .product__content .action {
-	  bottom: 30px;
-	  left: 0;
-	  opacity: 0;
-	  position: absolute;
-	  right: 0;
-	  transform: translateY(-50%);
-	  visibility: hidden;
-	  z-index: 1;
-	  transition:.4s;
-	  margin-bottom:8px;
+        bottom: 30px;
+        bottom: 6px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        transform: translateY(-50%);
+        visibility: hidden;
+        z-index: 1;
+        transition:.4s;
+        margin-bottom:8px;
 	}
 	.product__hover--content {
 	  visibility: hidden;

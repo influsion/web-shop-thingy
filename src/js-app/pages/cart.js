@@ -40,24 +40,24 @@ function renderCartPage(e, $target) {
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="product-thumbnail"><a href="#"><img src="images/product/sm-3/1.jpg" alt="product img"></a></td>
-                                                <td class="product-name"><a href="#">Natoque penatibus</a></td>
+                                                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/1.jpg" alt="product img"></a></td>
+                                                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Natoque penatibus</a></td>
                                                 <td class="product-price"><span class="amount">$165.00</span></td>
                                                 <td class="product-quantity"><input type="number" value="1"></td>
                                                 <td class="product-subtotal">$165.00</td>
                                                 <td class="product-remove"><a href="#">X</a></td>
                                             </tr>
                                             <tr>
-                                                <td class="product-thumbnail"><a href="#"><img src="images/product/sm-3/2.jpg" alt="product img"></a></td>
-                                                <td class="product-name"><a href="#">Quisque fringilla</a></td>
+                                                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/2.jpg" alt="product img"></a></td>
+                                                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Quisque fringilla</a></td>
                                                 <td class="product-price"><span class="amount">$50.00</span></td>
                                                 <td class="product-quantity"><input type="number" value="1"></td>
                                                 <td class="product-subtotal">$50.00</td>
                                                 <td class="product-remove"><a href="#">X</a></td>
                                             </tr>
                                             <tr>
-                                                <td class="product-thumbnail"><a href="#"><img src="images/product/sm-3/3.jpg" alt="product img"></a></td>
-                                                <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
+                                                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/3.jpg" alt="product img"></a></td>
+                                                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Vestibulum suscipit</a></td>
                                                 <td class="product-price"><span class="amount">$50.00</span></td>
                                                 <td class="product-quantity"><input type="number" value="1"></td>
                                                 <td class="product-subtotal">$50.00</td>
@@ -69,9 +69,6 @@ function renderCartPage(e, $target) {
                             </form>
                             <div class="cartbox__btn">
                                 <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                                    <li><a href="#">Coupon Code</a></li>
-                                    <li><a href="#">Apply Code</a></li>
-                                    <li><a href="#">Update Cart</a></li>
                                     <li><a href="#">Check Out</a></li>
                                 </ul>
                             </div>
@@ -80,16 +77,6 @@ function renderCartPage(e, $target) {
                     <div class="row">
                         <div class="col-lg-6 offset-lg-6">
                             <div class="cartbox__total__area">
-                                <div class="cartbox-total d-flex justify-content-between">
-                                    <ul class="cart__total__list">
-                                        <li>Cart total</li>
-                                        <li>Sub Total</li>
-                                    </ul>
-                                    <ul class="cart__total__tk">
-                                        <li>$70</li>
-                                        <li>$70</li>
-                                    </ul>
-                                </div>
                                 <div class="cart__total__amount">
                                     <span>Grand Total</span>
                                     <span>$140</span>
@@ -102,6 +89,8 @@ function renderCartPage(e, $target) {
             <!-- cart-main-area end -->
         `);
     }
+
+    console.log($target.get(0).dataset.productId);
 
     const page = template();
 
