@@ -1,3 +1,6 @@
+"use strict";
+
+
 function renderShopPage(e, $target) {
     function template(data) {
         return (`

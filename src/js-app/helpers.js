@@ -428,7 +428,7 @@ var a = {
     "subcategory": "notebooks",
     "brand": "acer",
     "origin": "china"
-}
+};
 
 
 function getProducts(productArr, params) {

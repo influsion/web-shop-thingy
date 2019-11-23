@@ -1,3 +1,6 @@
+"use strict";
+
+
 function renderProductPage(e, $target) {
     function template(data) {
         return (`
@@ -30,7 +33,7 @@ function renderProductPage(e, $target) {
                                     <div class="col-lg-6 col-12">
                                         <div class="wn__fotorama__wrapper">
                                             <div class="fotorama wn__fotorama__action" data-nav="thumbs">
-                                                <a href="1.jpg"><img src="images/product/1.jpg" alt=""></a>
+                                                <a href="1.jpg"><img src="${data.image}" alt=""></a>
                                                 <a href="2.jpg"><img src="images/product/2.jpg" alt=""></a>
                                                 <a href="3.jpg"><img src="images/product/3.jpg" alt=""></a>
                                                 <a href="4.jpg"><img src="images/product/4.jpg" alt=""></a>
@@ -43,7 +46,7 @@ function renderProductPage(e, $target) {
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="product__info__main">
-                                            <h1>Chaz Kangeroo Hoodie</h1>
+                                            <h1>${data.name}</h1>
                                             <!-- <div class="product-reviews-summary d-flex">
                                                 <ul class="rating-summary d-flex">
                                                     <li><i class="zmdi zmdi-star-outline"></i></li>
@@ -54,30 +57,29 @@ function renderProductPage(e, $target) {
                                                 </ul>
                                             </div> -->
                                             <div class="price-box">
-                                                <span>$52.00</span>
+                                                <span>Price: ${data.price} UAH</span>
                                             </div>
                                             <div class="product__overview">
-                                                <p>Ideal for cold-weather training or work outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat.</p>
-                                                <p>Ideal for cold-weather training or work outdoors, the Chaz Hoodie promises superior warmth with every wear. </p>
+                                                <p>${data.description}</p>                                            
                                             </div>
-                                            <div class="box-tocart d-flex">
+                                            <div class="box-tocart d-flex js-add-to-cart">
                                                 <span>Qty</span>
                                                 <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
                                                 <div class="addtocart__actions">
                                                     <button class="tocart" type="submit" title="Add to Cart">Add to Cart</button>
                                                 </div>
                                                 <div class="product-addto-links clearfix">
-                                                    <a class="js-switch-page" href="#cart" data-product-id="${'100'}">
+                                                    <a class="js-switch-page" href="#cart" data-product-id="${data.id}">
                                                         <i class="bi bi-shopping-bag4"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="product_meta">
                                                 <span class="posted_in">Categories:
-                                                    <a href="#">Adventure</a>
+                                                    <a href="#">${data.category}</a>
                                                 </span>
                                             </div>
-                                            <div class="product-share">
+                                            <!--<div class="product-share">
                                                 <ul>
                                                     <li class="categories-title">Share :</li>
                                                     <li>
@@ -101,7 +103,7 @@ function renderProductPage(e, $target) {
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -155,15 +157,13 @@ function renderProductPage(e, $target) {
                                 </aside>
 
 
-                                ${
-                                    `<aside class="wedget__categories sidebar--banner">
+                                ${`<aside class="wedget__categories sidebar--banner">
                                         <img src="images/others/banner_left.jpg" alt="banner images">
                                         <div class="text">
                                             <h2>new products</h2>
                                             <h6>save up to <br> <strong>40%</strong>off</h6>
                                         </div>
-                                    </aside>`
-                                }
+                                    </aside>`}
                             </div>
                         </div>
                     </div>
@@ -173,13 +173,32 @@ function renderProductPage(e, $target) {
         `);
     }
 
-    const page = template();
+    const page = template(getCurrentProduct());
 
     console.log('renderProductPage');
     global.$main.first().html(page);
     afterChangingTheDOM();
 
+
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM
     }
+}
+
+function addToCartClickHandler() {
+    let productQuantity = $('.qty').val();
+        let currentProduct = new Object({
+            product: getCurrentProduct(),
+            qty: productQuantity
+        });
+        global.basket.push(currentProduct);
+    console.log('products in basket: ' + JSON.stringify(global.basket));
+}
+
+
+function getCurrentProduct() {
+    const productId = $('[data-product-id]').get(0).dataset.productId;
+    console.log('product id: ' + productId);
+    const product = getProducts({id: productId})[0];
+    return product;
 }

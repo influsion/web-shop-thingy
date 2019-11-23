@@ -4,7 +4,7 @@ const global = {
     basket: [],
 };
 
-const findElemets = function() {
+const findElements = function() {
     global.$app = $('#wrapper');
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
@@ -24,13 +24,14 @@ const findElemets = function() {
 const bindEvents = function() {
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart', addToCartClickHandler);
 };
 
 
 // Main
 (() => {
-    console.log('----------------------------')
-    findElemets();
+    console.log('----------------------------');
+    findElements();
     bindEvents();
 
     pageController.init(global.$menuLinks);

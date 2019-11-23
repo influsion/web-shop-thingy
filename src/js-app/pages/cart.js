@@ -1,3 +1,5 @@
+"use strict";
+
 function renderCartPage(e, $target) {
     function template(data) {
         return (`
