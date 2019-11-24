@@ -1,8 +1,30 @@
-/*********************************************************************************
+.wedget__categories.poroduct--cat ul li {
+	border-bottom: none;
+}
 
-	Template Name: Boighor Bookshop Responsive Bootstrap4 Template  
-	Description: Template description
-	Version: 1.0
-	Note: This is custom css. All custom styles (user styles) declare here.
+.wedget__categories.poroduct--cat > ul > li + li {
+	margin-top: 16px;
+}
 
-**********************************************************************************/
+.wedget__categories.poroduct--cat ul a {
+	/* display: block; */
+	display: flex;
+    justify-content: space-between;
+	border-bottom: 1px dashed #e1e1e1;
+}
+
+.wedget__categories.poroduct--cat ul li a span:first-child {
+	float: none;
+}
+
+.wedget__categories.poroduct--cat ul a.active {
+
+}
+
+.wedget__categories.poroduct--cat ul a.active {
+
+}
+
+.wedget__categories.poroduct--cat ul ul {
+	margin-left: 16px;
+}

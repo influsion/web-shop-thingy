@@ -206,43 +206,17 @@
 						</ul>
 					</div>
 				</div>
+
 				<!-- Start Mobile Menu -->
 				<div class="row d-none">
 					<div class="col-lg-12 d-none">
 						<nav class="mobilemenu__nav">
 							<ul class="meninmenu">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="#">Pages</a>
-									<ul>
-										<li><a href="about.html">About Page</a></li>
-										<li><a href="portfolio.html">Portfolio</a>
-											<ul>
-												<li><a href="portfolio.html">Portfolio</a></li>
-												<li><a href="portfolio-details.html">Portfolio Details</a></li>
-											</ul>
-										</li>
-										<li><a href="my-account.html">My Account</a></li>
-										<li><a href="cart.html">Cart Page</a></li>
-										<li><a href="checkout.html">Checkout Page</a></li>
-										<li><a href="wishlist.html">Wishlist Page</a></li>
-										<li><a href="error404.html">404 Page</a></li>
-										<li><a href="faq.html">Faq Page</a></li>
-										<li><a href="team.html">Team Page</a></li>
-									</ul>
-								</li>
-								<li><a href="shop-grid.html">Shop</a>
-									<ul>
-										<li><a href="shop-grid.html">Shop Grid</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-									</ul>
-								</li>
-								<li><a href="blog.html">Blog</a>
-									<ul>
-										<li><a href="blog.html">Blog Page</a></li>
-										<li><a href="blog-details.html">Blog Details</a></li>
-									</ul>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
+								<li class=""><a class="mainmenu-link js-switch-page" href="#home">Home</a></li>
+								<li class=""><a class="mainmenu-link js-switch-page" href="#shop">Shop</a></li>
+								<li class=""><a class="mainmenu-link js-switch-page" href="#faq">FAQ</a></li>
+								<li class=""><a class="mainmenu-link js-switch-page" href="#contact">Contact</a></li>
+								<li class=""><a class="mainmenu-link js-switch-page" href="#about">About</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -422,10 +396,15 @@
 	<script src="js/active.js"></script>
 
 	<!-- JS Files -->
+	<script src="js-app/qs.js"></script>
 	<script src="js-app/helpers.js"></script>
 	<script src="js-app/pageController.js"></script>
 
 	<!-- Components -->
+	<script src="js-app/components/breadcrumbs.js"></script>
+	<script src="js-app/components/filter.js"></script>
+	<script src="js-app/components/categories.js"></script>
+	<script src="js-app/components/menuItems.js"></script>
 	<script src="js-app/components/productCartSlideView.js"></script>
 	<script src="js-app/components/productCartGridView.js"></script>
 	<script src="js-app/components/productCartListView.js"></script>

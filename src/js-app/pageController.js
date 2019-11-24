@@ -23,6 +23,13 @@ const pageController = {
 
         const getHash = $elem => $elem.get(0).hash || $elem.get(0).dataset.hash;
 
+        const isExisting = !!$target;
+        const isHash = isExisting && getHash($target);
+        const hasSavedHash = !!sessionStorage.getItem('web-shop-thingy_anchor');
+        const isSavedHash = hasSavedHash && sessionStorage.getItem('web-shop-thingy_anchor');
+        const isReRender = !!e && isExisting && hasSavedHash && (isHash === isSavedHash);
+        console.log('This is an attempt to re-render: ', isReRender);
+
         const anchor = $target
             ? getHash($target)
             : sessionStorage.getItem('web-shop-thingy_anchor');
@@ -39,7 +46,7 @@ const pageController = {
                 : this.$links.first();
 
             this.setActivePage(e, $target);
-        } else {
+        } else if (!isReRender) {
             console.info('Hash available', anchor);
 
             sessionStorage.setItem('web-shop-thingy_anchor', anchor),

@@ -2,15 +2,24 @@
 
 const global = {
     basket: [],
+    promises: new PromiseList(),
 };
+let localization = [];
+const basket = [];
+const lang = 'en';
+const qsDefaultParams = {
+    arrayFormat: 'indices',
+    format : 'RFC3986',
+};
+const serverURL = 'http://localhost:3000'
+
 
 const findElemets = function() {
     global.$app = $('#wrapper');
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
 
-    // Header Menu links
-    global.$menuLinks = global.$header.find('.mainmenu-link');
+
 
     // Header Search btn
     global.$headerSearchBtn = global.$header.find('.shop_search > a');
@@ -18,7 +27,6 @@ const findElemets = function() {
     // Header Shopcart btn
     global.$headerCartBtn = global.$header.find('.shopcart > a');
     global.$headerCartCounter = global.$headerCartBtn.find('.product_qun');
-
 };
 
 const bindEvents = function() {
@@ -26,15 +34,27 @@ const bindEvents = function() {
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 };
 
-
 // Main
 (() => {
     console.log('----------------------------')
     findElemets();
     bindEvents();
 
-    pageController.init(global.$menuLinks);
-    pageController.setActivePage();
+    global.promises.add('localization', getLocalization())
+
+    Promise.all(global.promises)
+        .then(promises => {
+            localization = promises[global.promises.order.localization];
+
+            // TODO: Step: Here is render menu with js
+
+            // Step: Header Menu links
+            global.$menuLinks = global.$header.find('.mainmenu-link');
+            pageController.init(global.$menuLinks);
+
+            // Step: Change page
+            pageController.setActivePage();
+        });
 
     // Read cached page name
 
