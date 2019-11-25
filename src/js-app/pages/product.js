@@ -60,13 +60,13 @@ function renderProductPage(e, $target) {
                                                 <span>Price: ${data.price} UAH</span>
                                             </div>
                                             <div class="product__overview">
-                                                <p>${data.description}</p>                                            
+                                                <p>${data.description}</p>
                                             </div>
-                                            <div class="box-tocart d-flex js-add-to-cart">
+                                            <div class="box-tocart d-flex">
                                                 <span>Qty</span>
                                                 <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
                                                 <div class="addtocart__actions">
-                                                    <button class="tocart" type="submit" title="Add to Cart">Add to Cart</button>
+                                                    <button class="tocart js-add-to-cart" type="submit" title="Add to Cart">Add to Cart</button>
                                                 </div>
                                                 <div class="product-addto-links clearfix">
                                                     <a class="js-switch-page" href="#cart" data-product-id="${data.id}">
@@ -173,12 +173,28 @@ function renderProductPage(e, $target) {
         `);
     }
 
-    const page = template(getCurrentProduct());
+    // const page = template(getCurrentProduct());
 
-    console.log('renderProductPage');
-    global.$main.first().html(page);
-    afterChangingTheDOM();
+    // console.log('renderProductPage');
+    // global.$main.first().html(page);
+    // afterChangingTheDOM();
 
+    const productId = getProductIdFromDataSet($target);
+
+    global.promises.add('filteredDataOfProducts', getProducts({ id: productId }));
+
+    Promise.all(global.promises).then(promises => {
+        const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
+        const currentProduct = filteredDataOfProducts[0];
+
+        currentStoredProductID.seveToSessionStorage(currentProduct.id);
+
+        const pageHTML = template(currentProduct)
+
+        console.log('renderProductPage');
+        global.$main.first().html(pageHTML);
+        afterChangingTheDOM();
+    });
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM
@@ -186,19 +202,8 @@ function renderProductPage(e, $target) {
 }
 
 function addToCartClickHandler() {
-    let productQuantity = $('.qty').val();
-        let currentProduct = new Object({
-            product: getCurrentProduct(),
-            qty: productQuantity
-        });
-        global.basket.push(currentProduct);
-    console.log('products in basket: ' + JSON.stringify(global.basket));
-}
-
-
-function getCurrentProduct() {
-    const productId = $('[data-product-id]').get(0).dataset.productId;
-    console.log('product id: ' + productId);
-    const product = getProducts({id: productId})[0];
-    return product;
+    basket.add({
+        id: currentStoredProductID.getFromSessionStorage(),
+        quantity: parseInt(global.$main.find('.qty').val()),
+    });
 }

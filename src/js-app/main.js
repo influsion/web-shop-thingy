@@ -1,11 +1,11 @@
 'use strict';
 
 const global = {
-    basket: [],
+    // basket: [],
     promises: new PromiseList(),
 };
 let localization = [];
-const basket = [];
+const basket = new Basket();
 const lang = 'en';
 const qsDefaultParams = {
     arrayFormat: 'indices',
@@ -32,7 +32,11 @@ const findElements = function() {
 const bindEvents = function() {
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
-    global.$app.on('click', '.js-add-to-cart', addToCartClickHandler);
+
+    // Add product to cart
+    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e));
+
+    global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
 };
 
 // Main

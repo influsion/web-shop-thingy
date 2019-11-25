@@ -86,7 +86,7 @@ function renderCartPage(e, $target) {
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <!-- cart-main-area end -->
@@ -94,34 +94,29 @@ function renderCartPage(e, $target) {
     }
 
     function cartItem(data) {
-      if (!data.quantity) data.quantity = 1;
-      return (`
-        <tr>
-          <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${data.id}"><img src="${data.image}" alt="${data.name}"></a></td>
-          <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${data.id}">${data.name}</a></td>
-          <td class="product-price"><span class="amount">$${data.price}</span></td>
-          <td class="product-quantity"><input class="input-quantity" type="number" value="${data.quantity}"></td>
-          <td class="product-subtotal">$${data.price * data.quantity}</td>
-          <td class="product-remove"><a href="#">X</a></td>
-       </tr>
-      `)
+        if (!data.quantity) data.quantity = 1;
+
+        return (`
+            <tr>
+                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${data.id}"><img src="${data.image}" alt="${data.name}"></a></td>
+                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${data.id}">${data.name}</a></td>
+                <td class="product-price"><span class="amount">$${data.price}</span></td>
+                <td class="product-quantity"><input class="js-input-quantity" type="number" value="${data.quantity}"></td>
+                <td class="product-subtotal">$${data.price * data.quantity}</td>
+                <td class="product-remove"><a href="#">X</a></td>
+            </tr>
+        `)
     };
 
-    //======
-    // global.basket.map(function(item) {
-    //   return item.id;
-    // });
-    // =======
-
-    global.basket = [
+    const basket = [
       {
         id:2,
         quantity: 1,
-      }, 
+      },
       {
         id:6,
         quantity: 3,
-      }, 
+      },
       {
         id:3,
         quantity: 5,
@@ -136,44 +131,49 @@ function renderCartPage(e, $target) {
       }
     ];
 
-    const productIds = global.basket.map(item => item.id);
-    const productQty = global.basket.map(item => item.quantity);
-    const productObj = getProducts({
-        id: productIds,
-      }, 
-      {
-        quantity: productQty,
-      });
+    const productIds = basket.map(item => item.id);
 
-    const itemsHTML = productObj.map((product) => {
-        //! TODO: need to delete when JSON file will exist
-        product = {...product};
-        // product.quantity = global.basket.find(item => Number(item.quantity) === Number(product.id))[0].quantity;
-        return cartItem(product);
+    global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
+
+    Promise.all(global.promises).then(promises => {
+        const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
+        const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
+        const pageHTML = template({}, {itemsHTML});
+
+
+
+
+
+        let totalPrice = function() {
+
+            $('.main').on('click', '.js-input-quantity', function(event) {
+                let target = event.target;
+                let quantity = $(target).val();
+
+
+                (quantity < 1) && $(target).val(1);
+
+                if (quantity > 0) console.log(quantity);
+            });
+            return;
+        };
+
+        totalPrice(basket, filteredDataOfProducts);
+        console.log($target.get(0).dataset.productId);
+
+
+
+        console.log('renderCartPage');
+        global.$main.first().html(pageHTML);
+        afterChangingTheDOM();
     });
-
-    let totalPrice = function() {
-        
-        $('.main').off().on('click', '.input-quantity', function(event) {
-            let target = event.target;
-            let quantity = $(target).val();
-            if(quantity > 0) console.log(quantity);
-        });
-        return;
-    };
-
-    totalPrice(global.basket, productArr);
-    console.log($target.get(0).dataset.productId);
-
-    const page = template({}, {itemsHTML});
-
-    console.log('renderCartPage');
-    global.$main.first().html(page);
-    afterChangingTheDOM();
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM
     }
 }
 
-// console.log(getProducts({id: 2}, {price: 25555})[0].name);
+const calcTotalPriceOnCart = e => {
+    //! TODO: Need to finish
+    const productId = getProductIdFromDataSet($(e.currentTarget));
+};

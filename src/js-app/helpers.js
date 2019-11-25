@@ -38,6 +38,22 @@ const PromiseList = function() {
     return Object.create([], proto);
 };
 
+const Basket = function() {
+    const proto = {
+        add: {
+            writable: false,
+            configurable: false,
+            value: function(obj) {
+                this.push(obj)
+
+                return this;
+            },
+        },
+    };
+
+    return Object.create([], proto);
+}
+
 const getProducts = function(params) {
     return fetch(`${serverURL}/products?${qs.stringify(params)}`)
         .then(data => data.json());
@@ -52,3 +68,17 @@ const getCategoriesStructure = function(params = "en") {
     return fetch(`${serverURL}/categoriesstructure/${params}}`)
         .then(data => data.json());
 };
+
+const currentStoredProductID = {
+    key: 'web-shop-thingy_currentProductID',
+
+    seveToSessionStorage(productId) {
+        const idJSON = JSON.stringify(parseInt(productId));
+        return sessionStorage.setItem(this.key, idJSON);
+    },
+
+    getFromSessionStorage() {
+        const idJSON = sessionStorage.getItem(this.key);
+        return JSON.parse(idJSON);
+    },
+}

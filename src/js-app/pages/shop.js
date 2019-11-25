@@ -76,7 +76,7 @@ function renderShopPage(e, $target) {
 
 
 
-    const pagePromises = new PromiseList();
+    // const pagePromises = new PromiseList();
     global.promises.add('categoriesStructure', getCategoriesStructure())
     global.promises.add('filteredDataOfProducts', getProducts({ id: [2, 4, 6, 8] }));
 
