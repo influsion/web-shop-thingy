@@ -32,6 +32,7 @@ const findElements = function() {
 const bindEvents = function() {
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart', addToCartClickHandler);
 };
 
 // Main
