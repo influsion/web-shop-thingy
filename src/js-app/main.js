@@ -14,7 +14,7 @@ const qsDefaultParams = {
 const serverURL = 'http://localhost:3000'
 
 
-const findElemets = function() {
+const findElements = function() {
     global.$app = $('#wrapper');
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
@@ -36,8 +36,8 @@ const bindEvents = function() {
 
 // Main
 (() => {
-    console.log('----------------------------')
-    findElemets();
+    console.log('----------------------------');
+    findElements();
     bindEvents();
 
     global.promises.add('localization', getLocalization())

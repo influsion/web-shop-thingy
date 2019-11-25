@@ -49,7 +49,7 @@ const pageController = {
         } else if (!isReRender) {
             console.info('Hash available', anchor);
 
-            sessionStorage.setItem('web-shop-thingy_anchor', anchor),
+            sessionStorage.setItem('web-shop-thingy_anchor', anchor);
             this.pagesController[anchor](e, $target);
             this.$links.removeClass('active');
             $target.addClass('active');
