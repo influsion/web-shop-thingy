@@ -1,3 +1,6 @@
+"use strict";
+
+
 function renderCheckoutPage(e, $target) {
     function template(data) {
         return (`

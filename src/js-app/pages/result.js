@@ -1,3 +1,6 @@
+"use strict";
+
+
 function renderResultPage(e, $target) {
     function template(data) {
         return (`

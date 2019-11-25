@@ -1,3 +1,6 @@
+"use strict";
+
+
 function renderContactPage(e, $target) {
     function template(data) {
         return (`

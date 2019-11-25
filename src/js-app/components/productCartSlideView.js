@@ -1,15 +1,15 @@
 'use strict';
 
 function productCartSlideViewComponents(data) {
-    function template(data) {
-        return (`
+	function template(data) {
+		return (`
             <div class="product product__style--3">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="product__thumb">
                         <a class="first__img js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/books/1.jpg" alt="product image"></a>
                         <a class="second__img animation1 js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/books/2.jpg" alt="product image"></a>
                         <div class="hot__box">
-                            <span class="hot-label">BEST SALLER</span>
+                            <span class="hot-label">BEST SELLER</span>
                         </div>
                     </div>
                     <div class="product__content content--center">
@@ -17,6 +17,7 @@ function productCartSlideViewComponents(data) {
                         <ul class="prize d-flex">
                             <li></li>
                             <li>$35.00</li>
+							<!-- TODO:maybe add old price -->
                             <!-- <li class="old_prize">$35.00</li> -->
                         </ul>
                         <div class="action">
@@ -42,7 +43,7 @@ function productCartSlideViewComponents(data) {
                 </div>
             </div>
         `);
-    }
+	}
 
-    return template(data);
+	return template(data);
 }
