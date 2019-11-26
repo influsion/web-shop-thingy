@@ -184,7 +184,7 @@ function renderProductPage(e, $target) {
 
         currentStoredProductID.seveToSessionStorage(currentProduct.id);
 
-        const pageHTML = template(currentProduct)
+        const pageHTML = pageTemplate(currentProduct)
 
         console.log('renderProductPage');
         global.$main.first().html(pageHTML);
