@@ -19,7 +19,7 @@ const toType = val => {
 
 const PromiseList = function() {
     const proto = {
-        order: {
+        element: {
             writable: false,
             configurable: false,
             value: {},
@@ -28,7 +28,9 @@ const PromiseList = function() {
             writable: false,
             configurable: false,
             value: function(promiseName, promiseObject) {
-                this.order[promiseName] = this.push(promiseObject) - 1;
+                const lengthAfterPush = this.push(promiseObject);
+                const elementPosition = lengthAfterPush - 1;
+                this.element[promiseName] = this[elementPosition];
 
                 return this;
             },

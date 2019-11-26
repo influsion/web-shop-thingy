@@ -179,7 +179,7 @@ function renderProductPage(e, $target) {
     global.promises.add('filteredDataOfProducts', getProducts({ id: productId }));
 
     Promise.all(global.promises).then(promises => {
-        const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
+        const filteredDataOfProducts = global.promises.element.filteredDataOfProducts;
         const currentProduct = filteredDataOfProducts[0];
 
         currentStoredProductID.seveToSessionStorage(currentProduct.id);

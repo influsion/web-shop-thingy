@@ -137,8 +137,8 @@ function renderCartPage(e, $target) {
     global.promises.add('categoriesStructure', getCategoriesStructure());
 
     Promise.all(global.promises).then(promises => {
-        const categoriesStructure = promises[global.promises.order.categoriesStructure];
-        const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
+        const categoriesStructure = global.promises.element.categoriesStructure;
+        const filteredDataOfProducts = global.promises.element.filteredDataOfProducts;
         const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
         const pageHTML = template({}, {itemsHTML});
 
