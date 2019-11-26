@@ -64,8 +64,8 @@ const getLocalization = function(params = "en") {
         .then(data => data.json());
 };
 
-const getCategoriesStructure = function(params = "en") {
-    return fetch(`${serverURL}/categoriesstructure/${params}}`)
+const getCategoriesStructure = function() {
+    return fetch(`${serverURL}/categoriesstructure`)
         .then(data => data.json());
 };
 
@@ -81,4 +81,28 @@ const currentStoredProductID = {
         const idJSON = sessionStorage.getItem(this.key);
         return JSON.parse(idJSON);
     },
-}
+};
+
+const storage = {
+    getItem(key) {
+        const dataJSON = localStorage.getItem(key);
+        return JSON.parse(dataJSON);
+    },
+
+    setItem(key, data) {
+        const dataJSON = JSON.stringify(data);
+        return localStorage.setItem(key, dataJSON);
+    },
+};
+
+const tempStorage = {
+    getItem(key) {
+        const dataJSON = sessionStorage.getItem(key);
+        return JSON.parse(dataJSON);
+    },
+
+    setItem(key, data) {
+        const dataJSON = JSON.stringify(data);
+        return sessionStorage.setItem(key, dataJSON);
+    },
+};

@@ -1,7 +1,6 @@
 'use strict';
 
 const global = {
-    // basket: [],
     promises: new PromiseList(),
 };
 let localization = [];

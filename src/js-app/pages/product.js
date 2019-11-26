@@ -2,7 +2,7 @@
 
 
 function renderProductPage(e, $target) {
-    function template(data) {
+    const pageTemplate = data => {
         return (`
             <!-- Start Bradcaump area -->
             <div class="ht__bradcaump__area bg-image--4">
@@ -173,11 +173,6 @@ function renderProductPage(e, $target) {
         `);
     }
 
-    // const page = template(getCurrentProduct());
-
-    // console.log('renderProductPage');
-    // global.$main.first().html(page);
-    // afterChangingTheDOM();
 
     const productId = getProductIdFromDataSet($target);
 

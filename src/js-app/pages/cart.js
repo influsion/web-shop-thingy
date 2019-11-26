@@ -134,8 +134,10 @@ function renderCartPage(e, $target) {
     const productIds = basket.map(item => item.id);
 
     global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
+    global.promises.add('categoriesStructure', getCategoriesStructure());
 
     Promise.all(global.promises).then(promises => {
+        const categoriesStructure = promises[global.promises.order.categoriesStructure];
         const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
         const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
         const pageHTML = template({}, {itemsHTML});
