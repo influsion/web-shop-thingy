@@ -73,36 +73,42 @@ const currentStoredProductID = {
     key: 'web-shop-thingy_currentProductID',
 
     seveToSessionStorage(productId) {
-        const idJSON = JSON.stringify(parseInt(productId));
-        return sessionStorage.setItem(this.key, idJSON);
+        return tempStorage.setItem(this.key, parseInt(productId));
     },
 
     getFromSessionStorage() {
-        const idJSON = sessionStorage.getItem(this.key);
-        return JSON.parse(idJSON);
+        return tempStorage.getItem(this.key);
     },
 };
 
+// localStorage alternative
 const storage = {
     getItem(key) {
         const dataJSON = localStorage.getItem(key);
-        return JSON.parse(dataJSON);
+        return (JSON.parse(dataJSON) || {}).value;
     },
 
     setItem(key, data) {
-        const dataJSON = JSON.stringify(data);
+        const dataJSON = JSON.stringify({
+            value: data,
+        });
+
         return localStorage.setItem(key, dataJSON);
     },
 };
 
+// sessionStorage alternative
 const tempStorage = {
     getItem(key) {
         const dataJSON = sessionStorage.getItem(key);
-        return JSON.parse(dataJSON);
+        return (JSON.parse(dataJSON) || {}).value;
     },
 
     setItem(key, data) {
-        const dataJSON = JSON.stringify(data);
+        const dataJSON = JSON.stringify({
+            value: data,
+        });
+
         return sessionStorage.setItem(key, dataJSON);
     },
 };
