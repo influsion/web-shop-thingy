@@ -82,8 +82,8 @@ function renderShopPage(e, $target) {
 
     Promise.all(global.promises)
         .then(promises => {
-            const categoriesStructure = global.promises.element.categoriesStructure;
-            const filteredDataOfProducts = global.promises.element.filteredDataOfProducts;
+            const categoriesStructure = promises[global.promises.order.categoriesStructure];
+            const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
             console.log(categoriesStructure, filteredDataOfProducts);
 
 
