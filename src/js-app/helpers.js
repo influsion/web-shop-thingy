@@ -33,6 +33,13 @@ const PromiseList = function() {
                 return this;
             },
         },
+        extract: {
+            writable: false,
+            configurable: false,
+            value: function(promiseName, promiseResponseArray) {
+                return promiseResponseArray[this.order[promiseName]];
+            },
+        },
     };
 
     return Object.create([], proto);
