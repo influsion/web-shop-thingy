@@ -1,9 +1,20 @@
 "use strict";
 
+global.promises.add("popularItems", getProducts({popular: true}));
+console.log(global.promises);
+
+Promise.all(global.promises).then(
+	responses => {
+		const popularProducts = promises[global.promises.order.popularItems];
+	}
+);
+
+
+
 
 function renderHomePage(e, $target) {
-    function template(data) {
-        return (`
+	function template(data) {
+		return (`
             <!-- Start Slider area -->
             <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
                 <!-- Start Single Slide -->
@@ -58,14 +69,11 @@ function renderHomePage(e, $target) {
                         </div>
                     </div>
                     <!-- Start Single Tab Content -->
-                    <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                    </div>
+                    <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">`
+			+
+			productCartSlideViewComponent()
+			+
+			` </div>
                     <!-- End Single Tab Content -->
                 </div>
             </section>
@@ -106,70 +114,67 @@ function renderHomePage(e, $target) {
                         </div>
                     </div>
                     <!-- Start Single Tab Content -->
-                    <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                    </div>
+                    <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">`
+			+
+			productCartSlideViewComponent()
+			+
+			`</div>
                     <!-- End Single Tab Content -->
                 </div>
             </section>
             <!-- End Popular product Area -->
         `);
-    }
+	}
 
-    const page = template();
+	const page = template();
 
-    console.log('renderHomePage');
-    global.$main.first().html(page);
-    afterChangingTheDOM();
+	console.log('renderHomePage');
+	global.$main.first().html(page);
+	afterChangingTheDOM();
 
-    function afterChangingTheDOM() {
-        // Код, который нужно запустить после изменения DOM
+	function afterChangingTheDOM() {
+		// Код, который нужно запустить после изменения DOM
 
-        /*=============  Slider Activation  ==============*/
-        global.$main.find('.slide__activation').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            autoplay: false,
-            autoplayTimeout: 10000,
-            items:1,
-            navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-            dots: false,
-            lazyLoad: true,
-            responsive: {
-                0: {
-                    items:1
-                },
+		/*=============  Slider Activation  ==============*/
+		global.$main.find('.slide__activation').owlCarousel({
+			loop: false,
+			margin: 0,
+			nav: true,
+			autoplay: false,
+			autoplayTimeout: 10000,
+			items: 1,
+			navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
+			dots: false,
+			lazyLoad: true,
+			responsive: {
+				0: {
+					items: 1
+				},
 
-                1920: {
-                    items:1
-                }
-            }
-        });
+				1920: {
+					items: 1
+				}
+			}
+		});
 
-        /*=============  Product Activation  ==============*/
-        global.$main.find('.furniture--4').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            autoplay: false,
-            autoplayTimeout: 10000,
-            items: 4,
-            navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-            dots: false,
-            lazyLoad: true,
-            responsive: {
-                0:    { items: 1 },
-                576:  { items: 2 },
-                768:  { items: 3 },
-                992:  { items: 4 },
-                1920: { items: 4 },
-            }
-        });
-    }
+		/*=============  Product Activation  ==============*/
+		global.$main.find('.furniture--4').owlCarousel({
+			loop: false,
+			margin: 0,
+			nav: true,
+			autoplay: false,
+			autoplayTimeout: 10000,
+			items: 4,
+			navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
+			dots: false,
+			lazyLoad: true,
+			responsive: {
+				0: {items: 1},
+				576: {items: 2},
+				768: {items: 3},
+				992: {items: 4},
+				1920: {items: 4},
+			}
+		});
+	}
 }
