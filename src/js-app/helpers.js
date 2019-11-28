@@ -34,6 +34,19 @@ const PromiseList = function() {
                 return this;
             },
         },
+        addPromise: {
+            writable: false,
+            configurable: false,
+            value: function({ name: promiseName, obj: promiseObject }) {
+                const promisePosition = this.push(promiseObject) - 1;
+
+                order[promisePosition] = promiseName;
+                console.log(order);
+                console.log('promise name: ' + promiseName + ', ' + 'position: ' + promisePosition);
+
+                return this;
+            }
+        },
         response: {
             writable: false,
             configurable: false,
