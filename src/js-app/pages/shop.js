@@ -80,15 +80,16 @@ function renderShopPage(e, $target) {
 
 
     Promise.all(global.promises)
-        .then(promises => {
-            const filteredDataOfProducts = filterParameters && promises[global.promises.order.filteredDataOfProducts];
+        .then(res => global.promises.responses(res))
+        .then(res => {
+            const { categoriesStructure } = res;
+            const filteredDataOfProducts = filterParameters && res.filteredDataOfProducts;
 
             //! TODO: run render products
             const centralColumnHTML = filterParameters
                 ? centralColumnTemplate()
                 : 'en_Empty';
 
-            const categoriesStructure = promises[global.promises.order.categoriesStructure];
 
             // Categories Component
             const categoriesHTML = categoriesComponent({
