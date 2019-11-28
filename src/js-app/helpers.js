@@ -37,7 +37,7 @@ const PromiseList = function() {
         addPromise: {
             writable: false,
             configurable: false,
-            value: function({ name: promiseName, obj: promiseObject }) {
+            value: function({ name: promiseName, body: promiseObject }) {
                 const promisePosition = this.push(promiseObject) - 1;
 
                 order[promisePosition] = promiseName;

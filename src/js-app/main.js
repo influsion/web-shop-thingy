@@ -44,7 +44,10 @@ const bindEvents = function() {
     findElements();
     bindEvents();
 
-    global.promises.add('localization', getLocalization())
+    global.promises.addPromise({
+        name: 'localization',
+        body: getLocalization(),
+    });
 
     global.promises.all(res => {
         localization = res.localization;

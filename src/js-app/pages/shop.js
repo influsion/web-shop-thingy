@@ -73,20 +73,27 @@ function renderShopPage(e, $target) {
     const filterParameters = storedFilterParameters.getFromSessionStorage();
 
     if (filterParameters) {
-        global.promises.add('filteredDataOfProducts', getProducts(filterParameters));
+        global.promises.addPromise({
+            name: 'filteredDataOfProducts',
+            body: getProducts(filterParameters),
+        });
     }
 
-    global.promises.add('categoriesStructure', getCategoriesStructure());
+    global.promises.addPromise({
+        name: 'categoriesStructure',
+        body: getCategoriesStructure(),
+    });
 
     global.promises.all(res => {
-        const { categoriesStructure } = res;
-        const filteredDataOfProducts = filterParameters && res.filteredDataOfProducts;
+        const {
+            categoriesStructure = null,
+            filteredDataOfProducts = null
+        } = res;
 
         //! TODO: run render products
-        const centralColumnHTML = filterParameters
+        const centralColumnHTML = filteredDataOfProducts
             ? centralColumnTemplate()
             : 'en_Empty';
-
 
         // Categories Component
         const categoriesHTML = categoriesComponent({
