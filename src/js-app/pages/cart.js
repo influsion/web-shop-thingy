@@ -142,19 +142,11 @@ function renderCartPage(e, $target) {
         const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
         const pageHTML = template({}, {itemsHTML});
 
-
-
-
-
         let totalPrice = function() {
-
             $('.main').on('click', '.js-input-quantity', function(event) {
                 let target = event.target;
                 let quantity = $(target).val();
-
-
                 (quantity < 1) && $(target).val(1);
-
                 if (quantity > 0) console.log(quantity);
             });
             return;
@@ -162,9 +154,6 @@ function renderCartPage(e, $target) {
 
         totalPrice(basket, filteredDataOfProducts);
         console.log($target.get(0).dataset.productId);
-
-
-
         console.log('renderCartPage');
         global.$main.first().html(pageHTML);
         afterChangingTheDOM();

@@ -39,6 +39,8 @@ const PromiseList = function() {
 };
 
 const Basket = function() {
+
+    
     const proto = {
         add: {
             writable: false,
