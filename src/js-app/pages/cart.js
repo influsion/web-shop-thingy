@@ -136,41 +136,39 @@ function renderCartPage(e, $target) {
     global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
     global.promises.add('categoriesStructure', getCategoriesStructure());
 
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            const { categoriesStructure, filteredDataOfProducts } = res;
+    global.promises.all(res => {
+        const { categoriesStructure, filteredDataOfProducts } = res;
 
-            const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
-            const pageHTML = template({}, {itemsHTML});
+        const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
+        const pageHTML = template({}, {itemsHTML});
 
 
 
 
 
-            let totalPrice = function() {
+        let totalPrice = function() {
 
-                $('.main').on('click', '.js-input-quantity', function(event) {
-                    let target = event.target;
-                    let quantity = $(target).val();
-
-
-                    (quantity < 1) && $(target).val(1);
-
-                    if (quantity > 0) console.log(quantity);
-                });
-                return;
-            };
-
-            totalPrice(basket, filteredDataOfProducts);
-            console.log($target.get(0).dataset.productId);
+            $('.main').on('click', '.js-input-quantity', function(event) {
+                let target = event.target;
+                let quantity = $(target).val();
 
 
+                (quantity < 1) && $(target).val(1);
 
-            console.log('renderCartPage');
-            global.$main.first().html(pageHTML);
-            afterChangingTheDOM();
-        });
+                if (quantity > 0) console.log(quantity);
+            });
+            return;
+        };
+
+        totalPrice(basket, filteredDataOfProducts);
+        console.log($target.get(0).dataset.productId);
+
+
+
+        console.log('renderCartPage');
+        global.$main.first().html(pageHTML);
+        afterChangingTheDOM();
+    });
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM

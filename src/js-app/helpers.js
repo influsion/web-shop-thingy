@@ -54,6 +54,16 @@ const PromiseList = function() {
                 return this.response;
             },
         },
+        all: {
+            writable: false,
+            configurable: false,
+            value: function(responseFunction) {
+                Promise.all(this)
+                    .then(res => this.responses(res))
+                    .then(res => responseFunction(res));
+
+            },
+        },
     };
 
     return Object.create([], propss);

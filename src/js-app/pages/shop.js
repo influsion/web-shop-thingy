@@ -78,62 +78,59 @@ function renderShopPage(e, $target) {
 
     global.promises.add('categoriesStructure', getCategoriesStructure());
 
+    global.promises.all(res => {
+        const { categoriesStructure } = res;
+        const filteredDataOfProducts = filterParameters && res.filteredDataOfProducts;
 
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            const { categoriesStructure } = res;
-            const filteredDataOfProducts = filterParameters && res.filteredDataOfProducts;
-
-            //! TODO: run render products
-            const centralColumnHTML = filterParameters
-                ? centralColumnTemplate()
-                : 'en_Empty';
+        //! TODO: run render products
+        const centralColumnHTML = filterParameters
+            ? centralColumnTemplate()
+            : 'en_Empty';
 
 
-            // Categories Component
-            const categoriesHTML = categoriesComponent({
-                structure: categoriesStructure,
-            });
+        // Categories Component
+        const categoriesHTML = categoriesComponent({
+            structure: categoriesStructure,
+        });
 
-            const pageTemplate = () => {
-                return (`
-                    ${ breadcrumbsHTML }
+        const pageTemplate = () => {
+            return (`
+                ${ breadcrumbsHTML }
 
-                    <!-- Start Shop Page -->
-                    <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
-                                    <div class="shop__sidebar">
-                                        ${ categoriesHTML }
-                                        ${ filterHTML }
+                <!-- Start Shop Page -->
+                <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
+                                <div class="shop__sidebar">
+                                    ${ categoriesHTML }
+                                    ${ filterHTML }
 
-                                        <!-- // TODO: Banner -->
-                                        <!-- <aside class="wedget__categories sidebar--banner">
-                                            <img src="images/others/banner_left.jpg" alt="banner images">
-                                            <div class="text">
-                                                <h2>new products</h2>
-                                                <h6>save up to <br> <strong>40%</strong>off</h6>
-                                            </div>
-                                        </aside> -->
-                                    </div>
+                                    <!-- // TODO: Banner -->
+                                    <!-- <aside class="wedget__categories sidebar--banner">
+                                        <img src="images/others/banner_left.jpg" alt="banner images">
+                                        <div class="text">
+                                            <h2>new products</h2>
+                                            <h6>save up to <br> <strong>40%</strong>off</h6>
+                                        </div>
+                                    </aside> -->
                                 </div>
-                                <div class="col-lg-9 col-12 order-1 order-lg-2">
-                                    ${ centralColumnHTML }
-                                </div>
+                            </div>
+                            <div class="col-lg-9 col-12 order-1 order-lg-2">
+                                ${ centralColumnHTML }
                             </div>
                         </div>
                     </div>
-                    <!-- End Shop Page -->
-                `);
-            };
+                </div>
+                <!-- End Shop Page -->
+            `);
+        };
 
-            const pageHTML = pageTemplate();
-            global.$main.first().html(pageHTML);
-            console.log('renderShopPage');
-            afterRendering();
-        });
+        const pageHTML = pageTemplate();
+        global.$main.first().html(pageHTML);
+        console.log('renderShopPage');
+        afterRendering();
+    });
 
     const afterRendering = function() {
         // Код, который нужно запустить после изменения DOM

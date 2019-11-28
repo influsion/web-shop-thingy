@@ -46,20 +46,18 @@ const bindEvents = function() {
 
     global.promises.add('localization', getLocalization())
 
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            localization = res.localization;
+    global.promises.all(res => {
+        localization = res.localization;
 
-            // TODO: Step: Here is render menu with js
+        // TODO: Step: Here is render menu with js
 
-            // Step: Header Menu links
-            global.$menuLinks = global.$header.find('.mainmenu-link');
-            pageController.init(global.$menuLinks);
+        // Step: Header Menu links
+        global.$menuLinks = global.$header.find('.mainmenu-link');
+        pageController.init(global.$menuLinks);
 
-            // Step: Change page
-            pageController.setActivePage();
-        });
+        // Step: Change page
+        pageController.setActivePage();
+    });
 
     // Read cached page name
 
