@@ -119,3 +119,15 @@ const tempStorage = {
         return sessionStorage.setItem(key, dataJSON);
     },
 };
+
+const storedFilterParameters = {
+    key: 'web-shop-thingy_filterParameters',
+
+    seveToSessionStorage(obj) {
+        return tempStorage.setItem(this.key, obj);
+    },
+
+    getFromSessionStorage() {
+        return tempStorage.getItem(this.key);
+    },
+}
