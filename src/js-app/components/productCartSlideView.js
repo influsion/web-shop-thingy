@@ -30,7 +30,7 @@ function productCartSlideViewComponents(data) {
                                 </ul>
                             </div>
                         </div>
-                        <!-- <div class="product__hover--content">
+                        <!-- <div class="product__hover&#45;&#45;content">
                             <ul class="rating d-flex">
                                 <li class="on"><i class="fa fa-star-o"></i></li>
                                 <li class="on"><i class="fa fa-star-o"></i></li>

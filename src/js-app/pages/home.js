@@ -1,10 +1,8 @@
 "use strict";
 
+const topSlider = () => {
 
-function renderHomePage(e, $target) {
-    function template(data) {
-        return (`
-            <!-- Start Slider area -->
+	return `<!-- Start Slider area -->
             <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
                 <!-- Start Single Slide -->
                 <div class="slide animation__style10 bg-image--1 fullscreen align__center--left">
@@ -33,7 +31,7 @@ function renderHomePage(e, $target) {
                                 <div class="slider__content">
                                     <div class="contentbox">
                                         <h2>Buy <span>your </span></h2>
-                                        <h2>favourite <span>Book </span></h2>
+                                        <h2>favourite <span>Book2 </span></h2>
                                         <h2>from <span>Here </span></h2>
                                         <a class="shopbtn" href="#">shop now</a>
                                     </div>
@@ -44,7 +42,20 @@ function renderHomePage(e, $target) {
                 </div>
                 <!-- End Single Slide -->
             </div>
-            <!-- End Slider area -->
+            <!-- End Slider area -->`
+};
+
+global
+
+
+getProducts({popular: true});
+
+
+function renderHomePage(e, $target) {
+	function template(data) {
+		return (`
+		${topSlider()}
+            
 
             <!-- Start New product Area -->
             <section class="wn__product__area brown--color pt--80  pb--30">
@@ -59,12 +70,7 @@ function renderHomePage(e, $target) {
                     </div>
                     <!-- Start Single Tab Content -->
                     <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
+                        ${productCartSlideViewComponents()}
                     </div>
                     <!-- End Single Tab Content -->
                 </div>
@@ -107,69 +113,64 @@ function renderHomePage(e, $target) {
                     </div>
                     <!-- Start Single Tab Content -->
                     <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
-                        ${ productCartSlideViewComponents() }
+                        ${productCartSlideViewComponents()}
                     </div>
                     <!-- End Single Tab Content -->
                 </div>
             </section>
             <!-- End Popular product Area -->
         `);
-    }
+	}
 
-    const page = template();
+	const page = template();
 
-    console.log('renderHomePage');
-    global.$main.first().html(page);
-    afterChangingTheDOM();
+	console.log('renderHomePage');
+	global.$main.first().html(page);
+	afterChangingTheDOM();
 
-    function afterChangingTheDOM() {
-        // Код, который нужно запустить после изменения DOM
+	function afterChangingTheDOM() {
+		// Код, который нужно запустить после изменения DOM
 
-        /*=============  Slider Activation  ==============*/
-        global.$main.find('.slide__activation').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            autoplay: false,
-            autoplayTimeout: 10000,
-            items:1,
-            navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-            dots: false,
-            lazyLoad: true,
-            responsive: {
-                0: {
-                    items:1
-                },
+		/*=============  Slider Activation  ==============*/
+		global.$main.find('.slide__activation').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: true,
+			autoplay: false,
+			autoplayTimeout: 10000,
+			items: 1,
+			navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
+			dots: false,
+			lazyLoad: true,
+			responsive: {
+				0: {
+					items: 1
+				},
 
-                1920: {
-                    items:1
-                }
-            }
-        });
+				1920: {
+					items: 1
+				}
+			}
+		});
 
-        /*=============  Product Activation  ==============*/
-        global.$main.find('.furniture--4').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            autoplay: false,
-            autoplayTimeout: 10000,
-            items: 4,
-            navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-            dots: false,
-            lazyLoad: true,
-            responsive: {
-                0:    { items: 1 },
-                576:  { items: 2 },
-                768:  { items: 3 },
-                992:  { items: 4 },
-                1920: { items: 4 },
-            }
-        });
-    }
+		/*=============  Product Activation  ==============*/
+		global.$main.find('.furniture--4').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: true,
+			autoplay: false,
+			autoplayTimeout: 10000,
+			items: 4,
+			navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
+			dots: false,
+			lazyLoad: true,
+			responsive: {
+				0: {items: 1},
+				576: {items: 2},
+				768: {items: 3},
+				992: {items: 4},
+				1920: {items: 4},
+			}
+		});
+	}
 }
