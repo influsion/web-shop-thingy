@@ -1,14 +1,42 @@
 "use strict";
 
-global.promises.add("popularItems", getProducts({popular: true}));
-console.log(global.promises);
+let popularProductsMock = [
+	{
+		"id": "2",
+		"name": "Ноутбук HP 255 G7 (7DF20EA) Dark Ash",
+		"image": "./images/products/hp_6bn09ea.jpg",
+		"description": "Экран 15.6” (1920x1080) Full HD, матовый / AMD Ryzen 5 2500U (2.0 - 3.6 ГГц) / RAM 8 ГБ / SSD 256 ГБ / AMD Radeon Vega 8 / без ОД / LAN / Wi-Fi / Bluetooth / веб-камера / DOS / 1.78 кг / черный",
+		"price": "10499",
+		"category": "computers-notebooks",
+		"subcategory": "notebooks",
+		"brand": "hp",
+		"origin": "china",
+		"new": false,
+		"popular": true
+	}, {
+		"id": "2",
+		"name": "Ноутбук HP 255 G7 (7DF20EA) Dark Ash",
+		"image": "./images/products/hp_6bn09ea.jpg",
+		"description": "Экран 15.6” (1920x1080) Full HD, матовый / AMD Ryzen 5 2500U (2.0 - 3.6 ГГц) / RAM 8 ГБ / SSD 256 ГБ / AMD Radeon Vega 8 / без ОД / LAN / Wi-Fi / Bluetooth / веб-камера / DOS / 1.78 кг / черный",
+		"price": "10499",
+		"category": "computers-notebooks",
+		"subcategory": "notebooks",
+		"brand": "hp",
+		"origin": "china",
+		"new": false,
+		"popular": true
+	},
 
-Promise.all(global.promises).then(
-	responses => {
-		const popularProducts = promises[global.promises.order.popularItems];
-	}
-);
+];
 
+const populateProducts = (productsArray) => {
+	let assembledHTML = "";
+	productsArray.forEach((product) => {
+		console.log("current product", product);
+		assembledHTML += productCartSlideViewComponent(product);
+	});
+	return assembledHTML;
+};
 
 
 const topSlider = () => {
@@ -57,11 +85,8 @@ const topSlider = () => {
 };
 
 
-
-
-function renderHomePage(e, $target) {
-	function template(data) {
-		return (`
+function template(data) {
+	return (`
 		${topSlider()}
             
 
@@ -78,7 +103,7 @@ function renderHomePage(e, $target) {
                     </div>
                     <!-- Start Single Tab Content -->
                     <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${productCartSlideViewComponents()}
+                        ${populateProducts(popularProductsMock)}
                     </div>
                     <!-- End Single Tab Content -->
                 </div>
@@ -121,18 +146,29 @@ function renderHomePage(e, $target) {
                     </div>
                     <!-- Start Single Tab Content -->
                     <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${productCartSlideViewComponents()}
+                        ${populateProducts(popularProductsMock)}
                     </div>
                     <!-- End Single Tab Content -->
                 </div>
             </section>
             <!-- End Popular product Area -->
         `);
-	}
+}
+
+
+function renderHomePage(e, $target) {
+
+
+	global.promises.addPromise("PopularProducts", getProducts({"popular": "true"}));
+
+	Promise.all(global.promises).then(
+		response => {
+			console.log(response);
+		}
+	);
 
 	const page = template();
 
-	console.log('renderHomePage');
 	global.$main.first().html(page);
 	afterChangingTheDOM();
 
@@ -141,7 +177,7 @@ function renderHomePage(e, $target) {
 
 		/*=============  Slider Activation  ==============*/
 		global.$main.find('.slide__activation').owlCarousel({
-			loop: false,
+			loop: true,
 			margin: 0,
 			nav: true,
 			autoplay: false,
@@ -161,7 +197,7 @@ function renderHomePage(e, $target) {
 			}
 		});
 
-		/*=============  Product Activation  ==============*/
+		/*=============  Product List Activation  ==============*/
 		global.$main.find('.furniture--4').owlCarousel({
 			loop: false,
 			margin: 0,
