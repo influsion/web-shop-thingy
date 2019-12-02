@@ -1,25 +1,14 @@
 "use strict";
 
 function renderCartPage(e, $target) {
+    const breadcrumbsHTML = breadcrumbsComponent({
+        pageTitle: 'en_Cart',
+        image: 'bg-image--3'
+    });
     function template(data, additional) {
         return (`
             <!-- Start Bradcaump area -->
-            <div class="ht__bradcaump__area bg-image--3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="bradcaump__inner text-center">
-                                <h2 class="bradcaump-title">Shopping Cart</h2>
-                                <nav class="bradcaump-content">
-                                <a class="breadcrumb_item" href="index.html">Home</a>
-                                <span class="brd-separetor">/</span>
-                                <span class="breadcrumb_item active">Shopping Cart</span>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            ${ breadcrumbsHTML }
             <!-- End Bradcaump area -->
 
             <!-- cart-main-area start -->
@@ -108,56 +97,65 @@ function renderCartPage(e, $target) {
         `)
     };
 
-    const basket = [
-      {
-        id:2,
-        quantity: 1,
-      },
-      {
-        id:6,
-        quantity: 3,
-      },
-      {
-        id:3,
-        quantity: 5,
-      },
-      {
-        id: 8,
-        quantity: 6,
-      },
-      {
-        id: 7,
-        quantity: 2,
-      }
-    ];
+    // const basket = [
+    //   {
+    //     id:2,
+    //     quantity: 1,
+    //   },
+    //   {
+    //     id:6,
+    //     quantity: 3,
+    //   },
+    //   {
+    //     id:3,
+    //     quantity: 5,
+    //   },
+    //   {
+    //     id: 8,
+    //     quantity: 6,
+    //   },
+    //   {
+    //     id: 7,
+    //     quantity: 2,
+    //   }
+    // ];
 
     const productIds = basket.map(item => item.id);
 
     global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
     global.promises.add('categoriesStructure', getCategoriesStructure());
 
-    Promise.all(global.promises).then(promises => {
-        const categoriesStructure = promises[global.promises.order.categoriesStructure];
-        const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
-        const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
-        const pageHTML = template({}, {itemsHTML});
+    Promise.all(global.promises)
+        .then(res => global.promises.responses(res))
+        .then(res => {
+            const { categoriesStructure, filteredDataOfProducts } = res;
 
-        let totalPrice = function() {
-            $('.main').on('click', '.js-input-quantity', function(event) {
-                let target = event.target;
-                let quantity = $(target).val();
-                (quantity < 1) && $(target).val(1);
-                if (quantity > 0) console.log(quantity);
-            });
-            return;
-        };
+            const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
+            const pageHTML = template({}, {itemsHTML});
 
-        totalPrice(basket, filteredDataOfProducts);
-        console.log($target.get(0).dataset.productId);
-        console.log('renderCartPage');
-        global.$main.first().html(pageHTML);
-        afterChangingTheDOM();
-    });
+            let totalPrice = function() {
+
+                $('.main').on('click', '.js-input-quantity', function(event) {
+                    let target = event.target;
+                    let quantity = $(target).val();
+
+
+                    (quantity < 1) && $(target).val(1);
+
+                    if (quantity > 0) console.log(quantity);
+                });
+                return;
+            };
+
+            totalPrice(basket, filteredDataOfProducts);
+            console.log($target.get(0).dataset.productId);
+
+
+
+            console.log('renderCartPage');
+            global.$main.first().html(pageHTML);
+            afterChangingTheDOM();
+        });
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM

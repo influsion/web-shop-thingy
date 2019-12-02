@@ -47,8 +47,9 @@ const bindEvents = function() {
     global.promises.add('localization', getLocalization())
 
     Promise.all(global.promises)
-        .then(promises => {
-            localization = promises[global.promises.order.localization];
+        .then(res => global.promises.responses(res))
+        .then(res => {
+            localization = res.localization;
 
             // TODO: Step: Here is render menu with js
 

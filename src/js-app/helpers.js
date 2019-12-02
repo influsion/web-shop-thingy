@@ -18,24 +18,45 @@ const toType = val => {
 };
 
 const PromiseList = function() {
-    const proto = {
-        order: {
-            writable: false,
-            configurable: false,
-            value: {},
-        },
+    const order = [];
+
+    const propss = {
         add: {
             writable: false,
             configurable: false,
             value: function(promiseName, promiseObject) {
-                this.order[promiseName] = this.push(promiseObject) - 1;
+                const promisePosition = this.push(promiseObject) - 1;
+
+                order[promisePosition] = promiseName;
+                console.log(order);
+                console.log('promise name: ' + promiseName + ', ' + 'position: ' + promisePosition);
 
                 return this;
             },
         },
+        response: {
+            writable: false,
+            configurable: false,
+            value: {},
+        },
+        responses: {
+            writable: false,
+            configurable: false,
+            value: function(promiseAllResponseArray) {
+
+                promiseAllResponseArray.forEach((item, i) => {
+                    const responseName = order[i];
+
+                    this.response[responseName] = item;
+                    console.log(order[i] + ":", item);
+                });
+
+                return this.response;
+            },
+        },
     };
 
-    return Object.create([], proto);
+    return Object.create([], propss);
 };
 
 const Basket = function() {
@@ -114,3 +135,15 @@ const tempStorage = {
         return sessionStorage.setItem(key, dataJSON);
     },
 };
+
+const storedFilterParameters = {
+    key: 'web-shop-thingy_filterParameters',
+
+    seveToSessionStorage(obj) {
+        return tempStorage.setItem(this.key, obj);
+    },
+
+    getFromSessionStorage() {
+        return tempStorage.getItem(this.key);
+    },
+}

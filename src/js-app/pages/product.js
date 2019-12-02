@@ -178,18 +178,19 @@ function renderProductPage(e, $target) {
 
     global.promises.add('filteredDataOfProducts', getProducts({ id: productId }));
 
-    Promise.all(global.promises).then(promises => {
-        const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
-        const currentProduct = filteredDataOfProducts[0];
+    Promise.all(global.promises)
+        .then(res => global.promises.responses(res))
+        .then(res => {
+            const { filteredDataOfProducts: [ currentProduct ] } = res;
 
-        currentStoredProductID.seveToSessionStorage(currentProduct.id);
+            currentStoredProductID.seveToSessionStorage(currentProduct.id);
 
-        const pageHTML = pageTemplate(currentProduct)
+            const pageHTML = pageTemplate(currentProduct)
 
-        console.log('renderProductPage');
-        global.$main.first().html(pageHTML);
-        afterChangingTheDOM();
-    });
+            console.log('renderProductPage');
+            global.$main.first().html(pageHTML);
+            afterChangingTheDOM();
+        });
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM

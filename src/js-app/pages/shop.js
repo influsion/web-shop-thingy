@@ -2,7 +2,8 @@
 
 function renderShopPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
-        pageTitle: 'en_Shop'
+        pageTitle: 'en_Shop',
+        image: 'bg-image--6'
     });
 
     const filterHTML = filterComponent({
@@ -69,27 +70,31 @@ function renderShopPage(e, $target) {
 
 
 
+    //! TODO: Check filter params
+    const filterParameters = storedFilterParameters.getFromSessionStorage();
 
+    if (filterParameters) {
+        global.promises.add('filteredDataOfProducts', getProducts(filterParameters));
+    }
 
+    global.promises.add('categoriesStructure', getCategoriesStructure());
 
-
-
-
-
-    // const pagePromises = new PromiseList();
-    global.promises.add('categoriesStructure', getCategoriesStructure())
-    // global.promises.add('filteredDataOfProducts', getProducts({ id: [2, 4, 6, 8] }));
 
     Promise.all(global.promises)
-        .then(promises => {
-            const categoriesStructure = promises[global.promises.order.categoriesStructure];
-            const filteredDataOfProducts = promises[global.promises.order.filteredDataOfProducts];
-            console.log(categoriesStructure, filteredDataOfProducts);
+        .then(res => global.promises.responses(res))
+        .then(res => {
+            const { categoriesStructure } = res;
+            const filteredDataOfProducts = filterParameters && res.filteredDataOfProducts;
+
+            //! TODO: run render products
+            const centralColumnHTML = filterParameters
+                ? centralColumnTemplate()
+                : 'en_Empty';
 
 
             // Categories Component
             const categoriesHTML = categoriesComponent({
-                structure: promises[global.promises.order.categoriesStructure]
+                structure: categoriesStructure,
             });
 
             const pageTemplate = () => {
@@ -116,7 +121,7 @@ function renderShopPage(e, $target) {
                                     </div>
                                 </div>
                                 <div class="col-lg-9 col-12 order-1 order-lg-2">
-                                    { centralColumnTemplate() }
+                                    ${ centralColumnHTML }
                                 </div>
                             </div>
                         </div>
