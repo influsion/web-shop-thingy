@@ -1,5 +1,16 @@
 "use strict";
 
+global.promises.add("popularItems", getProducts({popular: true}));
+console.log(global.promises);
+
+Promise.all(global.promises).then(
+	responses => {
+		const popularProducts = promises[global.promises.order.popularItems];
+	}
+);
+
+
+
 const topSlider = () => {
 
 	return `<!-- Start Slider area -->
@@ -45,10 +56,7 @@ const topSlider = () => {
             <!-- End Slider area -->`
 };
 
-global
 
-
-getProducts({popular: true});
 
 
 function renderHomePage(e, $target) {
@@ -133,7 +141,7 @@ function renderHomePage(e, $target) {
 
 		/*=============  Slider Activation  ==============*/
 		global.$main.find('.slide__activation').owlCarousel({
-			loop: true,
+			loop: false,
 			margin: 0,
 			nav: true,
 			autoplay: false,
@@ -155,7 +163,7 @@ function renderHomePage(e, $target) {
 
 		/*=============  Product Activation  ==============*/
 		global.$main.find('.furniture--4').owlCarousel({
-			loop: true,
+			loop: false,
 			margin: 0,
 			nav: true,
 			autoplay: false,
