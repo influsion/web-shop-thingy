@@ -36,6 +36,11 @@ const bindEvents = function() {
     global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e));
 
     global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
+
+    // Categories and Filter on Shop page
+    global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
+    global.$app.on('change', `form[name="brand-checkbox-group-form"] input`, { checkboxType: 'brand' }, e => filterCheckboxGroupHandler(e));
+    global.$app.on('change', `form[name="origin-checkbox-group-form"] input`, { checkboxType: 'origin' }, e => filterCheckboxGroupHandler(e));
 };
 
 // Main

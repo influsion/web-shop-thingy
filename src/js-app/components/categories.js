@@ -12,7 +12,7 @@ function categoriesComponent(data) {
 
             return (`
                 <li>
-                    <a class="js-switch-page" href="#shop" data-category="${key}">
+                    <a class="js-switch-page js-change-category-or-subcategory" href="#shop" data-category="${key}">
                         <span>${name}</span>
                         <span>(${productsQuantity})</span>
                     </a>
@@ -36,7 +36,7 @@ function categoriesComponent(data) {
 
             return (`
                 <li>
-                    <a class="js-switch-page" href="#shop" data-subcategory="${key}">
+                    <a class="js-switch-page js-change-category-or-subcategory" href="#shop" data-subcategory="${key}">
                         <span>${name}</span>
                         <span>(${productsQuantity})</span>
                     </a>
