@@ -1,0 +1,19 @@
+{
+  "name": "web-shop-thingy",
+  "version": "0.0.1",
+  "description": "This is going to be our super awesome venture into the lands of an online shop without a backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theVigilant/web-shop-thingy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theVigilant/web-shop-thingy/issues"
+  },
+  "homepage": "https://github.com/theVigilant/web-shop-thingy#readme"
+}

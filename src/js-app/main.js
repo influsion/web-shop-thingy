@@ -33,9 +33,23 @@ const bindEvents = function() {
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 
     // Add product to cart
-    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e));
+    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler($(e.currentTarget)));
 
     global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
+
+
+    global.$app.on('change', '.js-input-quantity', function(e) {
+        const $target = $(e.currentTarget);
+        const quantity = $target.val();
+
+        (quantity < 1) && $target.val(1);
+        if (quantity > 0) console.log(quantity);
+    });
+
+
+
+    global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
+    
 };
 
 // Main

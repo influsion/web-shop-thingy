@@ -60,18 +60,58 @@ const PromiseList = function() {
 };
 
 const Basket = function() {
+    const key = 'web-shop-thingy_basket';
 
+    const saveToLocalStorage = arr => storage.setItem(key, arr);
     
     const proto = {
         add: {
             writable: false,
             configurable: false,
             value: function(obj) {
-                this.push(obj)
+                const foundIndex = this.findIndex(item => parseInt(item.id) === parseInt(obj.id));
+
+                if (foundIndex > -1) {
+                   this[foundIndex].quantity += obj.quantity;
+                } else {
+                    this.push(Object.assign({}, obj));
+                }
+
+                saveToLocalStorage(this);
 
                 return this;
             },
         },
+        delete: {
+            writable: false,
+            configurable: false,
+            value: function(productId) {
+                const foundIndex = this.findIndex(item => parseInt(item.id) === parseInt(productId));
+
+                if (foundIndex > -1) {
+                   this.splice(foundIndex, 1);
+                }
+
+                saveToLocalStorage(this);
+
+                return this;
+            },
+        },
+        getTotalPrice: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                const totalPrice = this.reduce((accumulator, productObject) => {
+                    let { price, quantity } = productObject;
+                    price = parseInt(price);
+                    quantity = parseInt(quantity);
+
+                    return accumulator += price * quantity;
+                }, 0);
+                
+                return Math.round(totalPrice * 100) / 100;
+            },
+        }
     };
 
     return Object.create([], proto);
@@ -147,3 +187,40 @@ const storedFilterParameters = {
         return tempStorage.getItem(this.key);
     },
 }
+
+const deleteCartItemHandler = $target => {
+    const $cartItem = $target.parents('.js-cart-item');
+    const productId = getProductIdFromDataSet($cartItem);
+    
+    // remove element
+    $cartItem.remove();
+
+    // TODO: Call basket method to delete item
+    basket.delete(productId)
+    // TODO: Call basket getTotal method
+    // const totalPrice = ;
+    // global.$main.find('').text('totalPrice');
+};
+
+const addToCartClickHandler = $target => {
+    const productId = getProductIdFromDataSet($target);
+    const quantity = parseInt(global.$main.find('.qty').val());
+
+    const handlerPromises = new PromiseList();
+
+    handlerPromises.add('filteredDataOfProducts', getProducts({ id: productId }));
+
+    Promise.all(handlerPromises)
+        .then(res => handlerPromises.responses(res))
+        .then(res => {
+            const currentProduct = res.filteredDataOfProducts[0];
+
+
+
+            basket.add({
+                ...currentProduct,
+                quantity,
+            });
+        });
+};
+
