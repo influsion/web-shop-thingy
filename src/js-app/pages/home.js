@@ -50,9 +50,9 @@ const topSlider = () => {
                             <div class="col-lg-12">
                                 <div class="slider__content">
                                     <div class="contentbox">
-                                        <h2>Buy <span>your </span></h2>
-                                        <h2>favourite <span>Book </span></h2>
-                                        <h2>from <span>Here </span></h2>
+                                        <h2>Enjoy life<br>in color <span>with MEIZU</span></h2>
+<!--                                        <h2>favourite <span>Book </span></h2>-->
+<!--                                        <h2>from <span>Here </span></h2>-->
                                         <a class="shopbtn" href="#">shop now</a>
                                     </div>
                                 </div>
