@@ -111,6 +111,28 @@ const Basket = function() {
                 
                 return Math.round(totalPrice * 100) / 100;
             },
+        },
+        grandTotalPrice: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                const totalPrice = this.reduce((accumulator, productObject) => {
+                    let { price, quantity } = productObject;
+                    price = parseInt(price);
+                    quantity = parseInt(quantity);
+                    accumulator++;
+                    return accumulator += price * quantity;
+                }, 0);
+                
+                return Math.round(totalPrice * 100) / 100;
+            },
+        },
+        change: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                
+            },
         }
     };
 
@@ -218,4 +240,6 @@ const addToCartClickHandler = $target => {
             });
         });
 };
+
+ 
 

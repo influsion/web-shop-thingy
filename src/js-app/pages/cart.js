@@ -5,7 +5,7 @@ function renderCartPage(e, $target) {
         pageTitle: 'en_Cart',
         image: 'bg-image--3'
     });
-    function template(data, additional) {
+    function template(data, additional, totalPrice) {
         return (`
             <!-- Start Bradcaump area -->
             ${ breadcrumbsHTML }
@@ -69,10 +69,11 @@ function renderCartPage(e, $target) {
                     <div class="row">
                         <div class="col-lg-6 offset-lg-6">
                             <div class="cartbox__total__area">
-                                <div class="cart__total__amount">
+                                ${totalPrice.itemTotalPriceHTML}
+                                <!-- <div class="cart__total__amount">
                                     <span>Grand Total</span>
                                     <span>$140</span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -91,11 +92,19 @@ function renderCartPage(e, $target) {
                 <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${data.id}">${data.name}</a></td>
                 <td class="product-price"><span class="amount">${data.price} ₴UAH</span></td>
                 <td class="product-quantity"><input class="js-input-quantity" type="number" value="${data.quantity}"></td>
-                <td class="product-subtotal">${data.price * data.quantity} ₴UAH</td>
+                <td class="product-subtotal">${Math.round((+data.price * +data.quantity) * 100) / 100} ₴UAH</td>
                 <td class="product-remove"><a href="#" class="js-delete-cart-item">X</a></td>
             </tr>
         `)
     };
+    function grantTotalPrice(data) {
+        return (`
+            <div class="cart__total__amount">
+                <span>Grand Total</span>
+                <span>${Math.round((data.price * data.quantity) * 100) / 100} ₴UAH</span>
+            </div>
+        `)
+    }
 
     const productIds = basket.map(item => item.id);
 
@@ -107,14 +116,20 @@ function renderCartPage(e, $target) {
         .then(res => {
             const { categoriesStructure, filteredDataOfProducts } = res;
 
-            const itemsHTML = filteredDataOfProducts.map(productObj => {
+            const itemsHTML = basket.map(productObj => {
                 if (basket.length) {
                     return cartItem(productObj);
                 }
             });
-            
-            const pageHTML = template({}, {itemsHTML});
 
+            const itemTotalPriceHTML = basket.map(productObj => {
+                if(basket.length) {
+                    return grantTotalPrice(productObj);
+                }
+            })
+            
+            const pageHTML = template({}, {itemsHTML}, {itemTotalPriceHTML});
+            
             // console.log('renderCartPage');
             global.$main.first().html(pageHTML);
             afterChangingTheDOM();
