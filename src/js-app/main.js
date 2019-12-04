@@ -1,16 +1,24 @@
 'use strict';
 
 const global = {
-    basket: [],
+    promises: new PromiseList(),
 };
+let localization = [];
+const basket = new Basket();
+const lang = 'en';
+const qsDefaultParams = {
+    arrayFormat: 'indices',
+    format : 'RFC3986',
+};
+const serverURL = 'http://localhost:3000'
+
 
 const findElements = function() {
     global.$app = $('#wrapper');
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
 
-    // Header Menu links
-    global.$menuLinks = global.$header.find('.mainmenu-link');
+
 
     // Header Search btn
     global.$headerSearchBtn = global.$header.find('.shop_search > a');
@@ -18,15 +26,22 @@ const findElements = function() {
     // Header Shopcart btn
     global.$headerCartBtn = global.$header.find('.shopcart > a');
     global.$headerCartCounter = global.$headerCartBtn.find('.product_qun');
-
 };
 
 const bindEvents = function() {
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
-    global.$app.on('click', '.js-add-to-cart', addToCartClickHandler);
-};
 
+    // Add product to cart
+    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e));
+
+    global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
+
+    // Categories and Filter on Shop page
+    global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
+    global.$app.on('change', `form[name="brand-checkbox-group-form"] input`, { checkboxType: 'brand' }, e => filterCheckboxGroupHandler(e));
+    global.$app.on('change', `form[name="origin-checkbox-group-form"] input`, { checkboxType: 'origin' }, e => filterCheckboxGroupHandler(e));
+};
 
 // Main
 (() => {
@@ -34,8 +49,23 @@ const bindEvents = function() {
     findElements();
     bindEvents();
 
-    pageController.init(global.$menuLinks);
-    pageController.setActivePage();
+    global.promises.addPromise({
+        name: 'localization',
+        body: getLocalization(),
+    });
+
+    global.promises.all(res => {
+        localization = res.localization;
+
+        // TODO: Step: Here is render menu with js
+
+        // Step: Header Menu links
+        global.$menuLinks = global.$header.find('.mainmenu-link');
+        pageController.init(global.$menuLinks);
+
+        // Step: Change page
+        pageController.setActivePage();
+    });
 
     // Read cached page name
 

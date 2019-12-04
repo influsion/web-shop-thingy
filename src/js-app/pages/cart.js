@@ -1,7 +1,7 @@
 "use strict";
 
 function renderCartPage(e, $target) {
-    function template(data) {
+    function template(data, additional) {
         return (`
             <!-- Start Bradcaump area -->
             <div class="ht__bradcaump__area bg-image--3">
@@ -41,7 +41,8 @@ function renderCartPage(e, $target) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            ${additional.itemsHTML}
+                                            <!-- <tr>
                                                 <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/1.jpg" alt="product img"></a></td>
                                                 <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Natoque penatibus</a></td>
                                                 <td class="product-price"><span class="amount">$165.00</span></td>
@@ -64,14 +65,14 @@ function renderCartPage(e, $target) {
                                                 <td class="product-quantity"><input type="number" value="1"></td>
                                                 <td class="product-subtotal">$50.00</td>
                                                 <td class="product-remove"><a href="#">X</a></td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
                             </form>
                             <div class="cartbox__btn">
                                 <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                                    <li><a href="#">Check Out</a></li>
+                                    <li class="check-out"><a href="#">Check Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -92,15 +93,89 @@ function renderCartPage(e, $target) {
         `);
     }
 
-    console.log($target.get(0).dataset.productId);
+    function cartItem(data) {
+        if (!data.quantity) data.quantity = 1;
 
-    const page = template();
+        return (`
+            <tr>
+                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${data.id}"><img src="${data.image}" alt="${data.name}"></a></td>
+                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${data.id}">${data.name}</a></td>
+                <td class="product-price"><span class="amount">$${data.price}</span></td>
+                <td class="product-quantity"><input class="js-input-quantity" type="number" value="${data.quantity}"></td>
+                <td class="product-subtotal">$${data.price * data.quantity}</td>
+                <td class="product-remove"><a href="#">X</a></td>
+            </tr>
+        `)
+    };
 
-    console.log('renderCartPage');
-    global.$main.first().html(page);
-    afterChangingTheDOM();
+    const basket = [
+      {
+        id:2,
+        quantity: 1,
+      },
+      {
+        id:6,
+        quantity: 3,
+      },
+      {
+        id:3,
+        quantity: 5,
+      },
+      {
+        id: 8,
+        quantity: 6,
+      },
+      {
+        id: 7,
+        quantity: 2,
+      }
+    ];
+
+    const productIds = basket.map(item => item.id);
+
+    global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
+    global.promises.add('categoriesStructure', getCategoriesStructure());
+
+    global.promises.all(res => {
+        const { categoriesStructure, filteredDataOfProducts } = res;
+
+        const itemsHTML = filteredDataOfProducts.map(productObj => cartItem(productObj));
+        const pageHTML = template({}, {itemsHTML});
+
+
+
+
+
+        let totalPrice = function() {
+
+            $('.main').on('click', '.js-input-quantity', function(event) {
+                let target = event.target;
+                let quantity = $(target).val();
+
+
+                (quantity < 1) && $(target).val(1);
+
+                if (quantity > 0) console.log(quantity);
+            });
+            return;
+        };
+
+        totalPrice(basket, filteredDataOfProducts);
+        console.log($target.get(0).dataset.productId);
+
+
+
+        console.log('renderCartPage');
+        global.$main.first().html(pageHTML);
+        afterChangingTheDOM();
+    });
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM
     }
 }
+
+const calcTotalPriceOnCart = e => {
+    //! TODO: Need to finish
+    const productId = getProductIdFromDataSet($(e.currentTarget));
+};
