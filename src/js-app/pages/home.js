@@ -51,8 +51,6 @@ const topSlider = () => {
                                 <div class="slider__content">
                                     <div class="contentbox">
                                         <h2>Enjoy life<br>in color <span>with MEIZU</span></h2>
-<!--                                        <h2>favourite <span>Book </span></h2>-->
-<!--                                        <h2>from <span>Here </span></h2>-->
                                         <a class="shopbtn" href="#">shop now</a>
                                     </div>
                                 </div>
@@ -69,9 +67,8 @@ const topSlider = () => {
                             <div class="col-lg-12">
                                 <div class="slider__content">
                                     <div class="contentbox">
-                                        <h2>Buy <span>your </span></h2>
-                                        <h2>favourite <span>Book2 </span></h2>
-                                        <h2>from <span>Here </span></h2>
+                                        <h2>A perfectly <span>balanced</span><br> image quality.<br></h2>
+                                        <h3>As everything in life should be.</h3>
                                         <a class="shopbtn" href="#">shop now</a>
                                     </div>
                                 </div>
@@ -97,7 +94,7 @@ function template(data) {
                         <div class="col-lg-12">
                             <div class="section__title text-center">
                                 <h2 class="title__be--2">New <span class="color--theme">Products</span></h2>
-                                <p>Мы любим радовать Вас нашими новинками новинками. Не хотите с ними ознакомится? </p>
+                                <p>Check out our new arrivals!</p>
                             </div>
                         </div>
                     </div>
@@ -140,7 +137,7 @@ function template(data) {
                         <div class="col-lg-12">
                             <div class="section__title text-center">
                                 <h2 class="title__be--2">Popular <span class="color--theme">Products</span></h2>
-                                <p>Мы любим радовать Вас нашими новинками новинками. Не хотите с ними ознакомится? </p>
+                                <p>Popular products this month</p>
                             </div>
                         </div>
                     </div>
