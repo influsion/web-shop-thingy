@@ -5,18 +5,13 @@ function renderShopPage(e, $target) {
         pageTitle: 'en_Shop'
     });
 
-    // const filterHTML = filterComponent({
-    //     price: 'en_Price',
-    //     brands: 'en_Brands',
-    //     origin: 'en_Origin',
-    // });
-
     //! TODO: Панень сортировки
     // const productSortingPanelHTML = productSortingPanelComponent({});
 
 
     const pagesParameters = savedPagesParameters.get() || {};
     const pageParametersAreExisting = pagesParameters.shopPage || null;
+
 
     global.promises.addPromise({
         name: 'categoriesStructure',
@@ -27,9 +22,15 @@ function renderShopPage(e, $target) {
         const { categoriesStructure = null, } = res;
 
         // Categories Component
-        const categoriesHTML = categoriesComponent({
+        const categoriesComponentParams = {
             structure: categoriesStructure,
+        };
+
+        pageParametersAreExisting && (categoriesComponentParams.state = {
+            menu: pagesParameters.shopPage.menu,
         });
+
+        const categoriesHTML = categoriesComponent(categoriesComponentParams);
 
         const pageTemplate = () => {
             return (`
@@ -84,9 +85,7 @@ function renderShopPage(e, $target) {
         // Код, который нужно запустить после изменения DOM
 
         // render products
-        pageParametersAreExisting && renderProductsOnShoppage({
-            externalPromiseList: global.promises,
-        });
+        pageParametersAreExisting && renderProductsOnShoppage();
 
         // /*====== Price Slider Active ======*/
         // const $sliderRange = $('#slider-range');

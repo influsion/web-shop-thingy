@@ -1,7 +1,16 @@
 'use strict';
 
 function categoriesComponent(data) {
-    const { structure } = data;
+    const { structure, state: { menu } = {} } = data;
+
+    const checkItemForActivity = params => {
+        const { target, source } = params;
+
+        const thisType = target.type === source.type;
+        const thisValue = target.value === source.value;
+
+        return thisType && thisValue ? 'active' : '' ;
+    };
 
     const makeCategoriesHTML = arr => {
         const makeCategoryHTML = obj => {
@@ -9,10 +18,21 @@ function categoriesComponent(data) {
             const name = localization.category_navigation[key];
 
             const subcategoriesHTML = makeSubcategoriesHTML(obj.subcategories);
+            const activeClass = menu && checkItemForActivity({
+                target: {
+                    type: menu.type,
+                    value: menu.value,
+                },
+
+                source: {
+                    type: 'category',
+                    value: key,
+                },
+            });
 
             return (`
                 <li>
-                    <a class="js-switch-page js-change-category-or-subcategory" href="#shop" data-category="${key}">
+                    <a class="js-switch-page js-change-category-or-subcategory ${ activeClass || '' }" href="#shop" data-category="${key}">
                         <span>${name}</span>
                         <span>(${productsQuantity})</span>
                     </a>
@@ -34,9 +54,21 @@ function categoriesComponent(data) {
             const { productsQuantity, value: key } = obj;
             const name = localization.subcategory_navigation[key];
 
+            const activeClass = menu && checkItemForActivity({
+                target: {
+                    type: menu.type,
+                    value: menu.value,
+                },
+
+                source: {
+                    type: 'subcategory',
+                    value: key,
+                },
+            });
+
             return (`
                 <li>
-                    <a class="js-switch-page js-change-category-or-subcategory" href="#shop" data-subcategory="${key}">
+                    <a class="js-switch-page js-change-category-or-subcategory ${ activeClass || '' }" href="#shop" data-subcategory="${key}">
                         <span>${name}</span>
                         <span>(${productsQuantity})</span>
                     </a>
