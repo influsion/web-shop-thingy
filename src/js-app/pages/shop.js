@@ -6,137 +6,105 @@ function renderShopPage(e, $target) {
         image: 'bg-image--6'
     });
 
-    const filterHTML = filterComponent({
-        title: 'en_Filter'
+    //! TODO: Панень сортировки
+    // const productSortingPanelHTML = productSortingPanelComponent({});
+
+
+    const pagesParameters = savedPagesParameters.get() || {};
+    const pageParametersAreExisting = pagesParameters.shopPage || null;
+
+
+    global.promises.addPromise({
+        name: 'categoriesStructure',
+        body: getCategoriesStructure(),
     });
 
-    const productsSortingTemplate = () => {
-        return (`
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
-                        <div class="shop__list nav justify-content-center" role="tablist">
-                            <a class="nav-item nav-link active" data-toggle="tab" href="#nav-grid" role="tab"><i class="fa fa-th"></i></a>
-                            <a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a>
-                        </div>
-                        <p>Showing 1-12 of 40 results</p>
-                        <div class="orderby__wrapper">
-                            <span>Sort By</span>
-                            <select class="shot__byselect">
-                                <option>Default sorting</option>
-                                <option>HeadPhone</option>
-                                <option>Furniture</option>
-                                <option>Jewellery</option>
-                                <option>Handmade</option>
-                                <option>Kids</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `);
-    };
+    global.promises.all(res => {
+        const { categoriesStructure = null, } = res;
 
-    const productsTemplate = () => {
-        const arr = [];
+        // Categories Component
+        const categoriesComponentParams = {
+            structure: categoriesStructure,
+        };
 
-        for (let i = 0; i < 12; i++) {
-            arr.push(productCartGridViewComponents({}))
-        }
+        pageParametersAreExisting && (categoriesComponentParams.state = {
+            menu: pagesParameters.shopPage.menu,
+        });
 
-        return (`
-            ${ arr.join('') }
-        `);
-    };
+        const categoriesHTML = categoriesComponent(categoriesComponentParams);
 
-    const centralColumnTemplate = () => {
-        return (`
-            ${ productsSortingTemplate() }
+        const pageTemplate = () => {
+            return (`
+                ${ breadcrumbsHTML }
 
-            <div class="row">
-                ${ productsTemplate() }
-            </div>
+                <!-- Start Shop Page -->
+                <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
+                                <div class="shop__sidebar">
+                                    <div>${ categoriesHTML }</div>
+                                    <div class="js-product-filter _filterHTML_"></div>
 
-            <!-- <ul class="wn__pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
-            </ul> -->
-        `);
-    };
-
-
-
-
-    //! TODO: Check filter params
-    const filterParameters = storedFilterParameters.getFromSessionStorage();
-
-    if (filterParameters) {
-        global.promises.add('filteredDataOfProducts', getProducts(filterParameters));
-    }
-
-    global.promises.add('categoriesStructure', getCategoriesStructure());
-
-
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            const { categoriesStructure } = res;
-            const filteredDataOfProducts = filterParameters && res.filteredDataOfProducts;
-
-            //! TODO: run render products
-            const centralColumnHTML = filterParameters
-                ? centralColumnTemplate()
-                : 'en_Empty';
-
-
-            // Categories Component
-            const categoriesHTML = categoriesComponent({
-                structure: categoriesStructure,
-            });
-
-            const pageTemplate = () => {
-                return (`
-                    ${ breadcrumbsHTML }
-
-                    <!-- Start Shop Page -->
-                    <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
-                                    <div class="shop__sidebar">
-                                        ${ categoriesHTML }
-                                        ${ filterHTML }
-
-                                        <!-- // TODO: Banner -->
-                                        <!-- <aside class="wedget__categories sidebar--banner">
-                                            <img src="images/others/banner_left.jpg" alt="banner images">
-                                            <div class="text">
-                                                <h2>new products</h2>
-                                                <h6>save up to <br> <strong>40%</strong>off</h6>
-                                            </div>
-                                        </aside> -->
-                                    </div>
+                                    <!-- // TODO: Banner -->
+                                    <!-- <aside class="wedget__categories sidebar--banner">
+                                        <img src="images/others/banner_left.jpg" alt="banner images">
+                                        <div class="text">
+                                            <h2>new products</h2>
+                                            <h6>save up to <br> <strong>40%</strong>off</h6>
+                                        </div>
+                                    </aside> -->
                                 </div>
-                                <div class="col-lg-9 col-12 order-1 order-lg-2">
-                                    ${ centralColumnHTML }
-                                </div>
+                            </div>
+                            <div class="col-lg-9 col-12 order-1 order-lg-2">
+                                <div class="row js-sort-panel _productSortingPanelComponent_"></div>
+
+                                <div class="row js-filtered-products _productsTemplate_"></div>
+
+                                <!-- <ul class="wn__pagination">
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
-                    <!-- End Shop Page -->
-                `);
-            };
+                </div>
+                <!-- End Shop Page -->
+            `);
+        };
 
-            const pageHTML = pageTemplate();
-            global.$main.first().html(pageHTML);
-            console.log('renderShopPage');
-            afterRendering();
-        });
+        const pageHTML = pageTemplate();
+        global.$main.first().html(pageHTML);
+        console.log('renderShopPage');
+        afterRendering();
+    });
 
     const afterRendering = function() {
         // Код, который нужно запустить после изменения DOM
+
+        // render products
+        pageParametersAreExisting && renderProductsOnShoppage();
+
+        // /*====== Price Slider Active ======*/
+        // const $sliderRange = $('#slider-range');
+        // const $amount = $('#amount');
+
+        // $sliderRange.slider({
+        //     range: true,
+        //     min: 10,
+        //     max: 500,
+        //     values: [110, 400],
+        //     slide: function(event, ui) {
+        //         $amount.val('$' + ui.values[0] + ' - $' + ui.values[1]);
+        //     }
+        // });
+
+        // //! Set value $('#slider-range').slider( "values", 0, 0 );
+        // //! Set value $('#slider-range').slider( "option", "max", 50000 );
+
+        // $amount.val(`$${ $sliderRange.slider('values', 0) } - $${ $sliderRange.slider('values', 1) }`);
     };
 };

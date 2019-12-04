@@ -102,10 +102,8 @@ function renderCartPage(e, $target) {
     global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
     global.promises.add('categoriesStructure', getCategoriesStructure());
 
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            const { categoriesStructure, filteredDataOfProducts } = res;
+    global.promises.all(res => {
+        const { categoriesStructure, filteredDataOfProducts } = res;
 
             const itemsHTML = filteredDataOfProducts.map(productObj => {
                 if (basket.length) {

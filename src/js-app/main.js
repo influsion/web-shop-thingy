@@ -50,6 +50,10 @@ const bindEvents = function() {
 
     global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
     
+    // Categories and Filter on Shop page
+    global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
+    global.$app.on('change', `form[name="brand-checkbox-group-form"] input`, { checkboxType: 'brand' }, e => filterCheckboxGroupHandler(e));
+    global.$app.on('change', `form[name="origin-checkbox-group-form"] input`, { checkboxType: 'origin' }, e => filterCheckboxGroupHandler(e));
 };
 
 // Main
@@ -58,22 +62,23 @@ const bindEvents = function() {
     findElements();
     bindEvents();
 
-    global.promises.add('localization', getLocalization())
+    global.promises.addPromise({
+        name: 'localization',
+        body: getLocalization(),
+    });
 
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            localization = res.localization;
+    global.promises.all(res => {
+        localization = res.localization;
 
-            // TODO: Step: Here is render menu with js
+        // TODO: Step: Here is render menu with js
 
-            // Step: Header Menu links
-            global.$menuLinks = global.$header.find('.mainmenu-link');
-            pageController.init(global.$menuLinks);
+        // Step: Header Menu links
+        global.$menuLinks = global.$header.find('.mainmenu-link');
+        pageController.init(global.$menuLinks);
 
-            // Step: Change page
-            pageController.setActivePage();
-        });
+        // Step: Change page
+        pageController.setActivePage();
+    });
 
     // Read cached page name
 
