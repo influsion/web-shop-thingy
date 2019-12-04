@@ -192,10 +192,7 @@ const deleteCartItemHandler = $target => {
     const $cartItem = $target.parents('.js-cart-item');
     const productId = getProductIdFromDataSet($cartItem);
     
-    // remove element
     $cartItem.remove();
-
-    // TODO: Call basket method to delete item
     basket.delete(productId)
     // TODO: Call basket getTotal method
     // const totalPrice = ;
@@ -214,8 +211,6 @@ const addToCartClickHandler = $target => {
         .then(res => handlerPromises.responses(res))
         .then(res => {
             const currentProduct = res.filteredDataOfProducts[0];
-
-
 
             basket.add({
                 ...currentProduct,
