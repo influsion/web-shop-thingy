@@ -9,6 +9,18 @@ const isKey = key => {
 // Get value from data-product-id attr
 const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 
+// get value from data-category or data-subcategory attr
+const getCategoryOrSubcategoryFromDataSet = $elem => {
+    const { category, subcategory } = $elem.get(0).dataset;
+    return category || subcategory;
+};
+
+
+const getCategoryFromDataSet = $elem => $elem.get(0).dataset.category;
+const getSubcategoryFromDataSet = $elem => $elem.get(0).dataset.subcategory;
+
+
+
 // Alternative of typeof
 const toType = val => {
     return ({}).toString
@@ -34,6 +46,19 @@ const PromiseList = function() {
                 return this;
             },
         },
+        addPromise: {
+            writable: false,
+            configurable: false,
+            value: function({ name: promiseName, body: promiseObject }) {
+                const promisePosition = this.push(promiseObject) - 1;
+
+                order[promisePosition] = promiseName;
+                console.log(order);
+                console.log('promise name: ' + promiseName + ', ' + 'position: ' + promisePosition);
+
+                return this;
+            }
+        },
         response: {
             writable: false,
             configurable: false,
@@ -52,6 +77,16 @@ const PromiseList = function() {
                 });
 
                 return this.response;
+            },
+        },
+        all: {
+            writable: false,
+            configurable: false,
+            value: function(responseFunction) {
+                Promise.all(this)
+                    .then(res => this.responses(res))
+                    .then(res => responseFunction(res));
+
             },
         },
     };
@@ -112,28 +147,6 @@ const Basket = function() {
                 return Math.round(totalPrice * 100) / 100;
             },
         },
-        grandTotalPrice: {
-            writable: false,
-            configurable: false,
-            value: function() {
-                const totalPrice = this.reduce((accumulator, productObject) => {
-                    let { price, quantity } = productObject;
-                    price = parseInt(price);
-                    quantity = parseInt(quantity);
-                    accumulator++;
-                    return accumulator += price * quantity;
-                }, 0);
-                
-                return Math.round(totalPrice * 100) / 100;
-            },
-        },
-        change: {
-            writable: false,
-            configurable: false,
-            value: function() {
-                
-            },
-        }
     };
 
     return Object.create([], proto);
@@ -151,6 +164,11 @@ const getLocalization = function(params = "en") {
 
 const getCategoriesStructure = function() {
     return fetch(`${serverURL}/categoriesstructure`)
+        .then(data => data.json());
+};
+
+const getFilterConditions = function(params) {
+    return fetch(`${serverURL}/filterconditions/${params}`)
         .then(data => data.json());
 };
 
@@ -198,6 +216,7 @@ const tempStorage = {
     },
 };
 
+//! TODO: DELETE!!!
 const storedFilterParameters = {
     key: 'web-shop-thingy_filterParameters',
 
@@ -212,14 +231,33 @@ const storedFilterParameters = {
 
 const deleteCartItemHandler = $target => {
     const $cartItem = $target.parents('.js-cart-item');
+    console.log($cartItem);
+
     const productId = getProductIdFromDataSet($cartItem);
     
     $cartItem.remove();
-    basket.delete(productId)
-    // TODO: Call basket getTotal method
-    // const totalPrice = ;
-    // global.$main.find('').text('totalPrice');
+    basket.delete(productId);
 };
+
+const changeTotalPrice = $target => {
+    const $cartItem = $target.parents('.js-cart-item');
+    const productId = getProductIdFromDataSet($cartItem); 
+    const quantity = $target.val();
+    (quantity < 1) && $target.val(1);
+    if (quantity > 0) {
+       const index = basket.findIndex(item => item.id === productId);
+       basket[index].quantity = quantity;
+       $cartItem.find('.product-subtotal').text(`${Math.round((+basket[index].price * +basket[index].quantity) * 100) / 100} ₴UAH`)
+    console.log($cartItem)
+    }
+
+}
+
+const changeGradTotalPrice = $target => {
+    // TODO: Call basket getTotal method
+    const totalPrice = basket.getTotalPrice();
+    global.$main.find('.js-grand-total-price').text(`${totalPrice} ₴UAH`);
+}
 
 const addToCartClickHandler = $target => {
     const productId = getProductIdFromDataSet($target);
@@ -241,5 +279,179 @@ const addToCartClickHandler = $target => {
         });
 };
 
- 
 
+const savedPagesParameters = {
+    key: 'web-shop-thingy_pagesParameters',
+
+    get() {
+        return tempStorage.getItem(this.key);
+    },
+
+    set(obj) {
+        return tempStorage.setItem(this.key, obj);
+    }
+};
+
+
+const filterCheckboxGroupHandler = e => {
+    const { checkboxType } = e.data;
+    const $checkedInputs = $(e.currentTarget).parents('form').find('input:checked');
+    const arrytOfValues = [];
+
+    const pagesParameters = savedPagesParameters.get();
+    pagesParameters.shopPage[checkboxType] = arrytOfValues;
+
+    $checkedInputs.each((i, item) => arrytOfValues.push($(item).val()));
+
+    savedPagesParameters.set(pagesParameters);
+
+    console.log(pagesParameters, e);
+
+    renderProductsOnShoppage();
+};
+
+const categoriesHandler = e => {
+    const $target = $(e.currentTarget);
+
+    $target.parents('.wedget__categories.poroduct--cat').find('a').removeClass('active');
+    $target.addClass('active');
+    const categoryAndSubcategory = {
+        category: getCategoryFromDataSet($target),
+        subcategory: getSubcategoryFromDataSet($target),
+    };
+
+    const pagesParameters = savedPagesParameters.get() || {};
+
+    const type = categoryAndSubcategory.category
+        ? 'category'
+        : categoryAndSubcategory.subcategory
+        ? 'subcategory'
+        : null ;
+
+    const value = categoryAndSubcategory.category || categoryAndSubcategory.subcategory || null;
+
+    // if (!pagesParameters.shopPage) {
+        pagesParameters.shopPage = {};
+    // }
+
+    pagesParameters.shopPage.menu = {
+        type,
+        value,
+    };
+
+    savedPagesParameters.set(pagesParameters);
+
+    console.log(pagesParameters)
+
+    renderProductsOnShoppage();
+};
+
+const renderProductsOnShoppage = (params = {}) => {
+    const promises = new PromiseList();
+
+    const { shopPage: pageParameters } = savedPagesParameters.get();
+    const filterParameters = {};
+
+    // Category or Subcategory
+    filterParameters[pageParameters.menu.type] = pageParameters.menu.value;
+
+    // Price
+    pageParameters.price && (filterParameters.price = pageParameters.price);
+
+    // Brand
+    pageParameters.brand && (filterParameters.brand = pageParameters.brand);
+
+    // Origin
+    pageParameters.origin && (filterParameters.origin = pageParameters.origin);
+
+    console.error(filterParameters);
+
+    promises.addPromise({
+        name: 'filteredDataOfProducts',
+        body: getProducts(filterParameters),
+    });
+
+    promises.addPromise({
+        name: 'filterConditions',
+        body: getFilterConditions(pageParameters.menu.value),
+    });
+
+    promises.all(res => {
+        const { filteredDataOfProducts, filterConditions } = res;
+
+        const productsHTML = filteredDataOfProducts.map(productCartGridViewComponents);
+
+        const filterHTML = filterComponent({
+            i18n: {
+                price: 'en_Price',
+                brands: 'en_Brands',
+                origin: 'en_Origin',
+            },
+
+            structure: filterConditions,
+
+            state: {
+                price: pageParameters.price || filterConditions.priceRange || [0, 0],
+                brand: pageParameters.brand || [],
+                origin: pageParameters.origin || [],
+            }
+        });
+
+        // Show products
+        global.$main.find('.js-filtered-products').html(productsHTML);
+
+        // TODO: Show filter
+        global.$main.find('.js-product-filter').html(filterHTML);
+
+        /*====== Price Slider Active ======*/
+        const $sliderRange = global.$main.find('#slider-range');
+        const $amount = global.$main.find('#amount');
+
+        const priceExtremeValues = $sliderRange.data('extremeValues').split(':').map(item => parseInt(item));
+        const priceActiveValues = $sliderRange.data('activeValues').split(':').map(item => parseInt(item));
+
+        $sliderRange.slider({
+            range: true,
+            step: 10,
+            min: priceExtremeValues[0],
+            max: priceExtremeValues[1],
+            values: priceActiveValues,
+            slide: function(event, ui) {
+                $amount.val('$' + ui.values[0] + ' - $' + ui.values[1]);
+
+                const pagesParameters = savedPagesParameters.get();
+                pagesParameters.shopPage.price = ui.values;
+
+                this._reload = function() {
+                    savedPagesParameters.set(pagesParameters);
+
+                    renderProductsOnShoppage();
+                };
+            }
+        });
+
+
+        $sliderRange.on('mousedown mouseup mouseleave', e => {
+            const { _reload: reload, _hold: hold } = e.currentTarget;
+
+            const is = Object.create(null);
+            is[e.type] = true;
+
+            if (is.mousedown) {
+                e.currentTarget._hold = true;
+            }
+
+            if (is.mouseup || is.mouseleave && hold) {
+                e.currentTarget._hold = false;
+
+                // reload && $(e.currentTarget).slider( "destroy" );
+                reload && reload();
+            }
+        });
+
+        //! Set value $('#slider-range').slider( "values", 0, 0 );
+        //! Set value $('#slider-range').slider( "option", "max", 50000 );
+
+        $amount.val(`$${ $sliderRange.slider('values', 0) } - $${ $sliderRange.slider('values', 1) }`);
+    });
+};

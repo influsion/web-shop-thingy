@@ -5,7 +5,7 @@ function renderCartPage(e, $target) {
         pageTitle: 'en_Cart',
         image: 'bg-image--3'
     });
-    function template(data, additional, totalPrice) {
+    function template(data, additional) {
         return (`
             <!-- Start Bradcaump area -->
             ${ breadcrumbsHTML }
@@ -61,7 +61,7 @@ function renderCartPage(e, $target) {
                             </form>
                             <div class="cartbox__btn">
                                 <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                                    <li class="check-out"><a href="#">Check Out</a></li>
+                                    <li class="check-out"><a class="js-check-out" href="#">Check Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,11 +69,10 @@ function renderCartPage(e, $target) {
                     <div class="row">
                         <div class="col-lg-6 offset-lg-6">
                             <div class="cartbox__total__area">
-                                ${totalPrice.itemTotalPriceHTML}
-                                <!-- <div class="cart__total__amount">
+                                <div class="cart__total__amount">
                                     <span>Grand Total</span>
-                                    <span>$140</span>
-                                </div> -->
+                                    <span class="js-grand-total-price">${data.getTotalPrice()} ₴UAH</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,43 +96,27 @@ function renderCartPage(e, $target) {
             </tr>
         `)
     };
-    function grantTotalPrice(data) {
-        return (`
-            <div class="cart__total__amount">
-                <span>Grand Total</span>
-                <span>${Math.round((data.price * data.quantity) * 100) / 100} ₴UAH</span>
-            </div>
-        `)
-    }
-
     const productIds = basket.map(item => item.id);
 
     global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
     global.promises.add('categoriesStructure', getCategoriesStructure());
 
-    Promise.all(global.promises)
-        .then(res => global.promises.responses(res))
-        .then(res => {
-            const { categoriesStructure, filteredDataOfProducts } = res;
+    global.promises.all(res => {
+        const { categoriesStructure, filteredDataOfProducts } = res;
 
             const itemsHTML = basket.map(productObj => {
                 if (basket.length) {
                     return cartItem(productObj);
                 }
             });
-
-            const itemTotalPriceHTML = basket.map(productObj => {
-                if(basket.length) {
-                    return grantTotalPrice(productObj);
-                }
-            })
             
-            const pageHTML = template({}, {itemsHTML}, {itemTotalPriceHTML});
+            const pageHTML = template(basket, {itemsHTML});
             
             // console.log('renderCartPage');
             global.$main.first().html(pageHTML);
             afterChangingTheDOM();
         });
+
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM
