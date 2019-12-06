@@ -130,6 +130,11 @@ const getFilterConditions = function(params) {
         .then(data => data.json());
 };
 
+const getFaq = function() {
+    return fetch(`${serverURL}/faq`)
+        .then(data => data.json());
+};
+
 const currentStoredProductID = {
     key: 'web-shop-thingy_currentProductID',
 

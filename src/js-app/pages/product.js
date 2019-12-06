@@ -2,10 +2,14 @@
 
 
 function renderProductPage(e, $target) {
+    const breadcrumbsHTML = breadcrumbsComponent({
+        pageTitle: 'en_Product'
+    });
     const pageTemplate = data => {
         return (`
             <!-- Start Bradcaump area -->
-            <div class="ht__bradcaump__area bg-image--4">
+            ${ breadcrumbsHTML };
+            <!--<div class="ht__bradcaump__area bg-image--4">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -20,7 +24,7 @@ function renderProductPage(e, $target) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- End Bradcaump area -->
 
             <!-- Start main Content -->
@@ -69,7 +73,7 @@ function renderProductPage(e, $target) {
                                                     <button class="tocart js-add-to-cart" type="submit" title="Add to Cart">Add to Cart</button>
                                                 </div>
                                                 <div class="product-addto-links clearfix">
-                                                    <a class="js-switch-page" href="#cart" data-product-id="${data.id}">
+                                                    <a class="js-switch-page switch-to-cart" href="#cart" data-product-id="${data.id}">
                                                         <i class="bi bi-shopping-bag4"></i>
                                                     </a>
                                                 </div>
@@ -171,8 +175,7 @@ function renderProductPage(e, $target) {
             </div>
             <!-- End main Content -->
         `);
-    }
-
+    };
 
     const productId = getProductIdFromDataSet($target);
 
@@ -183,7 +186,7 @@ function renderProductPage(e, $target) {
 
         currentStoredProductID.seveToSessionStorage(currentProduct.id);
 
-        const pageHTML = pageTemplate(currentProduct)
+        const pageHTML = pageTemplate(currentProduct);
 
         console.log('renderProductPage');
         global.$main.first().html(pageHTML);
