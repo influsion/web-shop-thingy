@@ -100,7 +100,7 @@ const Basket = function() {
             writable: false,
             configurable: false,
             value: function(obj) {
-                this.push(obj)
+                this.push(obj);
 
                 return this;
             },
@@ -127,6 +127,11 @@ const getCategoriesStructure = function() {
 
 const getFilterConditions = function(params) {
     return fetch(`${serverURL}/filterconditions/${params}`)
+        .then(data => data.json());
+};
+
+const getFaq = function() {
+    return fetch(`${serverURL}/faq`)
         .then(data => data.json());
 };
 
@@ -248,7 +253,7 @@ const categoriesHandler = e => {
 
     savedPagesParameters.set(pagesParameters);
 
-    console.log(pagesParameters)
+    console.log(pagesParameters);
 
     renderProductsOnShoppage();
 };

@@ -3,7 +3,7 @@
 
 function renderProductPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
-        pageTitle: 'en_Shop'
+        pageTitle: 'en_Product'
     });
     const pageTemplate = data => {
         return (`
@@ -175,8 +175,7 @@ function renderProductPage(e, $target) {
             </div>
             <!-- End main Content -->
         `);
-    }
-
+    };
 
     const productId = getProductIdFromDataSet($target);
 
@@ -187,7 +186,7 @@ function renderProductPage(e, $target) {
 
         currentStoredProductID.seveToSessionStorage(currentProduct.id);
 
-        const pageHTML = pageTemplate(currentProduct)
+        const pageHTML = pageTemplate(currentProduct);
 
         console.log('renderProductPage');
         global.$main.first().html(pageHTML);
