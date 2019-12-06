@@ -143,6 +143,7 @@ const Basket = function() {
 
                     return accumulator += price * quantity;
                 }, 0);
+                saveToLocalStorage(this);
                 
                 return Math.round(totalPrice * 100) / 100;
             },
@@ -247,8 +248,7 @@ const changeTotalPrice = $target => {
     if (quantity > 0) {
        const index = basket.findIndex(item => item.id === productId);
        basket[index].quantity = quantity;
-       $cartItem.find('.product-subtotal').text(`${Math.round((+basket[index].price * +basket[index].quantity) * 100) / 100} ₴UAH`)
-    console.log($cartItem)
+       $cartItem.find('.product-subtotal').text(`${Math.round((+basket[index].price * +basket[index].quantity) * 100) / 100} ₴UAH`);
     }
 
 }

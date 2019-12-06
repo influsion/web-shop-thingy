@@ -44,7 +44,7 @@ const bindEvents = function() {
 
     global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
 
-    global.$app.on('click', '.js-check-out', e => changeGradTotalPrice($(e.currentTatget)));
+    global.$app.on('change', '.js-input-quantity', e => changeGradTotalPrice($(e.currentTatget)));
     
     // Categories and Filter on Shop page
     global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
