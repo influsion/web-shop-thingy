@@ -49,6 +49,10 @@ const bindEvents = function() {
     findElements();
     bindEvents();
 
+    // Step: Header Menu links
+    global.$menuLinks = global.$header.find('.mainmenu-link');
+    pageController.init(global.$menuLinks);
+
     global.promises.addPromise({
         name: 'localization',
         body: getLocalization(),
@@ -58,10 +62,6 @@ const bindEvents = function() {
         localization = res.localization;
 
         // TODO: Step: Here is render menu with js
-
-        // Step: Header Menu links
-        global.$menuLinks = global.$header.find('.mainmenu-link');
-        pageController.init(global.$menuLinks);
 
         // Step: Change page
         pageController.setActivePage();
