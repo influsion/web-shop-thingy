@@ -1,47 +1,23 @@
 "use strict";
 
-let popularProductsMock = [
-	{
-		"id": "2",
-		"name": "Ноутбук HP 255 G7 (7DF20EA) Dark Ash",
-		"image": "./images/products/hp_6bn09ea.jpg",
-		"description": "Экран 15.6” (1920x1080) Full HD, матовый / AMD Ryzen 5 2500U (2.0 - 3.6 ГГц) / RAM 8 ГБ / SSD 256 ГБ / AMD Radeon Vega 8 / без ОД / LAN / Wi-Fi / Bluetooth / веб-камера / DOS / 1.78 кг / черный",
-		"price": "10499",
-		"category": "computers-notebooks",
-		"subcategory": "notebooks",
-		"brand": "hp",
-		"origin": "china",
-		"new": false,
-		"popular": true
-	}, {
-		"id": "2",
-		"name": "Ноутбук HP 255 G7 (7DF20EA) Dark Ash",
-		"image": "./images/products/hp_6bn09ea.jpg",
-		"description": "Экран 15.6” (1920x1080) Full HD, матовый / AMD Ryzen 5 2500U (2.0 - 3.6 ГГц) / RAM 8 ГБ / SSD 256 ГБ / AMD Radeon Vega 8 / без ОД / LAN / Wi-Fi / Bluetooth / веб-камера / DOS / 1.78 кг / черный",
-		"price": "10499",
-		"category": "computers-notebooks",
-		"subcategory": "notebooks",
-		"brand": "hp",
-		"origin": "china",
-		"new": false,
-		"popular": true
-	},
-
-];
-
-const populateProducts = (productsArray) => {
-	let assembledHTML = "";
-	productsArray.forEach((product) => {
-		// console.log("current product", product);
-		assembledHTML += productCartSlideViewComponent(product);
-	});
-	return assembledHTML;
-};
 
 
-const topSlider = () => {
+function renderHomePage(e, $target) {
+	//template bits and parts
 
-	return `<!-- Start Slider area -->
+	const productsPopulate = (productsArray) => {
+		let assembledHTML = "";
+		productsArray.forEach((product) => {
+			// console.log("current product", product);
+			assembledHTML += productCartSlideViewComponent(product);
+		});
+		return assembledHTML;
+	};
+
+
+	const topSlider = () => {
+
+		return `<!-- Start Slider area -->
             <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
                 <!-- Start Single Slide -->
                 <div class="slide animation__style10 bg-image--1 fullscreen align__center--left">
@@ -79,13 +55,13 @@ const topSlider = () => {
                 <!-- End Single Slide -->
             </div>
             <!-- End Slider area -->`
-};
+	};
 
 
-function template(data) {
-	return (`
+	const  template = (data) => {
+		return (`
 		${topSlider()}
-            
+
 
             <!-- Start New product Area -->
             <section class="wn__product__area brown--color pt--80  pb--30">
@@ -100,7 +76,7 @@ function template(data) {
                     </div>
                     <!-- Start Single Tab Content -->
                     <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${populateProducts(popularProductsMock)}
+                        ${productsPopulate(data.new)}
                     </div>
                     <!-- End Single Tab Content -->
                 </div>
@@ -143,34 +119,43 @@ function template(data) {
                     </div>
                     <!-- Start Single Tab Content -->
                     <div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
-                        ${populateProducts(popularProductsMock)}
+                        ${productsPopulate(data.popular)}
                     </div>
                     <!-- End Single Tab Content -->
                 </div>
             </section>
             <!-- End Popular product Area -->
         `);
-}
+	};
 
 
-let popularItems = getProducts({popular: true});
-console.log("logging popularProducts", popularItems);
 
-function renderHomePage(e, $target) {
+	global.promises.addPromise({
+		name: "popularProducts",
+		body: getProducts({popular: true}),
+	});
+
+	global.promises.addPromise({
+		name: "newProducts",
+		body: getProducts({new: true}),
+	});
 
 
-	global.promises.addPromise("PopularProducts", getProducts({"popular": "true"}));
+	global.promises.all(res => {
+		const {popularProducts, newProducts} = res;
+		let productData = {
+			popular: popularProducts,
+			new: newProducts,
+		};
 
-	Promise.all(global.promises).then(
-		response => {
-			console.log(response);
-		}
-	);
+		// console.log(popularProducts, newProducts);
 
-	const page = template();
+		const page = template(productData);
 
-	global.$main.first().html(page);
-	afterChangingTheDOM();
+		global.$main.first().html(page);
+		afterChangingTheDOM();
+	});
+
 
 	function afterChangingTheDOM() {
 		// Код, который нужно запустить после изменения DOM
