@@ -9,7 +9,7 @@
 .wedget__categories.poroduct--cat ul a {
 	/* display: block; */
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 	border-bottom: 1px dashed #e1e1e1;
 }
 
