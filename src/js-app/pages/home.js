@@ -1,19 +1,19 @@
 "use strict";
 
 function renderHomePage(e, $target) {
+    const pagePromise = new PromiseList();
 
-	global.promises.addPromise({
+	pagePromise.addPromise({
 		name: "popularProducts",
 		body: getProducts({popular: true}),
 	});
 
-	global.promises.addPromise({
+	pagePromise.addPromise({
 		name: "newProducts",
 		body: getProducts({new: true}),
 	});
 
-
-	global.promises.all(res => {
+	pagePromise.all(res => {
 		const { popularProducts, newProducts } = res;
 
         const topSliderHTML = topSliderComponent();
