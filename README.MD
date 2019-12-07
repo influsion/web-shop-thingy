@@ -10,7 +10,7 @@ This is going to be our super awesome venture into the lands of an online shop ~
 
 ### Development mode
 - build once: `npm run build:dev`
-- start the static server and watch changes: `npm run build:ndev:watch`
+- start the static server and watch changes: `npm run build:dev:watch`
 
 ### Production mode
 - build once: `npm run build:prod`
