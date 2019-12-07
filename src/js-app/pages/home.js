@@ -32,7 +32,7 @@ let popularProductsMock = [
 const populateProducts = (productsArray) => {
 	let assembledHTML = "";
 	productsArray.forEach((product) => {
-		console.log("current product", product);
+		// console.log("current product", product);
 		assembledHTML += productCartSlideViewComponent(product);
 	});
 	return assembledHTML;
@@ -152,6 +152,9 @@ function template(data) {
         `);
 }
 
+
+let popularItems = getProducts({popular: true});
+console.log("logging popularProducts", popularItems);
 
 function renderHomePage(e, $target) {
 
