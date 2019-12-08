@@ -1,5 +1,6 @@
 'use strict';
 
+
 const global = {
     promises: new PromiseList(),
 };
@@ -73,3 +74,16 @@ const bindEvents = function() {
     // Read cached page name
 
 })();
+
+const snowFlake = (data) => {
+    console.log(data.src)
+    $(`#wrapper`).prepend(`<div class="snow-flake"><img src="${data.src}" alt="icon"></div>`);
+    $(`#wrapper`).prepend(`<div class="snow-flake"><img src="${data.src}" alt="icon"></div>`);
+
+}
+
+snowFlake(dataIconSnow);
+
+setInterval(function() {
+    
+}, 1000)
