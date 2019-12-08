@@ -324,7 +324,7 @@ const renderProductsOnShoppage = (params = {}) => {
 
         $sliderRange.slider({
             range: true,
-            step: 10,
+            step: 1,
             min: priceExtremeValues[0],
             max: priceExtremeValues[1],
             values: priceActiveValues,
