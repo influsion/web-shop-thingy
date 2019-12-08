@@ -3,7 +3,7 @@
 const global = {
     promises: new PromiseList(),
 };
-let localization = [];
+let localization = {};
 const basket = new Basket();
 const lang = 'en';
 const qsDefaultParams = {

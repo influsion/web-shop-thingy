@@ -367,3 +367,8 @@ const renderProductsOnShoppage = (params = {}) => {
         $amount.val(`$${ $sliderRange.slider('values', 0) } - $${ $sliderRange.slider('values', 1) }`);
     });
 };
+
+const translate = (key) => {
+    const hasi18n = !!localization && !!localization.i18n;
+    return hasi18n && !!localization.i18n[key] ? localization.i18n[key] : '';
+};
