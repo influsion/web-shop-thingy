@@ -143,10 +143,11 @@ const Basket = function() {
 
                     return accumulator += price * quantity;
                 }, 0);
+                saveToLocalStorage(this);
                 
                 return Math.round(totalPrice * 100) / 100;
             },
-        }
+        },
     };
 
     return Object.create([], proto);
@@ -169,6 +170,11 @@ const getCategoriesStructure = function() {
 
 const getFilterConditions = function(params) {
     return fetch(`${serverURL}/filterconditions/${params}`)
+        .then(data => data.json());
+};
+
+const getFaq = function() {
+    return fetch(`${serverURL}/faq`)
         .then(data => data.json());
 };
 
@@ -231,17 +237,32 @@ const storedFilterParameters = {
 
 const deleteCartItemHandler = $target => {
     const $cartItem = $target.parents('.js-cart-item');
+    console.log($cartItem);
+
     const productId = getProductIdFromDataSet($cartItem);
     
-    // remove element
     $cartItem.remove();
-
-    // TODO: Call basket method to delete item
-    basket.delete(productId)
-    // TODO: Call basket getTotal method
-    // const totalPrice = ;
-    // global.$main.find('').text('totalPrice');
+    basket.delete(productId);
 };
+
+const changeTotalPrice = $target => {
+    const $cartItem = $target.parents('.js-cart-item');
+    const productId = getProductIdFromDataSet($cartItem); 
+    const quantity = $target.val();
+    (quantity < 1) && $target.val(1);
+    if (quantity > 0) {
+       const index = basket.findIndex(item => item.id === productId);
+       basket[index].quantity = quantity;
+       $cartItem.find('.product-subtotal').text(`${Math.round((+basket[index].price * +basket[index].quantity) * 100) / 100} ₴UAH`);
+    }
+
+}
+
+const changeGradTotalPrice = $target => {
+    // TODO: Call basket getTotal method
+    const totalPrice = basket.getTotalPrice();
+    global.$main.find('.js-grand-total-price').text(`${totalPrice} ₴UAH`);
+}
 
 const addToCartClickHandler = $target => {
     const productId = getProductIdFromDataSet($target);
@@ -255,8 +276,6 @@ const addToCartClickHandler = $target => {
         .then(res => handlerPromises.responses(res))
         .then(res => {
             const currentProduct = res.filteredDataOfProducts[0];
-
-
 
             basket.add({
                 ...currentProduct,
@@ -398,7 +417,7 @@ const renderProductsOnShoppage = (params = {}) => {
 
         $sliderRange.slider({
             range: true,
-            step: 10,
+            step: 1,
             min: priceExtremeValues[0],
             max: priceExtremeValues[1],
             values: priceActiveValues,
@@ -440,4 +459,9 @@ const renderProductsOnShoppage = (params = {}) => {
 
         $amount.val(`$${ $sliderRange.slider('values', 0) } - $${ $sliderRange.slider('values', 1) }`);
     });
+};
+
+const translate = (key) => {
+    const hasi18n = !!localization && !!localization.i18n;
+    return hasi18n && !!localization.i18n[key] ? localization.i18n[key] : '';
 };

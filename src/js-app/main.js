@@ -3,7 +3,7 @@
 const global = {
     promises: new PromiseList(),
 };
-let localization = [];
+let localization = {};
 const basket = new Basket();
 const lang = 'en';
 const qsDefaultParams = {
@@ -38,17 +38,13 @@ const bindEvents = function() {
     global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
 
 
-    global.$app.on('change', '.js-input-quantity', function(e) {
-        const $target = $(e.currentTarget);
-        const quantity = $target.val();
-
-        (quantity < 1) && $target.val(1);
-        if (quantity > 0) console.log(quantity);
-    });
+    global.$app.on('change', '.js-input-quantity', e => changeTotalPrice($(e.currentTarget)));
 
 
 
     global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
+
+    global.$app.on('change', '.js-input-quantity', e => changeGradTotalPrice($(e.currentTatget)));
     
     // Categories and Filter on Shop page
     global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
@@ -62,6 +58,10 @@ const bindEvents = function() {
     findElements();
     bindEvents();
 
+    // Step: Header Menu links
+    global.$menuLinks = global.$header.find('.mainmenu-link');
+    pageController.init(global.$menuLinks);
+
     global.promises.addPromise({
         name: 'localization',
         body: getLocalization(),
@@ -71,10 +71,6 @@ const bindEvents = function() {
         localization = res.localization;
 
         // TODO: Step: Here is render menu with js
-
-        // Step: Header Menu links
-        global.$menuLinks = global.$header.find('.mainmenu-link');
-        pageController.init(global.$menuLinks);
 
         // Step: Change page
         pageController.setActivePage();

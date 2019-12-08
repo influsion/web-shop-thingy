@@ -61,7 +61,7 @@ function renderCartPage(e, $target) {
                             </form>
                             <div class="cartbox__btn">
                                 <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                                    <li class="check-out"><a href="#">Check Out</a></li>
+                                    <li class="check-out"><a class="js-check-out" href="#">Check Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -71,7 +71,7 @@ function renderCartPage(e, $target) {
                             <div class="cartbox__total__area">
                                 <div class="cart__total__amount">
                                     <span>Grand Total</span>
-                                    <span>$140</span>
+                                    <span class="js-grand-total-price">${data.getTotalPrice()} ₴UAH</span>
                                 </div>
                             </div>
                         </div>
@@ -91,12 +91,11 @@ function renderCartPage(e, $target) {
                 <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${data.id}">${data.name}</a></td>
                 <td class="product-price"><span class="amount">${data.price} ₴UAH</span></td>
                 <td class="product-quantity"><input class="js-input-quantity" type="number" value="${data.quantity}"></td>
-                <td class="product-subtotal">${data.price * data.quantity} ₴UAH</td>
+                <td class="product-subtotal">${Math.round((+data.price * +data.quantity) * 100) / 100} ₴UAH</td>
                 <td class="product-remove"><a href="#" class="js-delete-cart-item">X</a></td>
             </tr>
         `)
     };
-
     const productIds = basket.map(item => item.id);
 
     global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
@@ -106,17 +105,19 @@ function renderCartPage(e, $target) {
         const { categoriesStructure, filteredDataOfProducts } = res;
 
             const itemsHTML = filteredDataOfProducts.map(productObj => {
+            const itemsHTML = basket.map(productObj => {
                 if (basket.length) {
                     return cartItem(productObj);
                 }
             });
             
-            const pageHTML = template({}, {itemsHTML});
-
+            const pageHTML = template(basket, {itemsHTML});
+            
             // console.log('renderCartPage');
             global.$main.first().html(pageHTML);
             afterChangingTheDOM();
         });
+
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM

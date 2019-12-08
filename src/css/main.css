@@ -9,7 +9,7 @@
 .wedget__categories.poroduct--cat ul a {
 	/* display: block; */
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 	border-bottom: 1px dashed #e1e1e1;
 }
 
@@ -60,4 +60,10 @@
     height: 100%;
     object-fit: contain;
     padding: 8px;
+}
+
+.switch-to-cart {
+	background-image: url(../images/icons/cart.png);
+	background-repeat: no-repeat;
+	background-position: center;
 }
