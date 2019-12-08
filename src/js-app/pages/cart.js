@@ -5,6 +5,7 @@ function renderCartPage(e, $target) {
         pageTitle: 'en_Cart',
         image: 'bg-image--3'
     });
+
     function template(data, additional) {
         return (`
             <!-- Start Bradcaump area -->
@@ -31,30 +32,6 @@ function renderCartPage(e, $target) {
                                         </thead>
                                         <tbody>
                                             ${additional.itemsHTML}
-                                            <!-- <tr>
-                                                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/1.jpg" alt="product img"></a></td>
-                                                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Natoque penatibus</a></td>
-                                                <td class="product-price"><span class="amount">$165.00</span></td>
-                                                <td class="product-quantity"><input type="number" value="1"></td>
-                                                <td class="product-subtotal">$165.00</td>
-                                                <td class="product-remove"><a href="#">X</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/2.jpg" alt="product img"></a></td>
-                                                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Quisque fringilla</a></td>
-                                                <td class="product-price"><span class="amount">$50.00</span></td>
-                                                <td class="product-quantity"><input type="number" value="1"></td>
-                                                <td class="product-subtotal">$50.00</td>
-                                                <td class="product-remove"><a href="#">X</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-thumbnail"><a class="js-switch-page" href="#product" data-product-id="${'100'}"><img src="images/product/sm-3/3.jpg" alt="product img"></a></td>
-                                                <td class="product-name"><a class="js-switch-page" href="#product" data-product-id="${'100'}">Vestibulum suscipit</a></td>
-                                                <td class="product-price"><span class="amount">$50.00</span></td>
-                                                <td class="product-quantity"><input type="number" value="1"></td>
-                                                <td class="product-subtotal">$50.00</td>
-                                                <td class="product-remove"><a href="#">X</a></td>
-                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -96,15 +73,17 @@ function renderCartPage(e, $target) {
             </tr>
         `)
     };
-    const productIds = basket.map(item => item.id);
 
-    global.promises.add('filteredDataOfProducts', getProducts({ id: productIds }));
-    global.promises.add('categoriesStructure', getCategoriesStructure());
+    // const productIds = basket.map(item => item.id);
+
+    // global.promises.addPromise({
+    //     name: 'filteredDataOfProducts',
+    //     body: getProducts({ id: productIds }),
+    // });
 
     global.promises.all(res => {
-        const { categoriesStructure, filteredDataOfProducts } = res;
+        // const { filteredDataOfProducts } = res;
 
-            const itemsHTML = filteredDataOfProducts.map(productObj => {
             const itemsHTML = basket.map(productObj => {
                 if (basket.length) {
                     return cartItem(productObj);
@@ -123,8 +102,3 @@ function renderCartPage(e, $target) {
         // Код, который нужно запустить после изменения DOM
     }
 }
-
-const calcTotalPriceOnCart = e => {
-    //! TODO: Need to finish
-    const productId = getProductIdFromDataSet($(e.currentTarget));
-};

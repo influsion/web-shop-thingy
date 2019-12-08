@@ -35,15 +35,9 @@ const bindEvents = function() {
     // Add product to cart
     global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler($(e.currentTarget)));
 
-    global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
-
-
+    // Cart
     global.$app.on('change', '.js-input-quantity', e => changeTotalPrice($(e.currentTarget)));
-
-
-
     global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
-
     global.$app.on('change', '.js-input-quantity', e => changeGradTotalPrice($(e.currentTatget)));
     
     // Categories and Filter on Shop page
