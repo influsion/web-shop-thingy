@@ -1243,6 +1243,7 @@ a {
     /* top: 0;
     right: 0; */
     z-index: 999;
+    pointer-events: none;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
