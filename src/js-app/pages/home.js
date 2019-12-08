@@ -22,23 +22,24 @@ function renderHomePage(e, $target) {
 
         const popularSliderHTML = productSliderComponent({
             i18n: {
-                title_1: 'Popular',
-                title_2: 'products',
-                subtitle: 'Popular products this month',
-                label: 'Popular',
+                title_1: translate('popular'),
+                title_2: translate('products').toLowerCase(),
+                subtitle: translate('popular_products_slider_subtitle'),
+                label: translate('popular'),
             },
             slidesData: popularProducts,
         });
 
         const newSliderHTML = productSliderComponent({
             i18n: {
-                title_1: 'New',
-                title_2: 'products',
-                subtitle: 'Check out our new arrivals!',
-                label: 'New',
+                title_1: translate('new'),
+                title_2: translate('products').toLowerCase(),
+                subtitle: translate('new_products_slider_subtitle'),
+                label: translate('popular'),
             },
             slidesData: newProducts,
         });
+
 
         const template = () => {
             return (`
