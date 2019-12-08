@@ -10,7 +10,7 @@ const breadcrumbsComponent = (data) => {
                         <div class="bradcaump__inner text-center">
                             <h2 class="bradcaump-title">${data.pageTitle}</h2>
                             <nav class="bradcaump-content">
-                            <a class="breadcrumb_item js-switch-page" href="#home">${'en_Home'}</a>
+                            <a class="breadcrumb_item js-switch-page" href="#home">${ translate('home_page_title') }</a>
                             <span class="brd-separetor">/</span>
                             <span class="breadcrumb_item active">${data.pageTitle}</span>
                             </nav>

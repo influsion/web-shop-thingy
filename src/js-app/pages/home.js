@@ -25,7 +25,7 @@ function renderHomePage(e, $target) {
                 title_1: translate('popular'),
                 title_2: translate('products').toLowerCase(),
                 subtitle: translate('popular_products_slider_subtitle'),
-                label: translate('popular'),
+                label: translate('popular_label'),
             },
             slidesData: popularProducts,
         });
@@ -35,7 +35,7 @@ function renderHomePage(e, $target) {
                 title_1: translate('new'),
                 title_2: translate('products').toLowerCase(),
                 subtitle: translate('new_products_slider_subtitle'),
-                label: translate('popular'),
+                label: translate('new_label'),
             },
             slidesData: newProducts,
         });

@@ -284,9 +284,9 @@ const renderProductsOnShoppage = (params = {}) => {
 
         const filterHTML = filterComponent({
             i18n: {
-                price: 'en_Price',
-                brands: 'en_Brands',
-                origin: 'en_Origin',
+                price: translate('price_filter_title'),
+                brands: translate('brand_filter_title'),
+                origin: translate('origin_filter_title'),
             },
 
             structure: filterConditions,
@@ -366,7 +366,7 @@ const Basket = function() {
     const key = 'web-shop-thingy_basket';
 
     const saveToLocalStorage = arr => storage.setItem(key, arr);
-    
+
     const proto = {
         add: {
             writable: false,
@@ -412,7 +412,7 @@ const Basket = function() {
                     return accumulator += price * quantity;
                 }, 0);
                 saveToLocalStorage(this);
-                
+
                 return Math.round(totalPrice * 100) / 100;
             },
         },
@@ -452,14 +452,14 @@ const deleteCartItemHandler = $target => {
     console.log($cartItem);
 
     const productId = getProductIdFromDataSet($cartItem);
-    
+
     $cartItem.remove();
     basket.delete(productId);
 };
 
 const changeTotalPrice = $target => {
     const $cartItem = $target.parents('.js-cart-item');
-    const productId = getProductIdFromDataSet($cartItem); 
+    const productId = getProductIdFromDataSet($cartItem);
     const quantity = $target.val();
     (quantity < 1) && $target.val(1);
     if (quantity > 0) {

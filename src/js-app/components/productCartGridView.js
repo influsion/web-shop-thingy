@@ -1,12 +1,35 @@
 const productCartGridViewComponents = data => {
+    const isTrue = val => `${val}`.toLowerCase() === 'true';
+
+    const labelComponent = data => {
+        return (`
+            <div class="hot__box">
+                <span class="hot-label">${data.val}</span>
+            </div>
+        `);
+    }
+
+    const getLabel = () => {
+        const isPopular = isTrue(data.popular);
+        const isNew = isTrue(data.new);
+
+        const val = isPopular
+            ? translate('popular_label')
+            : isNew
+            ? translate('new_label')
+            : null
+
+        return isPopular || isNew ? labelComponent({ val }) : '' ;
+    };
+
+    const label = getLabel();
+
     return (`
         <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
             <div class="product__thumb">
                 <a class="first__img js-switch-page" href="#product" data-product-id="${data.id}"><img src="${data.image}" data-src="images/books/1.jpg" alt="${data.name}"></a>
                 <a class="second__img animation1 js-switch-page" href="#product" data-product-id="${data.id}"><img src="${data.image}" data-src="images/books/2.jpg" alt="${data.name}"></a>
-                <div class="hot__box">
-                    <span class="hot-label">BEST SALLER</span>
-                </div>
+                ${label}
             </div>
             <div class="product__content content--center">
                 <h4><a href="single-product.html">${data.name}</a></h4>

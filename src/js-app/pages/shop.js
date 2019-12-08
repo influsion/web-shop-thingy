@@ -2,7 +2,7 @@
 
 function renderShopPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
-        pageTitle: 'en_Shop',
+        pageTitle: translate('shop_page_title'),
         image: 'bg-image--6'
     });
 
