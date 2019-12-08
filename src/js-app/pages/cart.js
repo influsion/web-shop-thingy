@@ -1,12 +1,15 @@
 "use strict";
 
+const dataIconSnow = {src: 'images/icons/snowflake.svg'};
+
+
 function renderCartPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: 'en_Cart',
         image: 'bg-image--3'
     });
 
-    function template(data, additional) {
+    function template(data, additional, icon) {
         return (`
             <!-- Start Bradcaump area -->
             ${ breadcrumbsHTML }
@@ -90,7 +93,7 @@ function renderCartPage(e, $target) {
                 }
             });
             
-            const pageHTML = template(basket, {itemsHTML});
+            const pageHTML = template(basket, {itemsHTML}, dataIconSnow);
             
             // console.log('renderCartPage');
             global.$main.first().html(pageHTML);

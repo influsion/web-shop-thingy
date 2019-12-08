@@ -467,5 +467,8 @@ const changeTotalPrice = $target => {
        basket[index].quantity = quantity;
        $cartItem.find('.product-subtotal').text(`${Math.round((+basket[index].price * +basket[index].quantity) * 100) / 100} ₴UAH`);
     }
+    if (basket.length === 0) {
+        $cartItem.find('.product-subtotal').text(`0 ₴UAH`);
+    }
 
 }
