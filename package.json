@@ -1,5 +1,6 @@
 {
   "name": "web-shop-thingy",
+<<<<<<< HEAD
   "version": "1.0.0",
   "description": "This is going to be our super awesome venture into the lands of an online shop without a backend.",
   "main": "index.js",
@@ -27,12 +28,22 @@
     "build:dev:watch": "gulp build:watch",
     "build:prod": "gulp build --env=production",
     "build:prod:watch": "gulp build:watch --env=production"
+=======
+  "version": "0.0.1",
+  "description": "This is going to be our super awesome venture into the lands of an online shop without a backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> Denys
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theVigilant/web-shop-thingy.git"
   },
+<<<<<<< HEAD
   "keywords": [],
+=======
+>>>>>>> Denys
   "author": "",
   "license": "ISC",
   "bugs": {

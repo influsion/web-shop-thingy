@@ -70,7 +70,7 @@ function renderProductPage(e, $target) {
                                                 <span>Qty</span>
                                                 <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
                                                 <div class="addtocart__actions">
-                                                    <button class="tocart js-add-to-cart" type="submit" title="Add to Cart">Add to Cart</button>
+                                                    <button class="tocart js-add-to-cart" data-product-id="${data.id}" type="submit" title="Add to Cart">Add to Cart</button>
                                                 </div>
                                                 <div class="product-addto-links clearfix">
                                                     <a class="js-switch-page switch-to-cart" href="#cart" data-product-id="${data.id}">
@@ -198,9 +198,3 @@ function renderProductPage(e, $target) {
     }
 }
 
-function addToCartClickHandler() {
-    basket.add({
-        id: currentStoredProductID.getFromSessionStorage(),
-        quantity: parseInt(global.$main.find('.qty').val()),
-    });
-}

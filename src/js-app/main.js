@@ -33,10 +33,19 @@ const bindEvents = function() {
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 
     // Add product to cart
-    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e));
+    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler($(e.currentTarget)));
 
     global.$app.on('click', '.js-input-quantity', e => calcTotalPriceOnCart(e));
 
+
+    global.$app.on('change', '.js-input-quantity', e => changeTotalPrice($(e.currentTarget)));
+
+
+
+    global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
+
+    global.$app.on('change', '.js-input-quantity', e => changeGradTotalPrice($(e.currentTatget)));
+    
     // Categories and Filter on Shop page
     global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
     global.$app.on('change', `form[name="brand-checkbox-group-form"] input`, { checkboxType: 'brand' }, e => filterCheckboxGroupHandler(e));
