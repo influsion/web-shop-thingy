@@ -21,10 +21,10 @@ const filesPath = {
         './src/css/style.css',
         './src/css/main.css',
     ],
-    badScripts: [
+    templateScripts: [
         './src/js/**/*.js'
     ],
-    goodScripts: [
+    scripts: [
         './src/js-app/**/*.js'
     ],
     fonts: [
@@ -38,8 +38,8 @@ const filesPath = {
 const outputPath = {
     html: `${PUBLIC_PATH}`,
     css: `${PUBLIC_PATH}/css`,
-    badScripts: `${PUBLIC_PATH}/js`,
-    goodScripts: `${PUBLIC_PATH}/js-app`,
+    templateScripts: `${PUBLIC_PATH}/js`,
+    scripts: `${PUBLIC_PATH}/js-app`,
     fonts: `${PUBLIC_PATH}/fonts`,
     images: `${PUBLIC_PATH}/images`,
 };
@@ -91,40 +91,25 @@ gulp.task('html', () => {
         .pipe(browserSync.stream());
 });
 
-// gulp.task("scripts", () => {
-//     return gulp.src('./src/js/test.js')
-//         .pipe(ifDevRun(sourcemaps.init))
-//         .pipe(babel({
-//             "plugins": [
-//                 ["@babel/plugin-transform-modules-commonjs", {
-//                     "strictMode": false
-//                 }]
-//             ]
-//         }))
-//         .pipe(concat("bundle.js"))
-//         .pipe(ifDevRun(sourcemaps.write, [`./`]))
-//         .pipe(gulp.dest(`${PUBLIC_PATH}`));
-
-//         // .pipe(browserSync.stream());
-// });
-
-gulp.task("badScripts", () => {
-    return gulp.src(filesPath.badScripts)
+gulp.task("templateScripts", () => {
+    return gulp.src(filesPath.templateScripts)
         // .pipe(ifDevRun(sourcemaps.init))
-        // .pipe(babel())
+        // .pipe(babel({
+        //     "sourceType": "script",
+        // }))
         // .pipe(concat("bundle.js"))
         // .pipe(ifDevRun(sourcemaps.write, [`./`]))
-        .pipe(gulp.dest(outputPath.badScripts))
+        .pipe(gulp.dest(outputPath.templateScripts))
         .pipe(browserSync.stream());
 });
 
-gulp.task("goodScripts", () => {
-    return gulp.src(filesPath.goodScripts)
+gulp.task("scripts", () => {
+    return gulp.src(filesPath.scripts)
         // .pipe(ifDevRun(sourcemaps.init))
         // .pipe(babel())
         // .pipe(concat("bundle.js"))
         // .pipe(ifDevRun(sourcemaps.write, [`./`]))
-        .pipe(gulp.dest(outputPath.goodScripts))
+        .pipe(gulp.dest(outputPath.scripts))
         .pipe(browserSync.stream());
 });
 
@@ -139,13 +124,13 @@ gulp.task('watch', () => {
 
     gulp.watch(filesPath.html, gulp.series('html')).on('change', browserSync.reload);
     gulp.watch(filesPath.css, gulp.series('styles'));
-    gulp.watch(filesPath.badScripts, gulp.series('badScripts'));
-    gulp.watch(filesPath.goodScripts, gulp.series('goodScripts'));
+    gulp.watch(filesPath.templateScripts, gulp.series('templateScripts'));
+    gulp.watch(filesPath.scripts, gulp.series('scripts'));
     gulp.watch(filesPath.fonts, gulp.series('fonts'));
     gulp.watch(filesPath.images, gulp.series('images'));
  });
 
-const devTasks = ['html', 'styles', 'badScripts', 'goodScripts', 'fonts', 'images'];
+const devTasks = ['html', 'styles', 'templateScripts', 'scripts', 'fonts', 'images'];
 gulp.task('build', gulp.series('del', gulp.parallel(...devTasks)));
 
 gulp.task('build:watch', gulp.series('build', 'watch'));
