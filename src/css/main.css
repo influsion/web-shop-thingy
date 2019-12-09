@@ -67,3 +67,13 @@
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+.snow-flake img {
+    width: 30px;
+}
+
+.snow-flake {
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+}

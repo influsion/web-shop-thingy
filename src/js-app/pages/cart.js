@@ -1,6 +1,5 @@
 "use strict";
 
-const dataIconSnow = {src: 'images/icons/snowflake.svg'};
 
 
 function renderCartPage(e, $target) {
@@ -93,7 +92,7 @@ function renderCartPage(e, $target) {
                 }
             });
             
-            const pageHTML = template(basket, {itemsHTML}, dataIconSnow);
+            const pageHTML = template(basket, {itemsHTML});
             
             // console.log('renderCartPage');
             global.$main.first().html(pageHTML);
