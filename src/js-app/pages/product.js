@@ -3,29 +3,13 @@
 
 function renderProductPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
-        pageTitle: 'en_Product'
+        pageTitle: translate('product_page_title'),
+        image: 'bg-image--4',
     });
+
     const pageTemplate = data => {
         return (`
-            <!-- Start Bradcaump area -->
-            ${ breadcrumbsHTML };
-            <!--<div class="ht__bradcaump__area bg-image--4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="bradcaump__inner text-center">
-                                <h2 class="bradcaump-title">Shop Single</h2>
-                                <nav class="bradcaump-content">
-                                <a class="breadcrumb_item" href="index.html">Home</a>
-                                <span class="brd-separetor">/</span>
-                                <span class="breadcrumb_item active">Shop Single</span>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-            <!-- End Bradcaump area -->
+            ${ breadcrumbsHTML }
 
             <!-- Start main Content -->
             <div class="maincontent bg--white pt--80 pb--55">
@@ -197,4 +181,3 @@ function renderProductPage(e, $target) {
         // Код, который нужно запустить после изменения DOM
     }
 }
-
