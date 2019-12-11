@@ -3,28 +3,14 @@
 
 function renderFaqPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
-        pageTitle: 'en_Faq'
+        pageTitle: translate('faq_page_title'),
+        image: 'bg-image--4'
     });
+
     function template(data) {
         return (`
             <!-- Start Bradcaump area -->
-            ${ breadcrumbsHTML };
-            <!--<div class="ht__bradcaump__area bg-image--4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="bradcaump__inner text-center">
-                                <h2 class="bradcaump-title">Faq</h2>
-                                <nav class="bradcaump-content">
-                                <a class="breadcrumb_item" href="index.html">Home</a>
-                                <span class="brd-separetor">/</span>
-                                <span class="breadcrumb_item active">Faq</span>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+            ${ breadcrumbsHTML }
             <!-- End Bradcaump area -->
 
             <!-- Start Faq Area -->
