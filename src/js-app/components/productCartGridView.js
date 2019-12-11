@@ -44,7 +44,7 @@ const productCartGridViewComponents = data => {
                             <li><a class="cart js-switch-page" href="#cart" data-product-id="${data.id}"><i class="bi bi-shopping-bag4"></i></a></li>
                             <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
 
-                            <li><a data-toggle="modal" title="Quick View" data-product-id="${data.id}" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+                            <li><a data-toggle="modal" title="Quick View" data-product-id="${data.id}" class="js-quick-view quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
                         </ul>
                     </div>
                 </div>
