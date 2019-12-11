@@ -9,13 +9,13 @@ const isKey = key => {
 // Get value from data-product-id attr
 const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 
+// // get value from data-category or data-subcategory attr
+// const getCategoryOrSubcategoryFromDataSet = $elem => {
+//     const { category, subcategory } = $elem.get(0).dataset;
+//     return category || subcategory;
+// };
+
 // get value from data-category or data-subcategory attr
-const getCategoryOrSubcategoryFromDataSet = $elem => {
-    const { category, subcategory } = $elem.get(0).dataset;
-    return category || subcategory;
-};
-
-
 const getCategoryFromDataSet = $elem => $elem.get(0).dataset.category;
 const getSubcategoryFromDataSet = $elem => $elem.get(0).dataset.subcategory;
 
