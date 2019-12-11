@@ -194,58 +194,6 @@ const savedPagesParameters = {
 };
 
 
-const filterCheckboxGroupHandler = e => {
-    const { checkboxType } = e.data;
-    const $checkedInputs = $(e.currentTarget).parents('form').find('input:checked');
-    const arrytOfValues = [];
-
-    const pagesParameters = savedPagesParameters.get();
-    pagesParameters.shopPage[checkboxType] = arrytOfValues;
-
-    $checkedInputs.each((i, item) => arrytOfValues.push($(item).val()));
-
-    savedPagesParameters.set(pagesParameters);
-
-    console.log(pagesParameters, e);
-
-    renderProductsOnShoppage();
-};
-
-const categoriesHandler = e => {
-    const $target = $(e.currentTarget);
-
-    $target.parents('.wedget__categories.poroduct--cat').find('a').removeClass('active');
-    $target.addClass('active');
-    const categoryAndSubcategory = {
-        category: getCategoryFromDataSet($target),
-        subcategory: getSubcategoryFromDataSet($target),
-    };
-
-    const pagesParameters = savedPagesParameters.get() || {};
-
-    const type = categoryAndSubcategory.category
-        ? 'category'
-        : categoryAndSubcategory.subcategory
-        ? 'subcategory'
-        : null ;
-
-    const value = categoryAndSubcategory.category || categoryAndSubcategory.subcategory || null;
-
-    // if (!pagesParameters.shopPage) {
-        pagesParameters.shopPage = {};
-    // }
-
-    pagesParameters.shopPage.menu = {
-        type,
-        value,
-    };
-
-    savedPagesParameters.set(pagesParameters);
-
-    console.log(pagesParameters)
-
-    renderProductsOnShoppage();
-};
 
 const renderProductsOnShoppage = (params = {}) => {
     const promises = new PromiseList();
