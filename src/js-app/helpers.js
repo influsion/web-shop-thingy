@@ -9,13 +9,13 @@ const isKey = key => {
 // Get value from data-product-id attr
 const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 
+// // get value from data-category or data-subcategory attr
+// const getCategoryOrSubcategoryFromDataSet = $elem => {
+//     const { category, subcategory } = $elem.get(0).dataset;
+//     return category || subcategory;
+// };
+
 // get value from data-category or data-subcategory attr
-const getCategoryOrSubcategoryFromDataSet = $elem => {
-    const { category, subcategory } = $elem.get(0).dataset;
-    return category || subcategory;
-};
-
-
 const getCategoryFromDataSet = $elem => $elem.get(0).dataset.category;
 const getSubcategoryFromDataSet = $elem => $elem.get(0).dataset.subcategory;
 
@@ -164,17 +164,17 @@ const tempStorage = {
 };
 
 //! TODO: DELETE!!!
-const storedFilterParameters = {
-    key: 'web-shop-thingy_filterParameters',
+// const storedFilterParameters = {
+//     key: 'web-shop-thingy_filterParameters',
 
-    seveToSessionStorage(obj) {
-        return tempStorage.setItem(this.key, obj);
-    },
+//     seveToSessionStorage(obj) {
+//         return tempStorage.setItem(this.key, obj);
+//     },
 
-    getFromSessionStorage() {
-        return tempStorage.getItem(this.key);
-    },
-}
+//     getFromSessionStorage() {
+//         return tempStorage.getItem(this.key);
+//     },
+// }
 
 
 
@@ -194,58 +194,6 @@ const savedPagesParameters = {
 };
 
 
-const filterCheckboxGroupHandler = e => {
-    const { checkboxType } = e.data;
-    const $checkedInputs = $(e.currentTarget).parents('form').find('input:checked');
-    const arrytOfValues = [];
-
-    const pagesParameters = savedPagesParameters.get();
-    pagesParameters.shopPage[checkboxType] = arrytOfValues;
-
-    $checkedInputs.each((i, item) => arrytOfValues.push($(item).val()));
-
-    savedPagesParameters.set(pagesParameters);
-
-    console.log(pagesParameters, e);
-
-    renderProductsOnShoppage();
-};
-
-const categoriesHandler = e => {
-    const $target = $(e.currentTarget);
-
-    $target.parents('.wedget__categories.poroduct--cat').find('a').removeClass('active');
-    $target.addClass('active');
-    const categoryAndSubcategory = {
-        category: getCategoryFromDataSet($target),
-        subcategory: getSubcategoryFromDataSet($target),
-    };
-
-    const pagesParameters = savedPagesParameters.get() || {};
-
-    const type = categoryAndSubcategory.category
-        ? 'category'
-        : categoryAndSubcategory.subcategory
-        ? 'subcategory'
-        : null ;
-
-    const value = categoryAndSubcategory.category || categoryAndSubcategory.subcategory || null;
-
-    // if (!pagesParameters.shopPage) {
-        pagesParameters.shopPage = {};
-    // }
-
-    pagesParameters.shopPage.menu = {
-        type,
-        value,
-    };
-
-    savedPagesParameters.set(pagesParameters);
-
-    console.log(pagesParameters)
-
-    renderProductsOnShoppage();
-};
 
 const renderProductsOnShoppage = (params = {}) => {
     const promises = new PromiseList();
