@@ -164,17 +164,17 @@ const tempStorage = {
 };
 
 //! TODO: DELETE!!!
-const storedFilterParameters = {
-    key: 'web-shop-thingy_filterParameters',
+// const storedFilterParameters = {
+//     key: 'web-shop-thingy_filterParameters',
 
-    seveToSessionStorage(obj) {
-        return tempStorage.setItem(this.key, obj);
-    },
+//     seveToSessionStorage(obj) {
+//         return tempStorage.setItem(this.key, obj);
+//     },
 
-    getFromSessionStorage() {
-        return tempStorage.getItem(this.key);
-    },
-}
+//     getFromSessionStorage() {
+//         return tempStorage.getItem(this.key);
+//     },
+// }
 
 
 
