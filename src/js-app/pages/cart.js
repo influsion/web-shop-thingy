@@ -6,14 +6,12 @@ const dataIconSnow = {src: 'images/icons/snowflake.svg'};
 function renderCartPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: 'en_Cart',
-        image: 'bg-image--3'
+        image: 'bg-image--3',
     });
 
     function template(data, additional, icon) {
         return (`
-            <!-- Start Bradcaump area -->
             ${ breadcrumbsHTML }
-            <!-- End Bradcaump area -->
 
             <!-- cart-main-area start -->
             <div class="cart-main-area section-padding--lg bg--white">
@@ -92,9 +90,9 @@ function renderCartPage(e, $target) {
                     return cartItem(productObj);
                 }
             });
-            
-            const pageHTML = template(basket, {itemsHTML}, dataIconSnow);
-            
+
+            const pageHTML = template(basket, {itemsHTML});
+
             // console.log('renderCartPage');
             global.$main.first().html(pageHTML);
             afterChangingTheDOM();
