@@ -72,81 +72,81 @@ const bindEvents = function() {
     });
 
     // Read cached page name
-
 })();
 
-// const snowFlake = (data) => {
-//     const quantity = 19;
+const intViewportWidth = jQuery(window).width();
+const intViewportHeight = jQuery(window).height();
 
-//     const $wrap = $(`#wrapper`);
 
-//     const flakesPositionsParams = [
-//         [ 0, 80, 1500, 1200 ],
-//         [ 150, 130, 1500, 1200 ],
-//         [ 400, 230, 1500, 1200 ],
-//         [ 50, 330, 1500, 1200 ],
-//         [ 680, 430, 1500, 1200 ],
-//         [ 0, 530, 1500, 1200 ],
-//         [ 360, 630, 1500, 1200 ],
-//         [ 240, 730, 1500, 1200 ],
-//         [ 550, 830, 1500, 1200 ],
-//         [ 0, 980, 1500, 1200 ],
-//         [ 0, 80, 1500, 1200 ],
-//         [ 150, 180, 500, 1200 ],
-//         [ 400, 280, 500, 1200 ],
-//         [ 50, 380, 500, 1200 ],
-//         [ 680, 480, 500, 1200 ],
-//         [ 0, 580, 500, 1200 ],
-//         [ 360, 680, 500, 1200 ],
-//         [ 240, 780, 500, 1200 ],
-//         [ 550, 880, 500, 1200 ],
-//         [ 0, 980, 500, 1200 ],
-//     ];
+const snowFlake = (data) => {
+    const quantity = 19;
 
-//     const elements = [];
+    const $wrap = $(`#wrapper`);
 
-//     const fincSnowflake = ($elem, order, top, left, _x, _y) => {
-//         elements[order].setIntervalId = setInterval(function() {
-//             const intViewportWidth = window.innerWidth;
-//             const intViewportHeight = window.innerHeight;
+    // const flakesPositionsParams = [
+    //     [ 0, 80 ],
+    //     [ 150, 130 ],
+    //     [ 400, 230 ],
+    //     [ 50, 330 ],
+    //     [ 680, 430 ],
+    //     [ 0, 530 ],
+    //     [ 360, 630 ],
+    //     [ 240, 730 ],
+    //     [ 550, 830 ],
+    //     [ 0, 980 ],
+    //     [ 0, 80 ],
+    //     [ 150, 18 ],
+    //     [ 400, 28 ],
+    //     [ 50, 38 ],
+    //     [ 680, 48 ],
+    //     [ 0, 58 ],
+    //     [ 360, 68 ],
+    //     [ 240, 78 ],
+    //     [ 550, 88 ],
+    //     [ 0, 98 ],
+    // ];
 
-//             const y = randomInteger(0, intViewportWidth);
-//             const x = randomInteger(0, intViewportHeight);
+    const elements = [];
+    
+
+    const fincSnowflake = ($elem, order, top, left) => {
+        elements[order].setIntervalId = setInterval(function() {
+            // const y = randomInteger(0, intViewportWidth);
+            // const x = randomInteger(0, intViewportHeight);
             
-//             console.log('1111', x,y);
+            // console.log('1111', x,y);
 
-//             // top += 0.2;
+            top += 0.3;
 
-//             // if (top >= x) {
-//             //     top = 0;
-//             // }
+            if (top >= intViewportHeight) {
+                top = 0;
+            }
 
-//             // left += 0.08;
+            left += 0.1;
 
-//             // if (left > y) {
-//             //     left = 0;
-//             // }
+            if (left > intViewportWidth) {
+                left = 0;
+            }
 
-//             $elem.css({ 'top': x, 'left': y });
-//         }, 1000);
-//     }
+            $elem.css({ 'top': top, 'left': left });
+        }, 10);
+    }
+    for (let i = 0; i < quantity + 1; i++) {
+        const $element = $(`<div class="snow-flake flake${i}"><img src="${data.src}" alt="icon"></div>`);
 
-//     for (let i = 0; i < quantity + 1; i++) {
-//         const $element = $(`<div class="snow-flake flake${i}"><img src="${data.src}" alt="icon"></div>`);
+        elements[i] = { $element };
 
-//         elements[i] = { $element };
+        $wrap.prepend($element);
+        fincSnowflake($element, i, randomInteger(0, intViewportHeight), randomInteger(0, intViewportWidth));
+    }
 
-//         $wrap.prepend($element);
-//         fincSnowflake($element, i, ...flakesPositionsParams[i]);
-//     }
+    function randomInteger(min, max) {
+        let rand = min + Math.random() * (max + 1 - min);
+        return Math.floor(rand);
+    }
+};
 
-//     function randomInteger(min, max) {
-//         let rand = min + Math.random() * (max + 1 - min);
-//         return Math.floor(rand);
-//     }
-// };
-
-// snowFlake({
-//     src: 'images/icons/snowflake.svg'
-// });
+snowFlake({
+    src: 'images/icons/snowflake.svg'
+});
 
