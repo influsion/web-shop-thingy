@@ -80,42 +80,11 @@ const intViewportHeight = jQuery(window).height();
 
 const snowFlake = (data) => {
     const quantity = 19;
-
     const $wrap = $(`#wrapper`);
-
-    // const flakesPositionsParams = [
-    //     [ 0, 80 ],
-    //     [ 150, 130 ],
-    //     [ 400, 230 ],
-    //     [ 50, 330 ],
-    //     [ 680, 430 ],
-    //     [ 0, 530 ],
-    //     [ 360, 630 ],
-    //     [ 240, 730 ],
-    //     [ 550, 830 ],
-    //     [ 0, 980 ],
-    //     [ 0, 80 ],
-    //     [ 150, 18 ],
-    //     [ 400, 28 ],
-    //     [ 50, 38 ],
-    //     [ 680, 48 ],
-    //     [ 0, 58 ],
-    //     [ 360, 68 ],
-    //     [ 240, 78 ],
-    //     [ 550, 88 ],
-    //     [ 0, 98 ],
-    // ];
-
     const elements = [];
-    
-
     const fincSnowflake = ($elem, order, top, left) => {
         elements[order].setIntervalId = setInterval(function() {
-            // const y = randomInteger(0, intViewportWidth);
-            // const x = randomInteger(0, intViewportHeight);
             
-            // console.log('1111', x,y);
-
             top += 0.3;
 
             if (top >= intViewportHeight) {
