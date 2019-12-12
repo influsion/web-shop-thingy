@@ -6,6 +6,8 @@ const isKey = key => {
     return obj;
 };
 
+const getHash = $elem => $elem.get(0).hash || $elem.get(0).dataset.hash;
+
 // Get value from data-product-id attr
 const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 
@@ -311,11 +313,72 @@ const translate = (key) => {
 };
 
 const Basket = function() {
+    const _this = [];
+
     const key = 'web-shop-thingy_basket';
+    const $quantityIndicator = $('.shopcart .product_qun');
 
     const saveToLocalStorage = arr => storage.setItem(key, arr);
+    const getFromLocalStorage = () => storage.getItem(key);
+
+    const updateQuantityIndicator = quantityOfProducts => $quantityIndicator.text(quantityOfProducts);
+
+    const excludeDuplicates = (arrayOfProducts) => {
+        const unicIds = [];
+        const newArrayOfProducts = [];
+        arrayOfProducts = Object.values(arrayOfProducts);
+
+        for (const productObject of arrayOfProducts) {
+            const id = +productObject.id;
+
+            if (!id) {
+                continue;
+            }
+
+            const isUnic = !unicIds.includes(id);
+
+            if (isUnic) {
+                unicIds.push(id);
+                newArrayOfProducts.push(productObject);
+            }
+        }
+
+        return newArrayOfProducts;
+    };
 
     const proto = {
+        syncWithLocalStorage: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                this.splice(0);
+
+                const arrayOfProducts = excludeDuplicates(getFromLocalStorage());
+
+                arrayOfProducts.forEach(item => {
+                    this.push(item);
+                });
+
+                saveToLocalStorage(this);
+                updateQuantityIndicator(this.getQuantityOfProducts());
+            },
+        },
+        has: {
+            writable: false,
+            configurable: false,
+            value: function({id: productId}) {
+                for (const {id} of this) {
+                    return +id === +productId;
+                }
+            },
+        },
+        getIdsOfProducts: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                return this.map(item => item.id);
+            },
+        },
         add: {
             writable: false,
             configurable: false,
@@ -328,6 +391,7 @@ const Basket = function() {
                     this.push(Object.assign({}, obj));
                 }
 
+                updateQuantityIndicator(this.getQuantityOfProducts());
                 saveToLocalStorage(this);
 
                 return this;
@@ -343,9 +407,17 @@ const Basket = function() {
                    this.splice(foundIndex, 1);
                 }
 
+                updateQuantityIndicator(this.getQuantityOfProducts());
                 saveToLocalStorage(this);
 
                 return this;
+            },
+        },
+        getQuantityOfProducts: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                return this.reduce((accumulator, { quantity }) => accumulator + parseInt(quantity), 0)
             },
         },
         getTotalPrice: {
@@ -366,54 +438,5 @@ const Basket = function() {
         },
     };
 
-    return Object.create([], proto);
+    return Object.create(_this, proto);
 };
-
-const changeGradTotalPrice = $target => {
-    // TODO: Call basket getTotal method
-    const totalPrice = basket.getTotalPrice();
-    global.$main.find('.js-grand-total-price').text(`${totalPrice} ₴UAH`);
-};
-
-const addToCartClickHandler = $target => {
-    const productId = getProductIdFromDataSet($target);
-    const quantity = parseInt(global.$main.find('.qty').val());
-
-    const handlerPromises = new PromiseList();
-
-    handlerPromises.add('filteredDataOfProducts', getProducts({ id: productId }));
-
-    Promise.all(handlerPromises)
-        .then(res => handlerPromises.responses(res))
-        .then(res => {
-            const currentProduct = res.filteredDataOfProducts[0];
-
-            basket.add({
-                ...currentProduct,
-                quantity,
-            });
-        });
-};
-
-const deleteCartItemHandler = $target => {
-    const $cartItem = $target.parents('.js-cart-item');
-    console.log($cartItem);
-
-    const productId = getProductIdFromDataSet($cartItem);
-
-    $cartItem.remove();
-    basket.delete(productId);
-};
-
-const changeTotalPrice = $target => {
-    const $cartItem = $target.parents('.js-cart-item');
-    const productId = getProductIdFromDataSet($cartItem);
-    const quantity = $target.val();
-    (quantity < 1) && $target.val(1);
-    if (quantity > 0) {
-       const index = basket.findIndex(item => item.id === productId);
-       basket[index].quantity = quantity;
-       $cartItem.find('.product-subtotal').text(`${Math.round((+basket[index].price * +basket[index].quantity) * 100) / 100} ₴UAH`);
-    }
-
-}

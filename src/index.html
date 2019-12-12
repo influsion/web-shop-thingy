@@ -61,7 +61,8 @@
 						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li class="shop_search"><a class="search__active" href="#"></a></li>
 							<!-- <li class="wishlist"><a href="#"></a></li> -->
-							<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
+							<li class="shopcart">
+								<a class="cartbox_active" href="#"><span class="product_qun">0</span></a>
 								<!-- Start Shopping Cart -->
 								<div class="block-minicart minicart__active">
 									<div class="minicart-content-wrapper">
@@ -396,6 +397,11 @@
 	<script src="js-app/pageController.js"></script>
 
 	<!-- Handlers -->
+	<script src="js-app/handlers/basketHandler.js"></script>
+	<script src="js-app/handlers/addToCartAndSwitchPageClickHandler.js"></script>
+	<script src="js-app/handlers/addToCartClickHandler.js"></script>
+	<script src="js-app/handlers/deleteCartItemHandler.js"></script>
+
 	<script src="js-app/handlers/categoriesHandler.js"></script>
 	<script src="js-app/handlers/filterCheckboxGroupHandler.js"></script>
 	<script src="js-app/handlers/quickViewHandler.js"></script>
@@ -412,6 +418,7 @@
 	<script src="js-app/components/productCartSlideView.js"></script>
 	<script src="js-app/components/productCartGridView.js"></script>
 	<script src="js-app/components/productCartListView.js"></script>
+	<script src="js-app/components/cartTableItem.js"></script>
 
 	<!-- Pages -->
 	<script src="js-app/pages/about.js"></script>

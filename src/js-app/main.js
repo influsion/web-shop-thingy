@@ -33,7 +33,9 @@ const bindEvents = function() {
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 
     // Add product to cart
-    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler($(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e, $(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart-and-switch-page', e => addToCartAndSwitchPageClickHandler(e, $(e.currentTarget)));
+
 
     // Cart
     global.$app.on('change', '.js-input-quantity', e => changeTotalPrice($(e.currentTarget)));
@@ -53,6 +55,8 @@ const bindEvents = function() {
     console.log('----------------------------');
     findElements();
     bindEvents();
+
+    basket.syncWithLocalStorage();
 
     // Step: Header Menu links
     global.$menuLinks = global.$header.find('.mainmenu-link');
