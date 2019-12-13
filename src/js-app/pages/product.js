@@ -2,6 +2,8 @@
 
 
 function renderProductPage(e, $target) {
+    const pagePromise = PromiseList();
+
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('product_page_title'),
         image: 'bg-image--4',
@@ -164,9 +166,12 @@ function renderProductPage(e, $target) {
 
     const productId = getProductIdFromDataSet($target);
 
-    global.promises.add('filteredDataOfProducts', getProducts({ id: productId }));
+    pagePromise.addPromise({
+		name: 'filteredDataOfProducts',
+		body: getProducts({ id: productId }),
+	});
 
-    global.promises.all(res => {
+    pagePromise.allPromises(res => {
         const { filteredDataOfProducts: [ currentProduct ] } = res;
 
         currentStoredProductID.seveToSessionStorage(currentProduct.id);

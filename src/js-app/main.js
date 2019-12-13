@@ -1,17 +1,14 @@
 'use strict';
 
-
-const global = {
-    promises: new PromiseList(),
-};
 let localization = {};
-const basket = new Basket();
+const globalPromiseList = PromiseList();
+const basket = Basket();
 const lang = 'en';
 const qsDefaultParams = {
     arrayFormat: 'indices',
     format : 'RFC3986',
 };
-const serverURL = 'http://localhost:3000'
+const serverURL = 'http://localhost:3000';
 
 
 const findElements = function() {
@@ -61,12 +58,12 @@ const bindEvents = function() {
     global.$menuLinks = global.$header.find('.mainmenu-link');
     pageController.init(global.$menuLinks);
 
-    global.promises.addPromise({
+    globalPromiseList.addPromise({
         name: 'localization',
         body: getLocalization(),
     });
 
-    global.promises.all(res => {
+    globalPromiseList.allPromises(res => {
         localization = res.localization;
 
         // TODO: Step: Here is render menu with js

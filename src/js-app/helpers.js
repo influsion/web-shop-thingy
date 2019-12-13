@@ -35,19 +35,6 @@ const PromiseList = function() {
     const order = [];
 
     const propss = {
-        add: {
-            writable: false,
-            configurable: false,
-            value: function(promiseName, promiseObject) {
-                const promisePosition = this.push(promiseObject) - 1;
-
-                order[promisePosition] = promiseName;
-                console.log(order);
-                console.log('promise name: ' + promiseName + ', ' + 'position: ' + promisePosition);
-
-                return this;
-            },
-        },
         addPromise: {
             writable: false,
             configurable: false,
@@ -81,7 +68,7 @@ const PromiseList = function() {
                 return this.response;
             },
         },
-        all: {
+        allPromises: {
             writable: false,
             configurable: false,
             value: function(responseFunction) {
@@ -198,7 +185,7 @@ const savedPagesParameters = {
 
 
 const renderProductsOnShoppage = (params = {}) => {
-    const promises = new PromiseList();
+    const promises = PromiseList();
 
     const { shopPage: pageParameters } = savedPagesParameters.get();
     const filterParameters = {};
@@ -227,7 +214,7 @@ const renderProductsOnShoppage = (params = {}) => {
         body: getFilterConditions(pageParameters.menu.value),
     });
 
-    promises.all(res => {
+    promises.allPromises(res => {
         const { filteredDataOfProducts, filterConditions } = res;
 
         const productsHTML = filteredDataOfProducts.map(productCartGridViewComponents);

@@ -4,7 +4,7 @@ const dataIconSnow = {src: 'images/icons/snowflake.svg'};
 
 
 function renderCartPage(e, $target) {
-    const pagePromises = new PromiseList();
+    const pagePromises = PromiseList();
 
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('cart_page_title'),
@@ -18,8 +18,11 @@ function renderCartPage(e, $target) {
         body: getProducts({ id: basket.getIdsOfProducts() }),
     });
 
-    pagePromises.all(res => {
+    pagePromises.allPromises(res => {
         const { productsFromBasket } = res;
+
+        console.log(productsFromBasket);
+
 
         function pageTemplate(data) {
             return (`
