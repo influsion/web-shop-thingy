@@ -323,7 +323,7 @@ const Basket = function() {
 
     const updateQuantityIndicator = quantityOfProducts => $quantityIndicator.text(quantityOfProducts);
 
-    const excludeDuplicates = (arrayOfProducts) => {
+    const excludeDuplicates = (arrayOfProducts = []) => {
         const unicIds = [];
         const newArrayOfProducts = [];
         arrayOfProducts = Object.values(arrayOfProducts);
@@ -366,9 +366,15 @@ const Basket = function() {
         has: {
             writable: false,
             configurable: false,
-            value: function({id: productId}) {
+            value: function({productId}) {
+                productId = +productId;
+
                 for (const {id} of this) {
-                    return +id === +productId;
+                    const areIdentical = +id === productId;
+
+                    if (areIdentical) {
+                        return areIdentical;
+                    }
                 }
             },
         },
