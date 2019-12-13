@@ -403,6 +403,13 @@ const Basket = function() {
                 return this;
             },
         },
+        review: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                return Object.values(this).filter(item => toType(item) === 'object');
+            },
+        },
         delete: {
             writable: false,
             configurable: false,
