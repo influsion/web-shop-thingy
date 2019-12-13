@@ -108,6 +108,11 @@ const getFaq = function() {
         .then(data => data.json());
 };
 
+const fetchPageData = function ({ page, lang }) {
+    return fetch(`${serverURL}/page/${page}/${lang}`)
+        .then(data => data.json());
+};
+
 const currentStoredProductID = {
     key: 'web-shop-thingy_currentProductID',
 
