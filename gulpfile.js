@@ -95,7 +95,11 @@ gulp.task("templateScripts", () => {
     return gulp.src(filesPath.templateScripts)
         // .pipe(ifDevRun(sourcemaps.init))
         // .pipe(babel({
-        //     "sourceType": "script",
+        //     "presets": [
+        //         ["@babel/preset-env", {
+        //                 "modules": 'umd'
+        //         }]
+        //     ]
         // }))
         // .pipe(concat("bundle.js"))
         // .pipe(ifDevRun(sourcemaps.write, [`./`]))
@@ -106,7 +110,13 @@ gulp.task("templateScripts", () => {
 gulp.task("scripts", () => {
     return gulp.src(filesPath.scripts)
         // .pipe(ifDevRun(sourcemaps.init))
-        // .pipe(babel())
+        // .pipe(babel({
+        //     "presets": [
+        //         ["@babel/preset-env", {
+        //                 "modules": 'umd'
+        //         }]
+        //     ]
+        // }))
         // .pipe(concat("bundle.js"))
         // .pipe(ifDevRun(sourcemaps.write, [`./`]))
         .pipe(gulp.dest(outputPath.scripts))

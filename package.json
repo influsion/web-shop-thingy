@@ -23,6 +23,7 @@
     "gulp-util": "^3.0.8"
   },
   "scripts": {
+    "start": "npm run build:dev:watch",
     "build:dev": "gulp build",
     "build:dev:watch": "gulp build:watch",
     "build:prod": "gulp build --env=production",

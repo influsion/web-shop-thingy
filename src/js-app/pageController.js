@@ -11,7 +11,7 @@ const pageController = {
         '#faq': (e, $target) => renderFaqPage(e, $target),
         '#contact': (e, $target) => renderContactPage(e, $target),
         '#about': (e, $target) => renderAboutPage(e, $target),
-
++
         '#product': (e, $target) => renderProductPage(e, $target),
         '#cart': (e, $target) => renderCartPage(e, $target),
         '#checkout': (e, $target) => renderCheckoutPage(e, $target),

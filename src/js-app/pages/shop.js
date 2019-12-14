@@ -1,8 +1,10 @@
 'use strict';
 
 function renderShopPage(e, $target) {
+    const pagePromise = PromiseList();
+
     const breadcrumbsHTML = breadcrumbsComponent({
-        pageTitle: 'en_Shop',
+        pageTitle: translate('shop_page_title'),
         image: 'bg-image--6'
     });
 
@@ -14,12 +16,12 @@ function renderShopPage(e, $target) {
     const pageParametersAreExisting = pagesParameters.shopPage || null;
 
 
-    global.promises.addPromise({
+    pagePromise.addPromise({
         name: 'categoriesStructure',
         body: getCategoriesStructure(),
     });
 
-    global.promises.all(res => {
+    pagePromise.allPromises(res => {
         const { categoriesStructure = null, } = res;
 
         // Categories Component

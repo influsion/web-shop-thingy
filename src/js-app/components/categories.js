@@ -88,7 +88,7 @@ function categoriesComponent(data) {
     const makeTemplateHTML = () => {
         return (`
             <aside class="wedget__categories poroduct--cat">
-                <h3 class="wedget__title">en_Product Categories</h3>
+                <h3 class="wedget__title">${ translate('product_categories') }</h3>
 
                 ${ categoriesHTML }
             </aside>

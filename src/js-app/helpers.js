@@ -35,19 +35,6 @@ const PromiseList = function() {
     const order = [];
 
     const propss = {
-        add: {
-            writable: false,
-            configurable: false,
-            value: function(promiseName, promiseObject) {
-                const promisePosition = this.push(promiseObject) - 1;
-
-                order[promisePosition] = promiseName;
-                console.log(order);
-                console.log('promise name: ' + promiseName + ', ' + 'position: ' + promisePosition);
-
-                return this;
-            },
-        },
         addPromise: {
             writable: false,
             configurable: false,
@@ -81,7 +68,7 @@ const PromiseList = function() {
                 return this.response;
             },
         },
-        all: {
+        allPromises: {
             writable: false,
             configurable: false,
             value: function(responseFunction) {
@@ -118,6 +105,11 @@ const getFilterConditions = function(params) {
 
 const getFaq = function() {
     return fetch(`${serverURL}/faq`)
+        .then(data => data.json());
+};
+
+const fetchPageData = function ({ page, lang }) {
+    return fetch(`${serverURL}/page/${page}/${lang}`)
         .then(data => data.json());
 };
 
@@ -198,7 +190,7 @@ const savedPagesParameters = {
 
 
 const renderProductsOnShoppage = (params = {}) => {
-    const promises = new PromiseList();
+    const promises = PromiseList();
 
     const { shopPage: pageParameters } = savedPagesParameters.get();
     const filterParameters = {};
@@ -227,7 +219,7 @@ const renderProductsOnShoppage = (params = {}) => {
         body: getFilterConditions(pageParameters.menu.value),
     });
 
-    promises.all(res => {
+    promises.allPromises(res => {
         const { filteredDataOfProducts, filterConditions } = res;
 
         const productsHTML = filteredDataOfProducts.map(productCartGridViewComponents);
@@ -323,7 +315,7 @@ const Basket = function() {
 
     const updateQuantityIndicator = quantityOfProducts => $quantityIndicator.text(quantityOfProducts);
 
-    const excludeDuplicates = (arrayOfProducts) => {
+    const excludeDuplicates = (arrayOfProducts = []) => {
         const unicIds = [];
         const newArrayOfProducts = [];
         arrayOfProducts = Object.values(arrayOfProducts);
@@ -366,9 +358,15 @@ const Basket = function() {
         has: {
             writable: false,
             configurable: false,
-            value: function({id: productId}) {
+            value: function({productId}) {
+                productId = +productId;
+
                 for (const {id} of this) {
-                    return +id === +productId;
+                    const areIdentical = +id === productId;
+
+                    if (areIdentical) {
+                        return areIdentical;
+                    }
                 }
             },
         },
@@ -395,6 +393,13 @@ const Basket = function() {
                 saveToLocalStorage(this);
 
                 return this;
+            },
+        },
+        review: {
+            writable: false,
+            configurable: false,
+            value: function() {
+                return Object.values(this).filter(item => toType(item) === 'object');
             },
         },
         delete: {

@@ -1,25 +1,9 @@
 'use strict';
 
-
-const global = {
-    promises: new PromiseList(),
-};
-let localization = {};
-const basket = new Basket();
-const lang = 'en';
-const qsDefaultParams = {
-    arrayFormat: 'indices',
-    format : 'RFC3986',
-};
-const serverURL = 'http://localhost:3000'
-
-
 const findElements = function() {
     global.$app = $('#wrapper');
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
-
-
 
     // Header Search btn
     global.$headerSearchBtn = global.$header.find('.shop_search > a');
@@ -34,13 +18,15 @@ const bindEvents = function() {
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 
     // Add product to cart
-    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler($(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e, $(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart-and-switch-page', e => addToCartAndSwitchPageClickHandler(e, $(e.currentTarget)));
+
 
     // Cart
     global.$app.on('change', '.js-input-quantity', e => changeTotalPrice($(e.currentTarget)));
     global.$app.on('click', '.js-delete-cart-item', e => deleteCartItemHandler($(e.currentTarget)));
     global.$app.on('change', '.js-input-quantity', e => changeGradTotalPrice($(e.currentTatget)));
-    
+
     // Categories and Filter on Shop page
     global.$app.on('click', '.js-change-category-or-subcategory', e => categoriesHandler(e));
     global.$app.on('change', `form[name="brand-checkbox-group-form"] input`, { checkboxType: 'brand' }, e => filterCheckboxGroupHandler(e));
@@ -53,16 +39,18 @@ const bindEvents = function() {
     findElements();
     bindEvents();
 
+    basket.syncWithLocalStorage();
+
     // Step: Header Menu links
     global.$menuLinks = global.$header.find('.mainmenu-link');
     pageController.init(global.$menuLinks);
 
-    global.promises.addPromise({
+    globalPromiseList.addPromise({
         name: 'localization',
         body: getLocalization(),
     });
 
-    global.promises.all(res => {
+    globalPromiseList.allPromises(res => {
         localization = res.localization;
 
         // TODO: Step: Here is render menu with js
@@ -75,7 +63,7 @@ const bindEvents = function() {
 })();
 
 
-snowFlake({
-    src: 'images/icons/snowflake.svg'
-});
+// snowFlake({
+//     src: 'images/icons/snowflake.svg'
+// });
 

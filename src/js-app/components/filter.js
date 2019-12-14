@@ -4,7 +4,6 @@ const filterComponent = (data) => {
     const {
         i18n,
         state,
-        structure,
         structure: {
             brands,
             origin,
