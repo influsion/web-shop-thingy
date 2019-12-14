@@ -237,11 +237,12 @@
 		<div class="brown--color box-search-content search_active block-bg close__top">
 			<form id="search_mini_form" class="minisearch" action="#">
 				<div class="field__search">
-					<input type="text" placeholder="Search entire store here...">
+					<input id="js-search-field" type="text" placeholder="Search entire store here...">
 					<div class="action">
-						<a href="#"><i class="zmdi zmdi-search"></i></a>
+						<a href="#home" class="js-switch-page"><i class="zmdi zmdi-search"></i></a>
 					</div>
 				</div>
+				<div class="js-search-result search-result"></div>
 			</form>
 			<div class="close__wrap">
 				<span>close</span>
@@ -405,6 +406,8 @@
 	<script src="js-app/handlers/categoriesHandler.js"></script>
 	<script src="js-app/handlers/filterCheckboxGroupHandler.js"></script>
 	<script src="js-app/handlers/quickViewHandler.js"></script>
+	<script src="js-app/handlers/searchHandler.js"></script>
+
 
 	<!-- Components -->
 	<script src="js-app/components/subscription.js"></script>
