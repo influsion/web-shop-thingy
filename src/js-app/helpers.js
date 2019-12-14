@@ -103,11 +103,6 @@ const getFilterConditions = function(params) {
         .then(data => data.json());
 };
 
-const getFaq = function() {
-    return fetch(`${serverURL}/faq`)
-        .then(data => data.json());
-};
-
 const fetchPageData = function ({ page, lang }) {
     return fetch(`${serverURL}/page/${page}/${lang}`)
         .then(data => data.json());

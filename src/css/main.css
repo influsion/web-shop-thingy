@@ -103,3 +103,184 @@
 .product__info__main .product-addto-links a:hover {
 	color: #ffffff;
 }
+
+#search_mini_form {
+    left: 0;
+    margin: 0 auto auto;
+    max-width: 1000px;
+    padding: 0 5px;
+    position: fixed;
+    right: 0;
+    top: 50%;
+}
+
+#search_mini_form .action {
+	pointer-events: none;
+}
+
+.search-result ul {
+	-webkit-tap-highlight-color: transparent;
+	--blue: #007bff;
+	--indigo: #6610f2;
+	--purple: #6f42c1;
+	--pink: #e83e8c;
+	--red: #dc3545;
+	--orange: #fd7e14;
+	--yellow: #ffc107;
+	--green: #28a745;
+	--teal: #20c997;
+	--cyan: #17a2b8;
+	--white: #fff;
+	--gray: #868e96;
+	--gray-dark: #343a40;
+	--primary: #007bff;
+	--secondary: #868e96;
+	--success: #28a745;
+	--info: #17a2b8;
+	--warning: #ffc107;
+	--danger: #dc3545;
+	--light: #f8f9fa;
+	--dark: #343a40;
+	--breakpoint-xs: 0;
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 992px;
+	--breakpoint-xl: 1200px;
+	--font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--font-family-monospace: "SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+	text-align: left;
+	font-size: 14px;
+	line-height: 24px;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Poppins", sans-serif;
+	color: #333;
+	font-weight: 400;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	background-color: #292a2d;
+	margin: 0 4px;
+}
+
+.search-result li {
+	-webkit-tap-highlight-color: transparent;
+	--blue: #007bff;
+	--indigo: #6610f2;
+	--purple: #6f42c1;
+	--pink: #e83e8c;
+	--red: #dc3545;
+	--orange: #fd7e14;
+	--yellow: #ffc107;
+	--green: #28a745;
+	--teal: #20c997;
+	--cyan: #17a2b8;
+	--white: #fff;
+	--gray: #868e96;
+	--gray-dark: #343a40;
+	--primary: #007bff;
+	--secondary: #868e96;
+	--success: #28a745;
+	--info: #17a2b8;
+	--warning: #ffc107;
+	--danger: #dc3545;
+	--light: #f8f9fa;
+	--dark: #343a40;
+	--breakpoint-xs: 0;
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 992px;
+	--breakpoint-xl: 1200px;
+	--font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--font-family-monospace: "SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Poppins", sans-serif;
+	color: #333;
+	font-weight: 400;
+	list-style: none;
+	box-sizing: border-box;
+	line-height: 45px;
+	text-align: left;
+	text-transform: capitalize;
+	border-bottom: none;
+}
+
+.search-result a {
+	-webkit-tap-highlight-color: transparent;
+	--blue: #007bff;
+	--indigo: #6610f2;
+	--purple: #6f42c1;
+	--pink: #e83e8c;
+	--red: #dc3545;
+	--orange: #fd7e14;
+	--yellow: #ffc107;
+	--green: #28a745;
+	--teal: #20c997;
+	--cyan: #17a2b8;
+	--white: #fff;
+	--gray: #868e96;
+	--gray-dark: #343a40;
+	--primary: #007bff;
+	--secondary: #868e96;
+	--success: #28a745;
+	--info: #17a2b8;
+	--warning: #ffc107;
+	--danger: #dc3545;
+	--light: #f8f9fa;
+	--dark: #343a40;
+	--breakpoint-xs: 0;
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 992px;
+	--breakpoint-xl: 1200px;
+	--font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--font-family-monospace: "SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Poppins", sans-serif;
+	list-style: none;
+	line-height: 45px;
+	text-align: left;
+	text-transform: capitalize;
+	box-sizing: border-box;
+	background-color: transparent;
+	touch-action: manipulation;
+	text-decoration: none;
+	transition: 0.3s;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px dashed #484848;
+	color: #333;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 400;
+	display: block;
+	padding: 0 24px;
+}
+
+.search-result a:hover,
+.search-result a:active {
+	color: #e59285;
+}
+
+.search-result mark {
+	padding: 0;
+	background: none;
+	color: #e59285;
+}
+
+.search-result .badge {
+	font-weight: 300;
+	font-size: 90%;
+	margin-left: 0.5em;
+}
+
+.minisearch .field__search {
+	left: unset;
+    /* margin: unset; */
+    /* max-width: unset; */
+    /* padding: unset; */
+    position: unset;
+    right: unset;
+    top: unset;
+}

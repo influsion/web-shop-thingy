@@ -5,6 +5,12 @@ const findElements = function() {
     global.$header = $('#wn__header');
     global.$main = global.$app.find('.main');
 
+    global.$search = global.$app.find('#js-search-field');
+    global.$searchResult = global.$app.find('.js-search-result');
+    global.$searchContainer = global.$app.find('.search_active');
+
+
+
     // Header Search btn
     global.$headerSearchBtn = global.$header.find('.shop_search > a');
 
@@ -14,6 +20,22 @@ const findElements = function() {
 };
 
 const bindEvents = function() {
+    // Serach
+    global.$app.on('click', '.search__active', e => {
+        e.preventDefault();
+        global.$searchContainer.toggleClass('is-visible');
+    });
+
+    global.$app.on('click', '.close__wrap', () => {
+        global.$searchContainer.removeClass('is-visible');
+        global.$search.val('');
+        global.$search.trigger('change');
+    });
+
+    global.$search.on('keydown keyup change', searchHandler);
+
+    global.$searchResult.on('click', '.js-clear-search-field', () => global.$app.find('.close__wrap').trigger('click'));
+
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 
