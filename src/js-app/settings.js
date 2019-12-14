@@ -9,5 +9,5 @@ const qsDefaultParams = {
     format : 'RFC3986',
 };
 const serverURL = 'http://localhost:3000';
-const reToExcludeSpecialCharacters = /^[^@#$%&*^()=+\\\[\]/]+$/;
+const reToExcludeSpecialCharacters = /^[^@#$%&|*^()=+\\\[\]/]+$/;
 let localization = {};
