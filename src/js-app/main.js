@@ -63,10 +63,6 @@ const bindEvents = function() {
 
     basket.syncWithLocalStorage();
 
-    // Step: Header Menu links
-    global.$menuLinks = global.$header.find('.mainmenu-link');
-    pageController.init(global.$menuLinks);
-
     globalPromiseList.addPromise({
         name: 'localization',
         body: getLocalization(),
@@ -75,7 +71,32 @@ const bindEvents = function() {
     globalPromiseList.allPromises(res => {
         localization = res.localization;
 
-        // TODO: Step: Here is render menu with js
+        // Step: Header Menu links
+        const menuItems = [
+            ['#home', localization.menu.home],
+            ['#shop', localization.menu.shop],
+            ['#faq', localization.menu.faq],
+            ['#contact', localization.menu.contact],
+            ['#about', localization.menu.about],
+        ];
+
+        global.$header.find('.mobilemenu__nav').html(mainMenuComponent({
+            items: menuItems,
+        }));
+
+        global.$header.find('.mainmenu__nav').html(mainMenuComponent({
+            items: menuItems,
+            additionalClasses: [
+                'd-flex',
+                'justify-content-start',
+            ],
+        }));
+
+        global.$menuLinks = global.$header.find('.mainmenu-link');
+        pageController.init(global.$menuLinks);
+
+
+
 
         // Step: Change page
         pageController.setActivePage();
