@@ -21,9 +21,9 @@ const filesPath = {
         './src/css/style.css',
         './src/css/main.css',
     ],
-    templateScripts: [
-        './src/js/**/*.js'
-    ],
+    // templateScripts: [
+    //     './src/js/**/*.js'
+    // ],
     scripts: [
         './src/js-app/**/*.js'
     ],
@@ -38,8 +38,8 @@ const filesPath = {
 const outputPath = {
     html: `${PUBLIC_PATH}`,
     css: `${PUBLIC_PATH}/css`,
-    templateScripts: `${PUBLIC_PATH}/js`,
-    scripts: `${PUBLIC_PATH}/js-app`,
+    // templateScripts: `${PUBLIC_PATH}/js`,
+    scripts: `${PUBLIC_PATH}/js`, // scripts: `${PUBLIC_PATH}/js-app`,
     fonts: `${PUBLIC_PATH}/fonts`,
     images: `${PUBLIC_PATH}/images`,
 };
@@ -91,25 +91,59 @@ gulp.task('html', () => {
         .pipe(browserSync.stream());
 });
 
-gulp.task("templateScripts", () => {
-    return gulp.src(filesPath.templateScripts)
-        // .pipe(ifDevRun(sourcemaps.init))
-        // .pipe(babel({
-        //     "presets": [
-        //         ["@babel/preset-env", {
-        //                 "modules": 'umd'
-        //         }]
-        //     ]
-        // }))
-        // .pipe(concat("bundle.js"))
-        // .pipe(ifDevRun(sourcemaps.write, [`./`]))
-        .pipe(gulp.dest(outputPath.templateScripts))
-        .pipe(browserSync.stream());
-});
+// gulp.task("templateScripts", () => {
+//     return gulp.src(filesPath.templateScripts)
+//         // .pipe(ifDevRun(sourcemaps.init))
+//         // .pipe(babel({
+//         //     "presets": [
+//         //         ["@babel/preset-env", {
+//         //                 "modules": 'umd'
+//         //         }]
+//         //     ]
+//         // }))
+//         // .pipe(concat("bundle.js"))
+//         // .pipe(ifDevRun(sourcemaps.write, [`./`]))
+//         .pipe(gulp.dest(outputPath.templateScripts))
+//         .pipe(browserSync.stream());
+// });
+
+// gulp.task("scripts", () => {
+//     return gulp.src(filesPath.scripts)
+//         // .pipe(ifDevRun(sourcemaps.init))
+//         // .pipe(babel({
+//         //     "presets": [
+//         //         ["@babel/preset-env", {
+//         //                 "modules": 'umd'
+//         //         }]
+//         //     ]
+//         // }))
+//         // .pipe(concat("bundle.js"))
+//         // .pipe(ifDevRun(sourcemaps.write, [`./`]))
+//         .pipe(gulp.dest(outputPath.scripts))
+//         .pipe(browserSync.stream());
+// });
 
 gulp.task("scripts", () => {
-    return gulp.src(filesPath.scripts)
-        // .pipe(ifDevRun(sourcemaps.init))
+        return gulp.src([
+            './node_modules/jquery/dist/jquery.min.js',
+            './node_modules/popper.js/dist/umd/popper.min.js', //'./src/js/popper.min.js',
+            './node_modules/bootstrap/dist/js/bootstrap.min.js', // './src/js/bootstrap.min.js',
+
+            './src/js/plugins.js',
+            './src/js/active.js',
+
+            './src/js-app/components/*.js',
+            './src/js-app/handlers/*.js',
+            './src/js-app/pages/*.js',
+            './src/js-app/templates/*.js',
+
+            './src/js-app/helpers.js',
+            './src/js-app/pageController.js',
+            './src/js-app/qs.js',
+            './src/js-app/settings.js',
+            './src/js-app/main.js',
+        ])
+        .pipe(ifDevRun(sourcemaps.init))
         // .pipe(babel({
         //     "presets": [
         //         ["@babel/preset-env", {
@@ -117,8 +151,8 @@ gulp.task("scripts", () => {
         //         }]
         //     ]
         // }))
-        // .pipe(concat("bundle.js"))
-        // .pipe(ifDevRun(sourcemaps.write, [`./`]))
+        .pipe(concat("bundle.js"))
+        .pipe(ifDevRun(sourcemaps.write, [`./`]))
         .pipe(gulp.dest(outputPath.scripts))
         .pipe(browserSync.stream());
 });
@@ -134,13 +168,13 @@ gulp.task('watch', () => {
 
     gulp.watch(filesPath.html, gulp.series('html')).on('change', browserSync.reload);
     gulp.watch(filesPath.css, gulp.series('styles'));
-    gulp.watch(filesPath.templateScripts, gulp.series('templateScripts'));
+    // gulp.watch(filesPath.templateScripts, gulp.series('templateScripts'));
     gulp.watch(filesPath.scripts, gulp.series('scripts'));
     gulp.watch(filesPath.fonts, gulp.series('fonts'));
     gulp.watch(filesPath.images, gulp.series('images'));
  });
 
-const devTasks = ['html', 'styles', 'templateScripts', 'scripts', 'fonts', 'images'];
+const devTasks = ['html', 'styles', 'scripts', 'fonts', 'images']; // ['html', 'styles', 'templateScripts', 'scripts', 'fonts', 'images'];
 gulp.task('build', gulp.series('del', gulp.parallel(...devTasks)));
 
 gulp.task('build:watch', gulp.series('build', 'watch'));
