@@ -161,9 +161,10 @@ gulp.task('del', () => del([`${PUBLIC_PATH}/*`]));
 
 gulp.task('watch', () => {
     browserSync.init({
+        port: 3010,
         server: {
-            baseDir: `${PUBLIC_PATH}`
-        }
+            baseDir: `${PUBLIC_PATH}`,
+        },
     });
 
     gulp.watch(filesPath.html, gulp.series('html')).on('change', browserSync.reload);
