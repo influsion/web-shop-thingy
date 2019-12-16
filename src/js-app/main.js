@@ -71,6 +71,8 @@ const bindEvents = function() {
     globalPromiseList.allPromises(res => {
         localization = res.localization;
 
+        global.$app.find('.js-feedback-copy').text(translate('app_feedback_copy'));
+
         // Step: Header Menu links
         const menuItems = [
             ['#home', localization.menu.home],
