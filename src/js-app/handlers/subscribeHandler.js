@@ -1,17 +1,19 @@
 'use strict';
 
 const defaultPrevent = (e, $target) => {
-    e.preventDefault();
-    const $inputEmail = global.$main.find('.newsletter__box input');
-    $inputEmail.attr('class', 'input');
-    const $value = $inputEmail.val();
-    console.log($value);
-
-    const correctEmail = $value.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
-    if (!correctEmail) {
-        $inputEmail.attr('placeholder', 'Are you sure your email address is entered correctly?');
+    const $box = global.$main.find('.newsletter__box');
+    const $inputEmail = $box.find('input');
+    const value = $inputEmail.val().trim();
+    const isCorrect = new RegExp(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/, 'i').test(value);
+     
+    if(isCorrect) {
+        console.log(isCorrect, value);
+        postEmail(value);
+    } else {
+        $inputEmail.attr('placeholder', 'Enter the correct email');
         $inputEmail.css('background', '1px solid red');
-        alert('Are you sure your email address is entered correctly?')
-        return false
-    }
+        alert('Are you sure your email address is entered correctly?');
+        
+        return;
+    };
 };

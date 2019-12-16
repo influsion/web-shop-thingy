@@ -108,6 +108,15 @@ const fetchPageData = function ({ page, lang }) {
         .then(data => data.json());
 };
 
+const postEmail = email => {
+    return fetch(`${serverURL}/subscribe`, {
+        method: 'post',
+        body: JSON.stringify({value: email}),
+        headers: new Headers({'Content-Type': 'application/json'})
+    })
+    .then(response => response.json()); 
+};
+
 const currentStoredProductID = {
     key: 'web-shop-thingy_currentProductID',
 
