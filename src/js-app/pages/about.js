@@ -4,7 +4,7 @@
 function renderAboutPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('about_page_title'),
-        image: 'bg-image--3',
+        imageClass: 'bg-breadcrumbs--about',
     });
 
     function template(data) {

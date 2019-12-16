@@ -4,7 +4,7 @@
 function renderCheckoutPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('checkout_page_title'),
-        image: 'bg-image--4',
+        imageClass: 'bg-breadcrumbs--checkout',
     });
 
     function template(data) {

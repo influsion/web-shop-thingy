@@ -6,7 +6,7 @@ function renderFaqPage(e, $target) {
 
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('faq_page_title'),
-        image: 'bg-image--4'
+        imageClass: 'bg-breadcrumbs--faq',
     });
 
     pagePromise.addPromise({

@@ -8,7 +8,7 @@ function renderCartPage(e, $target) {
 
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('cart_page_title'),
-        image: 'bg-image--3',
+        imageClass: 'bg-breadcrumbs--cart',
     });
 
     basket.syncWithLocalStorage();

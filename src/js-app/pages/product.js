@@ -6,7 +6,7 @@ function renderProductPage(e, $target) {
 
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('product_page_title'),
-        image: 'bg-image--4',
+        imageClass: 'bg-breadcrumbs--product',
     });
 
     const pageTemplate = data => {

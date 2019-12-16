@@ -5,7 +5,7 @@ function renderShopPage(e, $target) {
 
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('shop_page_title'),
-        image: 'bg-image--6'
+        imageClass: 'bg-breadcrumbs--shop',
     });
 
     //! TODO: Панень сортировки

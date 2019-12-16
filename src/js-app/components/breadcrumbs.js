@@ -3,7 +3,7 @@
 const breadcrumbsComponent = (data) => {
     return (`
         <!-- Start Breadcrumbs area -->
-        <div class="ht__bradcaump__area bg-image--6">
+        <div class="ht__bradcaump__area ${ data.imageClass || '' }">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

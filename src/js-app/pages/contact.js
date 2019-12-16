@@ -4,7 +4,7 @@
 function renderContactPage(e, $target) {
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('contact_page_title'),
-        image: 'bg-image--6',
+        imageClass: 'bg-breadcrumbs--contact',
 	});
 
     function template(data) {
