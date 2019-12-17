@@ -50,7 +50,7 @@
 
 .product .product__thumb a {
 	position: relative;
-	padding-top: calc(340 / 270 * 100%);
+	padding-top: calc(270 / 270 * 100%);
 }
 
 .product .product__thumb a img {
@@ -192,7 +192,8 @@
 	margin-left: 0.5em;
 }
 
-.product__info__main .product-label {
+.product__info__main .product-label,
+.product-info .product-label {
 	margin: 0;
 }
 
@@ -256,4 +257,44 @@
 
 .ht__bradcaump__area {
     text-shadow: 0px 1px 3px #cccccc;
+}
+
+.s-price-box span.new-price {
+	color: #333333;
+}
+
+.quick-desc {
+    margin: 20px 0 0;
+	padding: 16px 0;
+	border-top: 1px solid #ebebeb;
+	line-height: 24px;
+}
+
+.addtocart-btn,
+.price-box-3 span.new-price {
+	margin: 20px 0;
+}
+
+.product-images,
+.product-info {
+	padding: 0 50px;
+}
+
+.wn__fotorama__wrapper {
+	height: 40vw;
+}
+
+.wn__fotorama__wrapper a {
+	display: block;
+}
+
+.wn__fotorama__wrapper img {
+	width: 100%;
+    height: 100%;
+	object-fit: contain;
+	object-position: top;
+}
+.wn__fotorama__wrapper .fotorama,
+.wn__fotorama__wrapper a {
+	height: inherit;
 }

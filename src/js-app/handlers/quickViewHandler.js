@@ -4,7 +4,7 @@ const quickViewHandler = (e, $target) => {
     const pagePromise = PromiseList();
     const productId = getProductIdFromDataSet($target);
 
-    
+
     pagePromise.addPromise({
             name: 'currentProduct',
             body: getProducts({ id: productId }),
@@ -36,14 +36,15 @@ const quickViewHandler = (e, $target) => {
                         <div class="quick-desc">
                            ${data.description}
                         </div>
-                        <div class="price-box-3">
-                            <div class="s-price-box">
-                                <span class="new-price">Price: ${data.price}</span>
-                            </div>
-                            <div class="addtocart-btn">
-                                <a href="#" class="js-add-to-cart-quick" data-product-id="${data.id}">Add to cart</a>
-                            </div>
+
+                        <div class="s-price-box">
+                            <span class="new-price">Price: ${data.price}</span>
                         </div>
+
+                        <div class="addtocart-btn">
+                            <a href="#" class="js-add-to-cart-quick" data-product-id="${data.id}">Add to cart</a>
+                        </div>
+
                         <div class="product_meta">
                             <span class="posted_in">${ translate('category') }:
                                 <a class="js-change-category-or-subcategory" href="#shop" data-category="${data.category}">
@@ -62,11 +63,11 @@ const quickViewHandler = (e, $target) => {
                 </div>
             `);
         };
-     
+
         const quickViewHTML = quickTemplate(currentProduct[0]);
-     
+
         global.$app.find('#quickview-wrapper .modal-body').html(quickViewHTML);
-    });  
+    });
 };
 
 // const removeQuickView = (e, $target) => {
