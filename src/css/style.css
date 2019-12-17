@@ -8909,9 +8909,10 @@ Footer Styles
     border-radius: 10px;
     color: red;
     background: lightgray;
+    opacity: 0.5;
     padding: 5px;
 
     position: absolute;
-    top: 5px;
-    left: 60px;
+    top: -30px;
+    left: 30px;
 }
