@@ -72,6 +72,10 @@ const bindEvents = function() {
         localization = res.localization;
 
         global.$app.find('.js-feedback-copy').text(translate('app_feedback_copy'));
+        global.$app.find('.close__wrap span').text(translate('app_search_close'));
+        global.$app.find('#js-search-field').attr({
+            placeholder: translate('app_search_placeholder')
+        });
 
         // Step: Header Menu links
         const menuItems = [
