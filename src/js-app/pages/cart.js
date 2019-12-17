@@ -1,6 +1,5 @@
 "use strict";
 
-const dataIconSnow = {src: 'images/icons/snowflake.svg'};
 
 
 function renderCartPage(e, $target) {
