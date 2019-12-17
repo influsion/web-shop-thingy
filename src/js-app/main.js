@@ -117,8 +117,3 @@ const bindEvents = function() {
     // Read cached page name
 })();
 
-
-// snowFlake({
-//     src: 'images/icons/snowflake.svg'
-// });
-
