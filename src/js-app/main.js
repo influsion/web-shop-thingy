@@ -36,8 +36,11 @@ const bindEvents = function() {
 
     global.$searchResult.on('click', '.js-clear-search-field', () => global.$app.find('.close__wrap').trigger('click'));
 
-    //inputEmail
-    global.$app.on('click', '.newsletter__box button', e => defaultPrevent(e, $(e.currentTarget)));
+    //form submission
+    global.$app.on('click', '.newsletter__block button', e => formSubmission(e, $(e.currentTarget)));
+    global.$app.on('keydown', '.newsletter__block input', e => inputEmail(e, $(e.currentTarget)));
+    global.$app.on('mouseenter mouseleave', '.js-warning-icon', e => hoverMouse(e, $(e.currentTarget)));
+
 
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
