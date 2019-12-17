@@ -82,6 +82,9 @@ const bindEvents = function() {
         global.$app.find('#js-search-field').attr({
             placeholder: translate('app_search_placeholder')
         });
+        global.$header.find('.micart__close span').text(translate('cart_dropdown_close'));
+        global.$header.find('.checkout__btn').text(translate('cart_dropdown_go_to_checkout'));
+        global.$header.find('.cart__btn').text(translate('cart_dropdown_view_and_edit_cart'));
 
         // Step: Header Menu links
         const menuItems = [
@@ -116,4 +119,3 @@ const bindEvents = function() {
 
     // Read cached page name
 })();
-
