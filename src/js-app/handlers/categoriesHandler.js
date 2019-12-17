@@ -5,6 +5,7 @@ const categoriesHandler = e => {
 
     $target.parents('.wedget__categories.poroduct--cat').find('a').removeClass('active');
     $target.addClass('active');
+
     const categoryAndSubcategory = {
         category: getCategoryFromDataSet($target),
         subcategory: getSubcategoryFromDataSet($target),
@@ -20,9 +21,7 @@ const categoriesHandler = e => {
 
     const value = categoryAndSubcategory.category || categoryAndSubcategory.subcategory || null;
 
-    // if (!pagesParameters.shopPage) {
-        pagesParameters.shopPage = {};
-    // }
+    pagesParameters.shopPage = {};
 
     pagesParameters.shopPage.menu = {
         type,
@@ -31,7 +30,8 @@ const categoriesHandler = e => {
 
     savedPagesParameters.set(pagesParameters);
 
-    console.log(pagesParameters)
+    console.log(pagesParameters);
 
+    pageController.setActivePage(e, $target);
     renderProductsOnShoppage();
 };

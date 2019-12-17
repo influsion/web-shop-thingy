@@ -176,10 +176,15 @@
 	color: #e59285;
 }
 
-.search-result .badge {
+.search-result .badge,
+.product-label {
 	font-weight: 300;
 	font-size: 90%;
 	margin-left: 0.5em;
+}
+
+.product__info__main .product-label {
+	margin: 0;
 }
 
 .minisearch .field__search {
@@ -224,4 +229,22 @@
 
 .bg-breadcrumbs--shop {
 	background-image: url(../images/breadcrumbs/shop.jpg);
+}
+
+.product__info__main .product__overview {
+    margin: 20px 0 0;
+    padding: 16px 0;
+}
+
+.product__info__main .price-box {
+	margin: 0;
+}
+
+.product__info__main .price-box span {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.ht__bradcaump__area {
+    text-shadow: 0px 1px 3px #cccccc;
 }

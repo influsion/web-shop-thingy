@@ -1,7 +1,7 @@
 'use strict';
 
 function categoriesComponent(data) {
-    const { structure, state: { menu } = {} } = data;
+    const { structure, state: { menu } = {}, jump = null } = data;
 
     const checkItemForActivity = params => {
         const { target, source } = params;
@@ -32,7 +32,7 @@ function categoriesComponent(data) {
 
             return (`
                 <li>
-                    <a class="js-switch-page js-change-category-or-subcategory ${ activeClass || '' }" href="#shop" data-category="${key}">
+                    <a class="${!(jump === true) ? 'js-switch-page' : ''} js-change-category-or-subcategory ${ activeClass || '' }" href="#shop" data-category="${key}">
                         <span>${name}</span>
                         <span>(${productsQuantity})</span>
                     </a>
@@ -68,7 +68,7 @@ function categoriesComponent(data) {
 
             return (`
                 <li>
-                    <a class="js-switch-page js-change-category-or-subcategory ${ activeClass || '' }" href="#shop" data-subcategory="${key}">
+                    <a class="${!(jump === true) ? 'js-switch-page' : ''} js-change-category-or-subcategory ${ activeClass || '' }" href="#shop" data-subcategory="${key}">
                         <span>${name}</span>
                         <span>(${productsQuantity})</span>
                     </a>
