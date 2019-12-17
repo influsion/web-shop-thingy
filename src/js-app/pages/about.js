@@ -10,6 +10,25 @@ function renderAboutPage(e, $target) {
     });
 
     const teamComponent = (pageData) => {
+        const expertsHTML = Object.values(pageData.experts).reduce((accumulator, { name, position, image }, i) => {
+            const itemHTML = (`
+                <!-- Start Single Team -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="wn__team">
+                        <div class="thumb">
+                            <img src="${image}" alt="${name}">
+                        </div>
+                        <div class="content text-center">
+                            <h4>${name}</h4>
+                            <p>${position}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Team -->
+            `);
+
+            return accumulator + itemHTML;
+        }, '');
 
         return (`
             <!-- Start Team Area -->
@@ -24,58 +43,7 @@ function renderAboutPage(e, $target) {
                         </div>
                     </div>
                     <div class="row">
-                        <!-- Start Single Team -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                            <div class="wn__team">
-                                <div class="thumb">
-                                    <img src="images/about/team/1.jpg" alt="Team images">
-                                </div>
-                                <div class="content text-center">
-                                    <h4>JOHN SMITH</h4>
-                                    <p>Manager</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                        <!-- Start Single Team -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                            <div class="wn__team">
-                                <div class="thumb">
-                                    <img src="images/about/team/2.jpg" alt="Team images">
-                                </div>
-                                <div class="content text-center">
-                                    <h4>ALICE KIM</h4>
-                                    <p>Co-Founder</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                        <!-- Start Single Team -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                            <div class="wn__team">
-                                <div class="thumb">
-                                    <img src="images/about/team/3.jpg" alt="Team images">
-                                </div>
-                                <div class="content text-center">
-                                    <h4>VICTORIA DOE</h4>
-                                    <p>Marketer</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                        <!-- Start Single Team -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                            <div class="wn__team">
-                                <div class="thumb">
-                                    <img src="images/about/team/3.jpg" alt="Team images">
-                                </div>
-                                <div class="content text-center">
-                                    <h4>VICTORIA DOE</h4>
-                                    <p>Marketer</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
+                        ${ expertsHTML }
                     </div>
                 </div>
             </section>
