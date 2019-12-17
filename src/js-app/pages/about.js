@@ -43,7 +43,7 @@ function renderAboutPage(e, $target) {
                     </div>
                     <div class="row">
                         <!-- Start Single Team -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                             <div class="wn__team">
                                 <div class="thumb">
                                     <img src="images/about/team/1.jpg" alt="Team images">
@@ -51,19 +51,12 @@ function renderAboutPage(e, $target) {
                                 <div class="content text-center">
                                     <h4>JOHN SMITH</h4>
                                     <p>Manager</p>
-                                    <ul class="team__social__net">
-                                        <li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-facebook icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-linkedin icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-pinterest icons"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <!-- End Single Team -->
                         <!-- Start Single Team -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                             <div class="wn__team">
                                 <div class="thumb">
                                     <img src="images/about/team/2.jpg" alt="Team images">
@@ -71,19 +64,12 @@ function renderAboutPage(e, $target) {
                                 <div class="content text-center">
                                     <h4>ALICE KIM</h4>
                                     <p>Co-Founder</p>
-                                    <ul class="team__social__net">
-                                        <li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-facebook icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-linkedin icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-pinterest icons"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <!-- End Single Team -->
                         <!-- Start Single Team -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                             <div class="wn__team">
                                 <div class="thumb">
                                     <img src="images/about/team/3.jpg" alt="Team images">
@@ -91,13 +77,19 @@ function renderAboutPage(e, $target) {
                                 <div class="content text-center">
                                     <h4>VICTORIA DOE</h4>
                                     <p>Marketer</p>
-                                    <ul class="team__social__net">
-                                        <li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-facebook icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-linkedin icons"></i></a></li>
-                                        <li><a href="#"><i class="icon-social-pinterest icons"></i></a></li>
-                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Team -->
+                        <!-- Start Single Team -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="wn__team">
+                                <div class="thumb">
+                                    <img src="images/about/team/3.jpg" alt="Team images">
+                                </div>
+                                <div class="content text-center">
+                                    <h4>VICTORIA DOE</h4>
+                                    <p>Marketer</p>
                                 </div>
                             </div>
                         </div>
