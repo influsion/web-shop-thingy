@@ -2,42 +2,24 @@
 
 
 function renderAboutPage(e, $target) {
+    const pagePromise = PromiseList();
+
     const breadcrumbsHTML = breadcrumbsComponent({
         pageTitle: translate('about_page_title'),
         imageClass: 'bg-breadcrumbs--about',
     });
 
-    function template(data) {
+    const teamComponent = (pageData) => {
+
         return (`
-            ${ breadcrumbsHTML }
-
-            <!-- Start About Area -->
-            <div class="page-about about_area bg--white section-padding--lg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="section__title--3 text-center pb--30">
-                                <h2>Our Process Skill Of High</h2>
-                            </div>
-                            <div class="content">
-                                <p class="mt--20 mb--20">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-                                <strong>London Address</strong>
-                                <p>34 Parer Place via Musk Avenue Kelvin Grove, QLD, 4059</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End About Area -->
-
             <!-- Start Team Area -->
             <section class="wn__team__area pb--75 bg--white">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section__title--3 text-center">
-                                <h2>Meet our team of experts</h2>
-                                <p>the right people for your project</p>
+                                <h2>${ pageData.meet_the_expert_team }</h2>
+                                <p>${ pageData.the_right_people_for_your_project }</p>
                             </div>
                         </div>
                     </div>
@@ -99,13 +81,51 @@ function renderAboutPage(e, $target) {
             </section>
             <!-- End Team Area -->
         `);
-    }
+    };
 
-    const page = template();
+    pagePromise.addPromise({
+		name: 'pageData',
+		body: fetchPageData({ page: 'about', lang }),
+    });
 
-    console.log('renderAboutPage');
-    global.$main.first().html(page);
-    afterChangingTheDOM();
+    pagePromise.allPromises(res => {
+        const { pageData } = res;
+
+
+
+        const teamHTML = teamComponent(pageData);
+
+        function template(data) {
+            return (`
+                ${ breadcrumbsHTML }
+
+                <!-- Start About Area -->
+                <div class="page-about about_area bg--white section-padding--lg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section__title--3 text-center pb--30">
+                                    <h2>${ pageData.someheaderonaboutpage }</h2>
+                                </div>
+                                <div class="content">
+                                    ${ pageData.sometextonaboutpage }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End About Area -->
+
+                ${ teamHTML }
+            `);
+        }
+
+        const page = template();
+
+        console.log('renderAboutPage');
+        global.$main.first().html(page);
+        afterChangingTheDOM();
+    });
 
     function afterChangingTheDOM() {
         // Код, который нужно запустить после изменения DOM
