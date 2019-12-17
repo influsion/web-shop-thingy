@@ -94,7 +94,7 @@ function renderProductPage(e, $target) {
 
                                                 <div class="box-tocart d-flex">
                                                     <div class="price-box">
-                                                        <span>Price: ${data.price} UAH</span>
+                                                        <span>${ translate('price') }: ${data.price} UAH</span>
                                                     </div>
 
                                                     <span>Qty</span>
