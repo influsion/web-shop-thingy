@@ -48,7 +48,13 @@ const bindEvents = function() {
     // Add product to cart
     global.$app.on('click', '.js-add-to-cart', e => addToCartClickHandler(e, $(e.currentTarget)));
     global.$app.on('click', '.js-add-to-cart-and-switch-page', e => addToCartAndSwitchPageClickHandler(e, $(e.currentTarget)));
+    global.$app.on('click', '.js-add-to-cart-quick', e => addToCartClickHandler(e, $(e.currentTarget)));
 
+    //add Product to modal window
+    global.$app.on('click', '.js-quick-view', e => quickViewHandler(e, $(e.currentTarget)));
+
+    //removeQuickView
+    // global.$app.on('click', '.modal-header .close', e => removeQuickView(e, $(e.currentTarget)));
 
     // Cart
     global.$app.on('change', '.js-input-quantity', e => changeTotalPrice($(e.currentTarget)));
