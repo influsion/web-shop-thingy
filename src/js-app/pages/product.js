@@ -88,17 +88,15 @@ function renderProductPage(e, $target) {
 
                                                 <!--
                                                 <div class="price-box">
-                                                    <span>Price: ${data.price} UAH</span>
+                                                    <span>Price: ${data.price}</span>
                                                 </div>
                                                 -->
 
                                                 <div class="box-tocart d-flex">
                                                     <div class="price-box">
-                                                        <span>${ translate('price') }: ${data.price} UAH</span>
+                                                        <span>${ translate('price') }: ${data.price}</span>
                                                     </div>
 
-                                                    <span>Qty</span>
-                                                    <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
                                                     <div class="addtocart__actions">
                                                         <button class="tocart js-add-to-cart" data-product-id="${data.id}" type="submit" title="Add to Cart">Add to Cart</button>
                                                     </div>
