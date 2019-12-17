@@ -83,6 +83,75 @@ const bindEvents = function() {
     globalPromiseList.allPromises(res => {
         localization = res.localization;
 
+        const appSettings = {
+            "language": {
+                "default": "en",
+                "available": [
+                    {
+                        "key": "en",
+                        "name": "English",
+                    },
+                    {
+                        "key": "ru",
+                        "name": "Русский",
+                    }
+                ]
+            },
+            "currency": {
+                "default": "uah",
+                "available": [
+                    {
+                        "key": "uah",
+                        "name": "uah",
+                        "rate": "1",
+                    },
+                    {
+                        "key": "usd",
+                        "name": "usd",
+                        "rate": 1/23.46913200,
+                    },
+                    {
+                        "key": "eur",
+                        "name": "eur",
+                        "rate": 1/26.19624500,
+                    }
+                ]
+            }
+        };
+
+        languageSettings.init(appSettings.language);
+        currencySettings.init(appSettings.currency);
+
+        const appSettingsHTML = appSettingsComponent({
+            language: languageSettings.get(),
+            currency: currencySettings.get(),
+        });
+
+        global.$header.find('.js-setting__bar__icon').html(appSettingsHTML);
+
+        (() => {
+            const settingTrigger = global.$header.find('.setting__active');
+            const settingContainer = global.$header.find('.setting__block');
+
+            settingTrigger.on('click', e => {
+              e.preventDefault();
+              settingContainer.toggleClass('is-visible');
+            });
+
+            settingTrigger.on('click', e => {
+              e.preventDefault();
+              settingContainer.toggleClass('');
+            });
+
+
+            const settingItem = global.$header.find('.currency-trigger');
+
+            settingItem.on('click', function () {
+              $(this).siblings('.switcher-dropdown').toggleClass('is-visible');
+            });
+        })();
+
+        //
         global.$app.find('.js-feedback-copy').text(translate('app_feedback_copy'));
         global.$app.find('.close__wrap span').text(translate('app_search_close'));
         global.$app.find('#js-search-field').attr({
@@ -115,9 +184,6 @@ const bindEvents = function() {
 
         global.$menuLinks = global.$header.find('.mainmenu-link');
         pageController.init(global.$menuLinks);
-
-
-
 
         // Step: Change page
         pageController.setActivePage();

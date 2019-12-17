@@ -31,6 +31,9 @@ const toType = val => {
         .toLowerCase();
 };
 
+// Reload page
+const reloadPage = () => window.location = window.location;
+
 const PromiseList = function() {
     const order = [];
 
@@ -114,7 +117,7 @@ const postEmail = email => {
         body: JSON.stringify({value: email}),
         headers: new Headers({'Content-Type': 'application/json'})
     })
-    .then(response => response.json()); 
+    .then(response => response.json());
 };
 
 const currentStoredProductID = {
@@ -450,3 +453,55 @@ const Basket = function() {
     return Object.create(_this, proto);
 };
 
+const currencySettings = {
+    // Паша, комменты потом удали или переведи
+    key: 'web-shop-thingy_currency-settings',
+
+    init(settingsObject) {
+        this._settings = { ...settingsObject };
+
+        // Получаем c localstorage сохранение/ключ
+        const savedKey = this.getFromLocalStorage();
+
+        // Пытаемся определить, есть ли такой ключ в списке доступных. Если нет, то берем значение по умолчанию
+        const { key: newKey = this._settings.default } = this._settings.available.find(item => item.key === savedKey) || {};
+
+        // Записываем в настройки новый ключ
+        this._settings.active = newKey;
+
+        // Сохраняем в localstorage
+        this.saveToLocalStorage(newKey);
+    },
+    getFromLocalStorage() {
+        return storage.getItem(this.key);
+    },
+    saveToLocalStorage(val) {
+        return storage.setItem(this.key, val);
+    },
+    get() {
+        return { ...this._settings };
+    },
+};
+
+const languageSettings = {
+    key: 'web-shop-thingy_language-settings',
+
+    init(settingsObject) {
+        this._settings = { ...settingsObject };
+
+        const savedKey = this.getFromLocalStorage();
+        const { key: newKey = this._settings.default } = this._settings.available.find(item => item.key === savedKey) || {};
+
+        this._settings.active = newKey;
+        this.saveToLocalStorage(newKey);
+    },
+    getFromLocalStorage() {
+        return storage.getItem(this.key);
+    },
+    saveToLocalStorage(val) {
+        return storage.setItem(this.key, val);
+    },
+    get() {
+        return { ...this._settings };
+    },
+};

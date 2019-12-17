@@ -88,6 +88,11 @@
 	width: calc(576/512*1em);
 }
 
+.fa-cog {
+	width: calc(512/512*1em);
+}
+
+
 .product__info__main .product-addto-links a,
 .product .product__content .action .actions_inner .add_to_links li a {
 	font-size: 11px;
@@ -297,4 +302,134 @@
 .wn__fotorama__wrapper .fotorama,
 .wn__fotorama__wrapper a {
 	height: inherit;
+}
+
+.header__area .header__sidebar__right > li.setting__bar__icon > a {
+    background: none;
+    font-size: 10px;
+    display: flex;
+	align-items: center;
+	color: #4c4946;
+}
+
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .switcher-dropdown li {
+	text-transform: none;
+}
+
+
+.switcher-currency,
+.switcher-language {
+	margin-left: 15px;
+    margin-right: -6px;
+}
+
+.searchbar__content .content-inner .switcher-currency .label,
+.searchbar__content .content-inner .switcher-language .label {
+	border-bottom: 1px solid #ebebeb;
+    color: #363636;
+    cursor: pointer;
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 30px;
+    margin: 0 0 10px;
+    overflow: hidden;
+    position: static;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+
+
+.searchbar__content .content-inner .switcher-currency .switcher-options,
+.searchbar__content .content-inner .switcher-language .switcher-options {
+	cursor: pointer;
+    display: block;
+}
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .currency-trigger,
+.searchbar__content .content-inner .switcher-language .switcher-options .switcher-language-trigger .currency-trigger {
+	display: block;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.switcher-currency,
+.switcher-language {
+
+}
+
+
+.switcher-currency-trigger .switcher-dropdown,
+.switcher-language-trigger .switcher-dropdown {
+    background: #fff none repeat scroll 0 0;
+    left: auto;
+    right: 0;
+    text-align: center;
+    position: absolute;
+    top: 100%;
+    transition: -webkit-transform 0.8s ease 0s, transform 0.8s ease 0s, opacity 0.5s ease 0s, visibility 0.5s ease 0s;
+    z-index: 10;
+    padding-top: 20px;
+}
+
+.switcher-currency-trigger .switcher-dropdown.is-visible,
+.switcher-language-trigger .switcher-dropdown.is-visible {
+    display: block;
+    position: inherit;
+}
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .switcher-dropdown
+.searchbar__content .content-inner .switcher-language .switcher-options .switcher-language-trigger .switcher-dropdown {
+    border-radius: 0;
+    color: #797979;
+    display: block;
+    font-weight: normal;
+    height: inherit;
+    line-height: 20px;
+    padding: 5px 0;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .switcher-dropdown li,
+.searchbar__content .content-inner .switcher-language .switcher-options .switcher-language-trigger .switcher-dropdown li {
+    border-radius: 0;
+    color: #797979;
+    display: block;
+    line-height: 20px;
+    padding: 5px 0;
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .switcher-dropdown li,
+.searchbar__content .content-inner .switcher-language .switcher-options .switcher-language-trigger .switcher-dropdown li {
+    text-transform: none;
+}
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .switcher-dropdown,
+.searchbar__content .content-inner .switcher-language .switcher-options .switcher-language-trigger .switcher-dropdown {
+    border-radius: 0;
+    color: #797979;
+    display: block;
+    font-weight: normal;
+    height: inherit;
+    line-height: 20px;
+    padding: 5px 0;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.switcher-language + .switcher-currency,
+.switcher-currency + .switcher-language {
+    margin-top: 24px;
+}
+
+.searchbar__content .content-inner .switcher-currency .switcher-options .switcher-currency-trigger .switcher-dropdown li.active,
+.searchbar__content .content-inner .switcher-language .switcher-options .switcher-language-trigger .switcher-dropdown li.active {
+	display: none;
 }
