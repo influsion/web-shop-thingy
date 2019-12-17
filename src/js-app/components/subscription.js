@@ -12,10 +12,12 @@ const subscriptionComponent = () => {
                         </div>
                         <div class="newsletter__block text-center">
                             <p>Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive offers.</p>
-                            <form action="#">
+                            <form>
                                 <div class="newsletter__box">
+                                <img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
+                                <div class="js-warning-text hide">Valid email is required: ex@abc.xyz</div>
                                     <input type="email" placeholder="Enter your e-mail">
-                                    <button>Subscribe</button>
+                                    <button type="button">Subscribe</button>
                                 </div>
                             </form>
                         </div>

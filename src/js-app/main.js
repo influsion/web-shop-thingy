@@ -36,6 +36,12 @@ const bindEvents = function() {
 
     global.$searchResult.on('click', '.js-clear-search-field', () => global.$app.find('.close__wrap').trigger('click'));
 
+    //form submission
+    global.$app.on('click', '.newsletter__block button', e => formSubmission(e, $(e.currentTarget)));
+    global.$app.on('keydown', '.newsletter__block input', e => inputEmail(e, $(e.currentTarget)));
+    global.$app.on('mouseenter mouseleave', '.js-warning-icon', e => hoverMouse(e, $(e.currentTarget)));
+
+
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));
 
@@ -109,80 +115,10 @@ const bindEvents = function() {
     });
 
     // Read cached page name
-
 })();
 
-// const snowFlake = (data) => {
-//     const quantity = 19;
-
-//     const $wrap = $(`#wrapper`);
-
-//     const flakesPositionsParams = [
-//         [ 0, 80, 1500, 1200 ],
-//         [ 150, 130, 1500, 1200 ],
-//         [ 400, 230, 1500, 1200 ],
-//         [ 50, 330, 1500, 1200 ],
-//         [ 680, 430, 1500, 1200 ],
-//         [ 0, 530, 1500, 1200 ],
-//         [ 360, 630, 1500, 1200 ],
-//         [ 240, 730, 1500, 1200 ],
-//         [ 550, 830, 1500, 1200 ],
-//         [ 0, 980, 1500, 1200 ],
-//         [ 0, 80, 1500, 1200 ],
-//         [ 150, 180, 500, 1200 ],
-//         [ 400, 280, 500, 1200 ],
-//         [ 50, 380, 500, 1200 ],
-//         [ 680, 480, 500, 1200 ],
-//         [ 0, 580, 500, 1200 ],
-//         [ 360, 680, 500, 1200 ],
-//         [ 240, 780, 500, 1200 ],
-//         [ 550, 880, 500, 1200 ],
-//         [ 0, 980, 500, 1200 ],
-//     ];
-
-//     const elements = [];
-
-//     const fincSnowflake = ($elem, order, top, left, _x, _y) => {
-//         elements[order].setIntervalId = setInterval(function() {
-//             const intViewportWidth = window.innerWidth;
-//             const intViewportHeight = window.innerHeight;
-
-//             const y = randomInteger(0, intViewportWidth);
-//             const x = randomInteger(0, intViewportHeight);
-
-//             console.log('1111', x,y);
-
-//             // top += 0.2;
-
-//             // if (top >= x) {
-//             //     top = 0;
-//             // }
-
-//             // left += 0.08;
-
-//             // if (left > y) {
-//             //     left = 0;
-//             // }
-
-//             $elem.css({ 'top': x, 'left': y });
-//         }, 1000);
-//     }
-
-//     for (let i = 0; i < quantity + 1; i++) {
-//         const $element = $(`<div class="snow-flake flake${i}"><img src="${data.src}" alt="icon"></div>`);
-
-//         elements[i] = { $element };
-
-//         $wrap.prepend($element);
-//         fincSnowflake($element, i, ...flakesPositionsParams[i]);
-//     }
-
-//     function randomInteger(min, max) {
-//         let rand = min + Math.random() * (max + 1 - min);
-//         return Math.floor(rand);
-//     }
-// };
 
 // snowFlake({
 //     src: 'images/icons/snowflake.svg'
 // });
+
