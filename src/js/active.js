@@ -278,32 +278,32 @@
     cartToggler();
 
 /*============= Setting Toggler ==============*/
-    function settingToggler() {
-        var settingTrigger = $('.setting__active'),
-          settingContainer = $('.setting__block');
-        settingTrigger.on('click', function (e) {
-          e.preventDefault();
-          settingContainer.toggleClass('is-visible');
-        });
-        settingTrigger.on('click', function (e) {
-          e.preventDefault();
-          settingContainer.toggleClass('');
-        });
-    }
-    settingToggler();
+    // function settingToggler() {
+    //     var settingTrigger = $('.setting__active'),
+    //       settingContainer = $('.setting__block');
+    //     settingTrigger.on('click', function (e) {
+    //       e.preventDefault();
+    //       settingContainer.toggleClass('is-visible');
+    //     });
+    //     settingTrigger.on('click', function (e) {
+    //       e.preventDefault();
+    //       settingContainer.toggleClass('');
+    //     });
+    // }
+    // settingToggler();
 
 
 
 
 
 /*============= Setting Option ==============*/
-    function settingOption() {
-        var settingItem = $('.currency-trigger');
-        settingItem.on('click', function () {
-          $(this).siblings('.switcher-dropdown').toggleClass('is-visible');
-        });
-    }
-    settingOption();
+    // function settingOption() {
+    //     var settingItem = $('.currency-trigger');
+    //     settingItem.on('click', function () {
+    //       $(this).siblings('.switcher-dropdown').toggleClass('is-visible');
+    //     });
+    // }
+    // settingOption();
 
 /*============= Fancybox ==============*/
     $('.fancybox').fancybox({
