@@ -11,7 +11,7 @@ function renderContactPage(e, $target) {
 
     pagePromise.addPromise({
 		name: 'pageData',
-		body: fetchPageData({ page: 'contact', lang }),
+		body: getPageData({ page: 'contact', lang }),
 	});
 
     pagePromise.allPromises(res => {

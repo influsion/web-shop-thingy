@@ -101,7 +101,7 @@ const getFilterConditions = function(params) {
         .then(data => data.json());
 };
 
-const fetchPageData = function ({ page, lang }) {
+const getPageData = function ({ page, lang }) {
     return fetch(`${serverURL}/page/${page}/${lang}`)
         .then(data => data.json());
 };
