@@ -11,7 +11,7 @@ function renderFaqPage(e, $target) {
 
     pagePromise.addPromise({
 		name: 'pageData',
-		body: fetchPageData({ page: 'faq', lang }),
+		body: getPageData({ page: 'faq', lang }),
     });
 
     pagePromise.allPromises(res => {

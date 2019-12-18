@@ -11,18 +11,12 @@ const getHash = $elem => $elem.get(0).hash || $elem.get(0).dataset.hash;
 // Get value from data-product-id attr
 const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 
-// // get value from data-category or data-subcategory attr
-// const getCategoryOrSubcategoryFromDataSet = $elem => {
-//     const { category, subcategory } = $elem.get(0).dataset;
-//     return category || subcategory;
-// };
-
 // get value from data-category or data-subcategory attr
 const getCategoryFromDataSet = $elem => $elem.get(0).dataset.category;
 const getSubcategoryFromDataSet = $elem => $elem.get(0).dataset.subcategory;
 
 // Price template X.XX
-const priceTemplate = price => Math.round(price * 100) / 100;
+const priceTemplate = price => Math.round(price * 100) / 100; // (Math.round(price * 100) / 100).toFixed(2)
 
 // Alternative of typeof
 const toType = val => {
@@ -87,39 +81,6 @@ const PromiseList = function() {
     return Object.create([], propss);
 };
 
-const getProducts = function(params) {
-    return fetch(`${serverURL}/products?${qs.stringify(params)}`)
-        .then(data => data.json());
-};
-
-const getLocalization = function(params = "en") {
-    return fetch(`${serverURL}/localization/${params}`)
-        .then(data => data.json());
-};
-
-const getCategoriesStructure = function() {
-    return fetch(`${serverURL}/categoriesstructure`)
-        .then(data => data.json());
-};
-
-const getFilterConditions = function(params) {
-    return fetch(`${serverURL}/filterconditions/${params}`)
-        .then(data => data.json());
-};
-
-const fetchPageData = function ({ page, lang }) {
-    return fetch(`${serverURL}/page/${page}/${lang}`)
-        .then(data => data.json());
-};
-
-const postEmail = email => {
-    return fetch(`${serverURL}/subscribe`, {
-        method: 'post',
-        body: JSON.stringify({value: email}),
-        headers: new Headers({'Content-Type': 'application/json'})
-    })
-    .then(response => response.json());
-};
 
 const currentStoredProductID = {
     key: 'web-shop-thingy_currentProductID',
@@ -165,24 +126,6 @@ const tempStorage = {
     },
 };
 
-//! TODO: DELETE!!!
-// const storedFilterParameters = {
-//     key: 'web-shop-thingy_filterParameters',
-
-//     seveToSessionStorage(obj) {
-//         return tempStorage.setItem(this.key, obj);
-//     },
-
-//     getFromSessionStorage() {
-//         return tempStorage.getItem(this.key);
-//     },
-// }
-
-
-
-
-
-
 const savedPagesParameters = {
     key: 'web-shop-thingy_pagesParameters',
 
@@ -215,8 +158,6 @@ const renderProductsOnShoppage = (params = {}) => {
     // Origin
     pageParameters.origin && (filterParameters.origin = pageParameters.origin);
 
-    console.error(filterParameters);
-
     promises.addPromise({
         name: 'filteredDataOfProducts',
         body: getProducts(filterParameters),
@@ -224,7 +165,10 @@ const renderProductsOnShoppage = (params = {}) => {
 
     promises.addPromise({
         name: 'filterConditions',
-        body: getFilterConditions(pageParameters.menu.value),
+        body: getFilterConditions({
+            categoryOrSubcategory: pageParameters.menu.value,
+            price: pageParameters.price,
+        }),
     });
 
     promises.allPromises(res => {

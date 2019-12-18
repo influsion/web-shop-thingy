@@ -1,5 +1,4 @@
-"use strict";
-
+'use strict';
 
 function renderAboutPage(e, $target) {
     const pagePromise = PromiseList();
@@ -53,7 +52,7 @@ function renderAboutPage(e, $target) {
 
     pagePromise.addPromise({
 		name: 'pageData',
-		body: fetchPageData({ page: 'about', lang }),
+		body: getPageData({ page: 'about', lang }),
     });
 
     pagePromise.allPromises(res => {
