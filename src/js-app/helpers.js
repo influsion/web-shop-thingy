@@ -525,9 +525,7 @@ const currencySettings = {
         return name;
     },
     setActiveKey(key) {
-        // this._settings.active = key;
         this.saveToLocalStorage(key);
-
         reloadPage();
     },
     get() {
@@ -570,12 +568,14 @@ const languageSettings = {
         return name;
     },
     setActiveKey(key) {
-        // this._settings.active = key;
         this.saveToLocalStorage(key);
-
         reloadPage();
     },
     get() {
         return { ...this._settings };
     },
+    getLanguageKey() {
+        // return (this._settings || {}).active || lang || '';
+        return this.getFromLocalStorage();
+    }
 };

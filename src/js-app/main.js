@@ -24,8 +24,6 @@ const bindEvents = function() {
     global.$header.on('click', '.js-switcher-options', e => ((e, $target) => {
         const { currency = null, language = null } = $target.get(0).dataset;
 
-        console.log($target)
-
         if (currency) {
             const name = currencySettings.getName(currency);
 
@@ -104,8 +102,6 @@ const bindEvents = function() {
     bindEvents();
 
     basket.syncWithLocalStorage();
-
-    getAppSettings
 
     globalPromiseList.addPromise({
         name: 'appSettings',

@@ -10,15 +10,21 @@ const getAppSettings = function() {
 };
 
 const getProducts = function(params) {
-    return fetch(`${serverURL}/products?${qs.stringify(params)}`)
+    const lang = languageSettings.getLanguageKey();
+
+    return fetch(`${serverURL}/products/${lang}?${qs.stringify(params)}`)
         .then(data => data.json())
         .catch(error => {
             console.error('fetch, getProducts: ', error);
         });
 };
 
-const getLocalization = function(params = "en") {
-    return fetch(`${serverURL}/localization/${params}`)
+const getLocalization = function() {
+    const lang = languageSettings.getLanguageKey();
+
+    console.log(lang, languageSettings.getLanguageKey());
+
+    return fetch(`${serverURL}/localization/${lang}`)
         .then(data => data.json())
         .catch(error => {
             console.error('fetch, getLocalization: ', error);
@@ -26,7 +32,9 @@ const getLocalization = function(params = "en") {
 };
 
 const getCategoriesStructure = function() {
-    return fetch(`${serverURL}/categoriesstructure`)
+    const lang = languageSettings.getLanguageKey();
+
+    return fetch(`${serverURL}/categoriesstructure/${lang}`)
         .then(data => data.json())
         .catch(error => {
             console.error('fetch, getCategoriesStructure: ', error);
@@ -41,7 +49,9 @@ const getFilterConditions = function(params) {
         });
 };
 
-const getPageData = function ({ page, lang }) {
+const getPageData = function ({ page }) {
+    const lang = languageSettings.getLanguageKey();
+
     return fetch(`${serverURL}/page/${page}/${lang}`)
         .then(data => data.json())
         .catch(error => {

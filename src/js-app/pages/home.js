@@ -4,13 +4,13 @@ function renderHomePage(e, $target) {
     const pagePromise = PromiseList();
 
 	pagePromise.addPromise({
-		name: "popularProducts",
-		body: getProducts({popular: true}),
+		name: "newProducts",
+		body: getProducts({new: true}),
 	});
 
 	pagePromise.addPromise({
-		name: "newProducts",
-		body: getProducts({new: true}),
+		name: "popularProducts",
+		body: getProducts({popular: true}),
 	});
 
 	pagePromise.allPromises(res => {
