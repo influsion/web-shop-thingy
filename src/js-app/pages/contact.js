@@ -40,13 +40,32 @@ function renderContactPage(e, $target) {
 									<!-- <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. </p> -->
 									<form id="contact-form" action="#" method="post">
 										<div class="single-contact-form space-between">
+
+											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
+											<div class="js-warning-text hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<input type="text" name="firstname" placeholder="${pageData.form_first_name_placeholder}*">
+
+											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
+											<div class="js-warning-text hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<input type="text" name="lastname" placeholder="${pageData.form_last_name_placeholder}*">
+
 										</div>
 										<div class="single-contact-form space-between">
+											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
+											<div class="js-warning-text hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<input type="email" name="email" placeholder="${pageData.form_email_placeholder}*">
 										</div>
 										<div class="single-contact-form">
+											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
+											<div class="js-warning-text hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<input type="text" name="subject" placeholder="${pageData.form_subject_placeholder}*">
 										</div>
 										<div class="single-contact-form message">

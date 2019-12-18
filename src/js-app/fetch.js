@@ -30,9 +30,18 @@ const getPageData = function ({ page, lang }) {
 // Post
 const postEmail = email => {
     return fetch(`${serverURL}/subscribe`, {
-        method: 'post',
-        body: JSON.stringify({value: email}),
-        headers: new Headers({'Content-Type': 'application/json'})
-    })
-    .then(response => response.json());
+            method: 'post',
+            body: JSON.stringify({value: email}),
+            headers: new Headers({'Content-Type': 'application/json'}),
+        })
+        .then(response => response.json());
+};
+
+const postContactForm = (formData) => {
+    return fetch(`${serverURL}/contacform`, {
+            method: 'post',
+            body: JSON.stringify(formData),
+            headers: new Headers({'Content-Type': 'application/json'}),
+        })
+        .then(response => response.json());
 };
