@@ -40,17 +40,38 @@ function renderContactPage(e, $target) {
 									<!-- <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. </p> -->
 									<form id="contact-form" action="#" method="post">
 										<div class="single-contact-form space-between">
-											<input type="text" name="firstname" placeholder="${pageData.form_first_name_placeholder}*">
-											<input type="text" name="lastname" placeholder="${pageData.form_last_name_placeholder}*">
+
+											<div class="block-contact-form warning">
+												<div class="js-warning-text-form hide">
+													${ translate('subscription_input_fail') }
+												</div>
+												<input type="text" name="firstname" placeholder="${pageData.form_first_name_placeholder}*">
+											</div>
+
+											<div class="block-contact-form warning">
+												<div class="js-warning-text-form hide">
+													${ translate('subscription_input_fail') }
+												</div>
+												<input type="text" name="lastname" placeholder="${pageData.form_last_name_placeholder}*">
+											</div>
+
 										</div>
-										<div class="single-contact-form space-between">
+										<div class="single-contact-form space-between warning">
+											<div class="js-warning-text-form hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<input type="email" name="email" placeholder="${pageData.form_email_placeholder}*">
-											<input type="text" name="website" placeholder="${pageData.form_website_placeholder}*">
 										</div>
-										<div class="single-contact-form">
+										<div class="single-contact-form warning">
+											<div class="js-warning-text-form hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<input type="text" name="subject" placeholder="${pageData.form_subject_placeholder}*">
 										</div>
-										<div class="single-contact-form message">
+										<div class="single-contact-form message warning">
+											<div class="js-warning-text-form hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<textarea name="message" placeholder="${pageData.form_text_placeholder}"></textarea>
 										</div>
 										<div class="contact-btn">
