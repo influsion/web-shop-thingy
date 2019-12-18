@@ -1,5 +1,4 @@
-"use strict";
-
+'use strict';
 
 function renderAboutPage(e, $target) {
     const pagePromise = PromiseList();

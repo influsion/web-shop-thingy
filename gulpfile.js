@@ -137,6 +137,7 @@ gulp.task("scripts", () => {
             './src/js-app/pages/*.js',
             './src/js-app/templates/*.js',
 
+            './src/js-app/fetch.js',
             './src/js-app/helpers.js',
             './src/js-app/pageController.js',
             './src/js-app/qs.js',
