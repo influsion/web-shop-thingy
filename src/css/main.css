@@ -447,6 +447,6 @@
 }
 
 
-.switcher-language-trigger li,
-.switcher-language-trigger span {
+.product__info__main .box-tocart span {
+    text-transform: unset;
 }

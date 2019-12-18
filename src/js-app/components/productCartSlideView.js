@@ -3,6 +3,8 @@
 
 function productCartSlideViewComponent(data) {
     const { i18n, componentData } = data;
+    const convert = currencySettings.convert.bind(currencySettings);
+    const getCurrency = currencySettings.getCurrency.bind(currencySettings);
 
     const getLabel = () => {
         return (`
@@ -29,7 +31,7 @@ function productCartSlideViewComponent(data) {
                     <h4><a href="single-product.html">${componentData.name}</a></h4>
                     <ul class="prize d-flex">
                         <li></li>
-                        <li>${componentData.price}</li>
+                        <li>${ convert(componentData.price) } ${ getCurrency() }</li>
                         <!-- TODO:maybe add old price -->
                         <!-- <li class="old_prize">$35.00</li> -->
                     </ul>

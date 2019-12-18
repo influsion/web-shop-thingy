@@ -15,6 +15,9 @@ const quickViewHandler = (e, $target) => {
         console.log(currentProduct[0]);
 
         const quickTemplate = data => {
+            const convert = currencySettings.convert.bind(currencySettings);
+            const getCurrency = currencySettings.getCurrency.bind(currencySettings);
+
             const labelHTML = `${data.popular}`.toLowerCase() === 'true'
                 ? `<span class="badge badge-danger product-label">${translate('popular_label')}</span>`
                 : `${data.new}`.toLowerCase() === 'true'
@@ -38,7 +41,9 @@ const quickViewHandler = (e, $target) => {
                         </div>
 
                         <div class="s-price-box">
-                            <span class="new-price">Price: ${data.price}</span>
+                            <span class="new-price">
+                                ${ translate('price') }: ${ convert(data.price) } ${ getCurrency() }
+                            </span>
                         </div>
 
                         <div class="addtocart-btn">

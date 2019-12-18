@@ -21,7 +21,8 @@ const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 const getCategoryFromDataSet = $elem => $elem.get(0).dataset.category;
 const getSubcategoryFromDataSet = $elem => $elem.get(0).dataset.subcategory;
 
-
+// Price template X.XX
+const priceTemplate = price => Math.round(price * 100) / 100;
 
 // Alternative of typeof
 const toType = val => {
@@ -260,6 +261,15 @@ const renderProductsOnShoppage = (params = {}) => {
         const priceExtremeValues = $sliderRange.data('extremeValues').split(':').map(item => parseInt(item));
         const priceActiveValues = $sliderRange.data('activeValues').split(':').map(item => parseInt(item));
 
+        const convert = currencySettings.convert.bind(currencySettings);
+        const getCurrency = currencySettings.getCurrency.bind(currencySettings);
+
+        const rangeString = (lowerPrice, topPrice) => {
+            const section = price => `${ convert(price) } ${ getCurrency() }`;
+
+            return `${ section(lowerPrice) } - ${ section(topPrice) }`
+        };
+
         $sliderRange.slider({
             range: true,
             step: 1,
@@ -267,7 +277,7 @@ const renderProductsOnShoppage = (params = {}) => {
             max: priceExtremeValues[1],
             values: priceActiveValues,
             slide: function(event, ui) {
-                $amount.val('$' + ui.values[0] + ' - $' + ui.values[1]);
+                $amount.val(rangeString(ui.values[0], ui.values[1]));
 
                 const pagesParameters = savedPagesParameters.get();
                 pagesParameters.shopPage.price = ui.values;
@@ -302,7 +312,7 @@ const renderProductsOnShoppage = (params = {}) => {
         //! Set value $('#slider-range').slider( "values", 0, 0 );
         //! Set value $('#slider-range').slider( "option", "max", 50000 );
 
-        $amount.val(`$${ $sliderRange.slider('values', 0) } - $${ $sliderRange.slider('values', 1) }`);
+        $amount.val(rangeString($sliderRange.slider('values', 0), $sliderRange.slider('values', 1)));
     });
 };
 
@@ -454,22 +464,15 @@ const Basket = function() {
 };
 
 const currencySettings = {
-    // Паша, комменты потом удали или переведи
     key: 'web-shop-thingy_currency-settings',
 
     init(settingsObject) {
         this._settings = { ...settingsObject };
 
-        // Получаем c localstorage сохранение/ключ
         const savedKey = this.getFromLocalStorage();
-
-        // Пытаемся определить, есть ли такой ключ в списке доступных. Если нет, то берем значение по умолчанию
         const { key: newKey = this._settings.default } = this._settings.available.find(item => item.key === savedKey) || {};
 
-        // Записываем в настройки новый ключ
         this._settings.active = newKey;
-
-        // Сохраняем в localstorage
         this.saveToLocalStorage(newKey);
     },
     getFromLocalStorage() {
@@ -483,7 +486,7 @@ const currencySettings = {
         return name;
     },
     setActiveKey(key) {
-        this._settings.active = key;
+        // this._settings.active = key;
         this.saveToLocalStorage(key);
 
         reloadPage();
@@ -495,7 +498,7 @@ const currencySettings = {
         const { active, available } = this._settings;
         const { rate } = available.find(item => item.key === active);
 
-        return +rate * +price;
+        return priceTemplate(+rate * +price);
     },
     getCurrency() {
         const { active, available } = this._settings;
@@ -528,7 +531,7 @@ const languageSettings = {
         return name;
     },
     setActiveKey(key) {
-        this._settings.active = key;
+        // this._settings.active = key;
         this.saveToLocalStorage(key);
 
         reloadPage();

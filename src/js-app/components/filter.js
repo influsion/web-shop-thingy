@@ -46,7 +46,8 @@ const filterComponent = (data) => {
                             <div class="slider__range--output">
                                 <div class="price__output--wrap">
                                     <div class="price--output">
-                                        <span>Price: </span><input type="text" id="amount" readonly="">
+                                        <span>${ translate('price') }: </span>
+                                        <input type="text" id="amount" readonly="">
                                     </div>
                                 </div>
                             </div>
