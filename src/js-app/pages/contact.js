@@ -45,7 +45,6 @@ function renderContactPage(e, $target) {
 										</div>
 										<div class="single-contact-form space-between">
 											<input type="email" name="email" placeholder="${pageData.form_email_placeholder}*">
-											<input type="text" name="website" placeholder="${pageData.form_website_placeholder}*">
 										</div>
 										<div class="single-contact-form">
 											<input type="text" name="subject" placeholder="${pageData.form_subject_placeholder}*">
