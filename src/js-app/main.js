@@ -105,50 +105,23 @@ const bindEvents = function() {
 
     basket.syncWithLocalStorage();
 
+    getAppSettings
+
+    globalPromiseList.addPromise({
+        name: 'appSettings',
+        body: getAppSettings(),
+    });
+
     globalPromiseList.addPromise({
         name: 'localization',
         body: getLocalization(),
     });
 
     globalPromiseList.allPromises(res => {
+        const { appSettings } = res;
         localization = res.localization;
 
-        const appSettings = {
-            "language": {
-                "default": "en",
-                "available": [
-                    {
-                        "key": "en",
-                        "name": "English",
-                    },
-                    {
-                        "key": "ru",
-                        "name": "Русский",
-                    }
-                ]
-            },
-            "currency": {
-                "default": "uah",
-                "available": [
-                    {
-                        "key": "uah",
-                        "name": "uah",
-                        "rate": "1",
-                    },
-                    {
-                        "key": "usd",
-                        "name": "usd",
-                        "rate": 1/23.46913200,
-                    },
-                    {
-                        "key": "eur",
-                        "name": "eur",
-                        "rate": 1/26.19624500,
-                    }
-                ]
-            }
-        };
-
+        // App settings
         languageSettings.init(appSettings.language);
         currencySettings.init(appSettings.currency);
 
@@ -172,7 +145,6 @@ const bindEvents = function() {
               e.preventDefault();
               settingContainer.toggleClass('');
             });
-
 
             const settingItem = global.$header.find('.currency-trigger');
 

@@ -1,6 +1,11 @@
 'use strict';
 
 // Get
+const getAppSettings = function() {
+    return fetch(`${serverURL}/settings`)
+        .then(data => data.json());
+};
+
 const getProducts = function(params) {
     return fetch(`${serverURL}/products?${qs.stringify(params)}`)
         .then(data => data.json());
