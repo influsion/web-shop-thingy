@@ -9,7 +9,21 @@ function renderProductPage(e, $target) {
         imageClass: 'bg-breadcrumbs--product',
     });
 
-    const productId = getProductIdFromDataSet($target);
+    const productId = (() => {
+        const valueFromTarget = getProductIdFromDataSet($target);
+        const valueFromSessionStorage = (savedPagesParameters.get().productPage || {}).productId;
+
+        return valueFromTarget || valueFromSessionStorage || null ;
+    })();
+
+    const pagesParameters = savedPagesParameters.get();
+
+    if (!pagesParameters.productPage) {
+        pagesParameters.productPage = {};
+    }
+
+    pagesParameters.productPage.productId = productId;
+    savedPagesParameters.set(pagesParameters);
 
     pagePromise.addPromise({
 		name: 'filteredDataOfProducts',

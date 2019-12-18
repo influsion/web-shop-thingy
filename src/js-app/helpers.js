@@ -130,7 +130,7 @@ const savedPagesParameters = {
     key: 'web-shop-thingy_pagesParameters',
 
     get() {
-        return tempStorage.getItem(this.key);
+        return tempStorage.getItem(this.key) || {};
     },
 
     set(obj) {

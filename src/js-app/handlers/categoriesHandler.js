@@ -11,7 +11,7 @@ const categoriesHandler = e => {
         subcategory: getSubcategoryFromDataSet($target),
     };
 
-    const pagesParameters = savedPagesParameters.get() || {};
+    const pagesParameters = savedPagesParameters.get();
 
     const type = categoryAndSubcategory.category
         ? 'category'
