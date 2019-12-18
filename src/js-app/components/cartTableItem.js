@@ -1,6 +1,9 @@
 'use strict';
 
-const cartTableItemComponent = data => {
+const cartTableItemComponent = componentData => {
+    const convert = currencySettings.convert.bind(currencySettings);
+    const getCurrency = currencySettings.getCurrency.bind(currencySettings);
+
     if (!componentData.quantity) componentData.quantity = 1;
 
 
@@ -19,7 +22,7 @@ const cartTableItemComponent = data => {
     //     `)
     // };
 
-    const subTotalPrice = Math.round((+componentData.price * +componentData.quantity) * 100) / 100;
+    const subTotalPrice = +componentData.price * +componentData.quantity; // Math.round((+componentData.price * +componentData.quantity) * 100) / 100;
 
     return (`
         <tr class="js-cart-item" data-product-id="${componentData.id}">
@@ -32,13 +35,15 @@ const cartTableItemComponent = data => {
                 <a class="js-switch-page" href="#product" data-product-id="${componentData.id}">${componentData.name}</a>
             </td>
             <td class="product-price">
-                <span class="amount">${componentData.price}</span>
+                <span class="amount">
+                    ${ convert(componentData.price) } ${ getCurrency() }
+                </span>
             </td>
             <td class="product-quantity">
                 <input class="js-input-quantity" type="number" value="${componentData.quantity}">
             </td>
             <td class="product-subtotal">
-                ${subTotalPrice}
+                ${ convert(subTotalPrice) } ${ getCurrency() }
             </td>
             <td class="product-remove">
                 <a href="#" class="js-delete-cart-item">X</a>

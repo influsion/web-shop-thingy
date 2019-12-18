@@ -33,5 +33,5 @@ const categoriesHandler = e => {
     console.log(pagesParameters);
 
     pageController.setActivePage(e, $target);
-    renderProductsOnShoppage();
+    renderProductsOnShopPage();
 };

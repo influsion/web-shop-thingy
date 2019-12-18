@@ -88,7 +88,7 @@ function renderShopPage(e, $target) {
         // Код, который нужно запустить после изменения DOM
 
         // render products
-        pageParametersAreExisting && renderProductsOnShoppage();
+        pageParametersAreExisting && renderProductsOnShopPage();
 
         // /*====== Price Slider Active ======*/
         // const $sliderRange = $('#slider-range');

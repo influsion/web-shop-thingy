@@ -450,3 +450,12 @@
 .product__info__main .box-tocart span {
     text-transform: unset;
 }
+
+.is-sticky.header__area .header__sidebar__right > li.setting__bar__icon > a {
+	background: none;
+	color: #ffffff;
+}
+
+.hide {
+	display: none !important;
+}

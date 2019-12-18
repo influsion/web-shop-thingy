@@ -1,7 +1,6 @@
 "use strict";
 
 
-
 function renderCartPage(e, $target) {
     const pagePromises = PromiseList();
 
@@ -12,18 +11,18 @@ function renderCartPage(e, $target) {
 
     basket.syncWithLocalStorage();
 
-    pagePromises.addPromise({
+    basket.getQuantityOfProducts() && pagePromises.addPromise({
         name: 'productsFromBasket',
         body: getProducts({ id: basket.getIdsOfProducts() }),
     });
 
     pagePromises.allPromises(res => {
-        const { productsFromBasket } = res;
+        const { productsFromBasket = [] } = res;
 
-        console.log(productsFromBasket);
+        basket.mergeData(productsFromBasket);
+        const productsData = basket.review();
 
-
-        function pageTemplate(data) {
+        function pageTemplate() {
             return (`
                 ${ breadcrumbsHTML }
 
@@ -62,8 +61,8 @@ function renderCartPage(e, $target) {
                             <div class="col-lg-6 offset-lg-6">
                                 <div class="cartbox__total__area">
                                     <div class="cart__total__amount">
-                                        <span>Grand Total</span>
-                                        <span class="js-grand-total-price">{data.getTotalPrice()} ₴UAH</span>
+                                        <span>${translate('cart_page_grand_total')}:</span>
+                                        <span class="js-grand-total-price"></span>
                                     </div>
                                 </div>
                             </div>
@@ -74,22 +73,20 @@ function renderCartPage(e, $target) {
             `);
         }
 
+        const pageHTML = pageTemplate();
 
-        // const itemsHTML = basket.map(productObj => {
-        //     if (basket.length) {
-        //         return cartItem(productObj);
-        //     }
-        // });
-
-        const pageHTML = pageTemplate({});
-
-        // console.log('renderCartPage');
+        console.log('renderCartPage');
         global.$main.first().html(pageHTML);
-        afterChangingTheDOM();
+
+        afterChangingTheDOM({
+            productsData,
+        });
     });
 
 
-    function afterChangingTheDOM() {
-        // Код, который нужно запустить после изменения DOM
+    function afterChangingTheDOM(params) {
+        const { productsData } = params;
+
+        renderProductsOnCartPage({ productsData });
     }
 }

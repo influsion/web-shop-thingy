@@ -140,7 +140,7 @@ const savedPagesParameters = {
 
 
 
-const renderProductsOnShoppage = (params = {}) => {
+const renderProductsOnShopPage = (params = {}) => {
     const promises = PromiseList();
 
     const { shopPage: pageParameters } = savedPagesParameters.get();
@@ -229,7 +229,7 @@ const renderProductsOnShoppage = (params = {}) => {
                 this._reload = function() {
                     savedPagesParameters.set(pagesParameters);
 
-                    renderProductsOnShoppage();
+                    renderProductsOnShopPage();
                 };
             }
         });
@@ -260,6 +260,37 @@ const renderProductsOnShoppage = (params = {}) => {
     });
 };
 
+const renderProductsOnCartPage = (params = {}) => {
+    const { productsData } = params;
+
+    const cartTableItemHTML = productsData.reduce((accumulator, item, i) => {
+        return accumulator + cartTableItemComponent(item);
+    }, '');
+
+    global.$main.find('.js-cart-table-list').html(cartTableItemHTML);
+    calcGrandTotalPriceOnCartPage();
+    showOrHideCheckOutButton();
+};
+
+const showOrHideCheckOutButton = () => {
+    const grandTotalPrice = basket.getQuantityOfProducts();
+    const checkoutButtonOnCartPage = global.$main.find('.cart__btn__list');
+
+    if (grandTotalPrice) {
+        checkoutButtonOnCartPage.removeClass('hide');
+    } else {
+        checkoutButtonOnCartPage.addClass('hide');
+    }
+};
+
+const calcGrandTotalPriceOnCartPage = () => {
+    const convert = currencySettings.convert.bind(currencySettings);
+    const getCurrency = currencySettings.getCurrency.bind(currencySettings);
+    const grandTotalPrice = basket.getGrandTotalPrice();
+
+    global.$main.find('.js-grand-total-price').text(`${ convert(grandTotalPrice) } ${ getCurrency() }`);
+}
+
 const translate = (key) => {
     const hasi18n = !!localization && !!localization.i18n;
     return hasi18n && !!localization.i18n[key] ? localization.i18n[key] : '';
@@ -270,11 +301,20 @@ const Basket = function() {
 
     const key = 'web-shop-thingy_basket';
     const $quantityIndicator = $('.shopcart .product_qun');
+    const $checkoutButton = $('.checkout__btn.js-switch-page');
+
 
     const saveToLocalStorage = arr => storage.setItem(key, arr);
     const getFromLocalStorage = () => storage.getItem(key);
 
     const updateQuantityIndicator = quantityOfProducts => $quantityIndicator.text(quantityOfProducts);
+    const showOrHideCheckOutButton = quantityOfProducts => {
+        if (quantityOfProducts) {
+            $checkoutButton.removeClass('hide');
+        } else {
+            $checkoutButton.addClass('hide');
+        }
+    };
 
     const excludeDuplicates = (arrayOfProducts = []) => {
         const unicIds = [];
@@ -299,6 +339,24 @@ const Basket = function() {
         return newArrayOfProducts;
     };
 
+    const findIndex = (targetObject, targetId) => {
+        const result = {
+            index: -1,
+            foundIndex: -1,
+        };
+
+        for (const { id } of targetObject) {
+            result.index++;
+
+            if (+id === +targetId) {
+                result.foundIndex = result.index;
+                break;
+            }
+        }
+
+        return result.foundIndex;
+    };
+
     const proto = {
         syncWithLocalStorage: {
             writable: false,
@@ -314,6 +372,7 @@ const Basket = function() {
 
                 saveToLocalStorage(this);
                 updateQuantityIndicator(this.getQuantityOfProducts());
+                showOrHideCheckOutButton(this.getQuantityOfProducts());
             },
         },
         has: {
@@ -352,6 +411,39 @@ const Basket = function() {
 
                 updateQuantityIndicator(this.getQuantityOfProducts());
                 saveToLocalStorage(this);
+                showOrHideCheckOutButton(this.getQuantityOfProducts());
+
+                return this;
+            },
+        },
+        update: {
+            writable: false,
+            configurable: false,
+            value: function(objectOfUpdating) {
+                const { id, quantity } = objectOfUpdating;
+                const index = findIndex(this, id);
+
+                this[index].quantity = quantity;
+
+                updateQuantityIndicator(this.getQuantityOfProducts());
+                saveToLocalStorage(this);
+                showOrHideCheckOutButton(this.getQuantityOfProducts());
+
+                return this;
+            },
+        },
+        mergeData: {
+            writable: false,
+            configurable: false,
+            value: function(arrayOfProductsData) {
+                arrayOfProductsData.forEach(item => {
+                    const productIndex = findIndex(this, item.id);
+
+                    this[productIndex] = {
+                        ...this[productIndex],
+                        ...item,
+                    }
+                });
 
                 return this;
             },
@@ -366,8 +458,8 @@ const Basket = function() {
         delete: {
             writable: false,
             configurable: false,
-            value: function(productId) {
-                const foundIndex = this.findIndex(item => parseInt(item.id) === parseInt(productId));
+            value: function(id) {
+                const foundIndex = findIndex(this, id);
 
                 if (foundIndex > -1) {
                    this.splice(foundIndex, 1);
@@ -375,6 +467,7 @@ const Basket = function() {
 
                 updateQuantityIndicator(this.getQuantityOfProducts());
                 saveToLocalStorage(this);
+                showOrHideCheckOutButton(this.getQuantityOfProducts());
 
                 return this;
             },
@@ -386,7 +479,7 @@ const Basket = function() {
                 return this.reduce((accumulator, { quantity }) => accumulator + parseInt(quantity), 0)
             },
         },
-        getTotalPrice: {
+        getGrandTotalPrice: {
             writable: false,
             configurable: false,
             value: function() {
@@ -406,6 +499,8 @@ const Basket = function() {
 
     return Object.create(_this, proto);
 };
+
+
 
 const currencySettings = {
     key: 'web-shop-thingy_currency-settings',

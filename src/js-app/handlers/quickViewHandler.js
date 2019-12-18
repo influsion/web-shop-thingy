@@ -74,8 +74,3 @@ const quickViewHandler = (e, $target) => {
         global.$app.find('#quickview-wrapper .modal-body').html(quickViewHTML);
     });
 };
-
-// const removeQuickView = (e, $target) => {
-//     const modalViewProduct = global.$main.find('.modal-product');
-//     modalViewProduct.remove();
-// };

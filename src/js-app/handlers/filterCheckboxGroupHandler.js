@@ -14,5 +14,5 @@ const filterCheckboxGroupHandler = e => {
 
     console.log(pagesParameters, e);
 
-    renderProductsOnShoppage();
+    renderProductsOnShopPage();
 };
