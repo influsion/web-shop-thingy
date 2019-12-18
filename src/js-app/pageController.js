@@ -34,7 +34,7 @@ const pageController = {
             ? getHash($target)
             : tempStorage.getItem('web-shop-thingy_anchor');
 
-        const isCorrectAnchor = $target && $target.length && this.pagesController.hasOwnProperty(anchor);
+        const isCorrectAnchor = this.pagesController.hasOwnProperty(anchor); // $target && $target.length && this.pagesController.hasOwnProperty(anchor);
 
         if (!isCorrectAnchor) {
             console.error('Hash is absent');
@@ -49,10 +49,17 @@ const pageController = {
         } else if (!isReRender) {
             console.info('Hash available', anchor);
 
+            const $menuItem = this.$links.filter(`[href="${anchor}"]`).eq(0);
+            const fromMenu = $menuItem.length > 0;
+            const $createdTarget = fromMenu ? $menuItem : $(`<a href="${anchor}"></a>`)
+
+            // console.log('////////////////////////////////////////////////////////////////');
+            // console.log($createdTarget);
+
             tempStorage.setItem('web-shop-thingy_anchor', anchor);
-            this.pagesController[anchor](e, $target);
+            this.pagesController[anchor](e, $target || $createdTarget);
             this.$links.removeClass('active');
-            $target.addClass('active');
+            ($target || $createdTarget).addClass('active');
         }
     }
 };
