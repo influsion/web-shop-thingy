@@ -1,4 +1,7 @@
 const productCartGridViewComponents = data => {
+    const convert = currencySettings.convert.bind(currencySettings);
+    const getCurrency = currencySettings.getCurrency.bind(currencySettings);
+
     const isTrue = val => `${val}`.toLowerCase() === 'true';
 
     const labelComponent = data => {
@@ -7,7 +10,7 @@ const productCartGridViewComponents = data => {
                 <span class="hot-label">${data.val}</span>
             </div>
         `);
-    }
+    };
 
     const getLabel = () => {
         const isPopular = isTrue(data.popular);
@@ -35,7 +38,7 @@ const productCartGridViewComponents = data => {
                 <h4><a href="single-product.html">${data.name}</a></h4>
                 <ul class="prize d-flex">
                     <li></li>
-                    <li>${data.price}</li>
+                    <li>${ convert(data.price) } ${ getCurrency() }</li>
                     <!-- <li class="old_prize">$35.00</li> -->
                 </ul>
                 <div class="action">
@@ -62,15 +65,6 @@ const productCartGridViewComponents = data => {
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="product__hover--content">
-                    <ul class="rating d-flex">
-                        <li class="on"><i class="fa fa-star-o"></i></li>
-                        <li class="on"><i class="fa fa-star-o"></i></li>
-                        <li class="on"><i class="fa fa-star-o"></i></li>
-                        <li><i class="fa fa-star-o"></i></li>
-                        <li><i class="fa fa-star-o"></i></li>
-                    </ul>
-                </div> -->
             </div>
         </div>
     `);

@@ -32,6 +32,9 @@ function renderProductPage(e, $target) {
         currentStoredProductID.seveToSessionStorage(currentProduct.id);
 
         const pageTemplate = data => {
+            const convert = currencySettings.convert.bind(currencySettings);
+            const getCurrency = currencySettings.getCurrency.bind(currencySettings);
+
             const labelHTML = `${data.popular}`.toLowerCase() === 'true'
                 ? `<span class="badge badge-danger product-label">${translate('popular_label')}</span>`
                 : `${data.new}`.toLowerCase() === 'true'
@@ -86,15 +89,11 @@ function renderProductPage(e, $target) {
                                                     <p>${data.description}</p>
                                                 </div>
 
-                                                <!--
-                                                <div class="price-box">
-                                                    <span>Price: ${data.price}</span>
-                                                </div>
-                                                -->
-
                                                 <div class="box-tocart d-flex">
                                                     <div class="price-box">
-                                                        <span>${ translate('price') }: ${data.price}</span>
+                                                        <span>
+                                                            ${ translate('price') }: ${ convert(data.price) } ${ getCurrency() }
+                                                        </span>
                                                     </div>
 
                                                     <div class="addtocart__actions">
