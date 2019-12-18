@@ -20,6 +20,36 @@ const findElements = function() {
 };
 
 const bindEvents = function() {
+    // Settings
+    global.$header.on('click', '.js-switcher-options', e => ((e, $target) => {
+        const { currency = null, language = null } = $target.get(0).dataset;
+
+        console.log($target)
+
+        if (currency) {
+            const name = currencySettings.getName(currency);
+
+            name && switchItem({ name });
+            name && currencySettings.setActiveKey(currency);
+        }
+
+        if (language) {
+            const name = languageSettings.getName(language);
+
+            name && switchItem({ name });
+            name && languageSettings.setActiveKey(language);
+        }
+
+        function switchItem(params) {
+            const $parent = $target.parent();
+            $target.siblings('.active').removeClass('active');
+            $target.addClass('active');
+
+            $parent.removeClass('is-visible');
+            $parent.siblings('[class*="-trigger"]').text(params.name);
+        }
+    })(e, $(e.currentTarget)));
+
     // Serach
     global.$app.on('click', '.search__active', e => {
         e.preventDefault();

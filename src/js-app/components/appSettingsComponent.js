@@ -4,13 +4,13 @@ const appSettingsComponent = data => {
     const currencyListHTML = data.currency.available.map(item => {
         const active = data.currency.active === item.key ? 'active' : '' ;
 
-        return `<li data-currency="${item.key}" class="${active}">${item.name.toUpperCase()}</li>`;
+        return `<li data-currency="${item.key}" class="js-switcher-options ${active}">${item.name}</li>`;
     }).join('');
 
     const langListHTML = data.language.available.map(item => {
         const active = data.language.active === item.key ? 'active' : '' ;
 
-        return `<li data-lang="${item.key}" class="${active}">${item.name.toUpperCase()}</li>`;
+        return `<li data-language="${item.key}" class="js-switcher-options ${active}">${item.name}</li>`;
     }).join('');
 
     const { name: defaultCurrencyName } = data.currency.available.find(item => item.key === data.currency.active);
@@ -29,7 +29,7 @@ const appSettingsComponent = data => {
                     </strong>
                     <div class="switcher-options">
                         <div class="switcher-currency-trigger">
-                            <span class="currency-trigger">${ defaultCurrencyName.toUpperCase() }</span>
+                            <span class="currency-trigger">${ defaultCurrencyName }</span>
                             <ul class="switcher-dropdown">
                                 ${currencyListHTML}
                             </ul>
@@ -42,7 +42,7 @@ const appSettingsComponent = data => {
                     </strong>
                     <div class="switcher-options">
                         <div class="switcher-language-trigger">
-                            <span class="currency-trigger">${ defaultLanguageName.toUpperCase() }</span>
+                            <span class="currency-trigger">${ defaultLanguageName }</span>
                             <ul class="switcher-dropdown">
                                 ${langListHTML}
                             </ul>
