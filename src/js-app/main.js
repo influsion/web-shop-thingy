@@ -73,7 +73,8 @@ const bindEvents = function() {
 
     //contact form submission
     global.$app.on('click', '.contact-btn button', e => contactFormSubmission(e, $(e.currentTarget)));
-
+    global.$app.on('keydown', '#contact-form input, textarea', e => keyPressContactForm(e, $(e.currentTarget)));
+    global.$app.on('focus blur', '#contact-form input, textarea', e => focusInput(e, $(e.currentTarget)));
 
     // Switch page
     global.$app.on('click', '.js-switch-page', e => pageController.setActivePage(e, $(e.currentTarget)));

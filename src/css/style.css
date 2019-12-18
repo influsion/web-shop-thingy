@@ -7141,7 +7141,7 @@ Contact Styles
     margin-right: -10px;
 }
 
-.contact-form-wrap .single-contact-form.space-between input {
+.contact-form-wrap .single-contact-form.space-between input[type="email"] {
     margin: 0 10px;
 }
 
@@ -8915,4 +8915,32 @@ Footer Styles
     position: absolute;
     top: -30px;
     left: 30px;
+}
+
+.warning {
+    position: relative;
+}
+
+.block-contact-form {
+    margin: 0;
+    padding: 0;
+    width: 46%;
+}
+
+.js-warning-text-form {
+    border: 1px solid red;
+    border-radius: 10px;
+    color: red;
+    background: lightgray;
+    opacity: 0.8;
+    padding: 5px;
+    pointer-events: none;
+
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.message .js-warning-text-form{
+    right: 0;
 }

@@ -9,8 +9,7 @@ const contactFormSubmission = (e, $target) => {
     const $inputEmail = $box.find('input[type="email"]');
     const $inputSubject = $box.find('input[name="subject"]');
     const $textareaSubject = $box.find('textarea[name="message"]');
-    const $warningIcon = $box.find('.js-warning-icon');
-
+    const $warningIcon = $box.find('.js-warning-text-form');
 
     const getValue = $elem => $elem.val().trim();
 
@@ -27,41 +26,41 @@ const contactFormSubmission = (e, $target) => {
         email: new RegExp(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/, 'i').test(emailString),
     };
 
-    if (isCorrectValue.email && isCorrectValue.firstName && isCorrectValue.lastName && isCorrectValue.subject) {
+    if (isCorrectValue.email && isCorrectValue.firstName && isCorrectValue.lastName && isCorrectValue.subject && textareaString !== '') {
         $warningIcon.addClass('hide');
         postContactForm({firstNameString, lastNameString, emailString, subjectString, textareaString});
-    } else {
-        $firstName.val('');
-        $lastName.val('');
-        $inputEmail.val('');
-        $inputSubject.val('');
     };
 
-    if(isCorrectValue.email || isCorrectValue.firstName || isCorrectValue.lastName || isCorrectValue.subject) {
-        $warningIcon.removeClass('hide');
-    }
-
-   
-
-
-    // if(isCorrect) {
-    //     console.log(isCorrect, value);
-    //     $warningIcon.addClass('hide');
-
-    //     postEmail(value);
-    // } else {
-    //     $inputEmail.val('');
-    //     $warningIcon.removeClass('hide');
-    // };
+    if(!isCorrectValue.email) {
+        $firstName.siblings('.js-warning-text-form').removeClass('hide');
+        $inputEmail.val('');
+    };
+    if(!isCorrectValue.firstName) {
+        $lastName.siblings('.js-warning-text-form').removeClass('hide');
+        $firstName.val('');
+    };
+    if(!isCorrectValue.lastName) {
+        $inputEmail.siblings('.js-warning-text-form').removeClass('hide');
+        $lastName.val('');
+    };
+    if(!isCorrectValue.subject) {
+        $inputSubject.siblings('.js-warning-text-form').removeClass('hide');
+        $inputSubject.val('');
+    };
+    if(textareaString === '') {
+        $textareaSubject.siblings('.js-warning-text-form').removeClass('hide');
+    };
 };
 
-// const inputName = (e, $target) => {
-//     if (e.keyCode === 13) {
-//         e.preventDefault();
-//         formSubmission();
+const keyPressContactForm = (e, $target) => {
+    if (e.keyCode === 13) {
+        contactFormSubmission();
+    }
+};
 
-//         return;
-//     }
-// };
+const focusInput = (e, $target) => {
+    const $warningIcon = global.$main.find('.js-warning-text-form');
+    $warningIcon.addClass('hide');
+}
 
 

@@ -41,34 +41,37 @@ function renderContactPage(e, $target) {
 									<form id="contact-form" action="#" method="post">
 										<div class="single-contact-form space-between">
 
-											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
-											<div class="js-warning-text hide">
-												${ translate('subscription_input_fail') }
+											<div class="block-contact-form warning">
+												<div class="js-warning-text-form hide">
+													${ translate('subscription_input_fail') }
+												</div>
+												<input type="text" name="firstname" placeholder="${pageData.form_first_name_placeholder}*">
 											</div>
-											<input type="text" name="firstname" placeholder="${pageData.form_first_name_placeholder}*">
 
-											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
-											<div class="js-warning-text hide">
-												${ translate('subscription_input_fail') }
+											<div class="block-contact-form warning">
+												<div class="js-warning-text-form hide">
+													${ translate('subscription_input_fail') }
+												</div>
+												<input type="text" name="lastname" placeholder="${pageData.form_last_name_placeholder}*">
 											</div>
-											<input type="text" name="lastname" placeholder="${pageData.form_last_name_placeholder}*">
 
 										</div>
-										<div class="single-contact-form space-between">
-											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
-											<div class="js-warning-text hide">
+										<div class="single-contact-form space-between warning">
+											<div class="js-warning-text-form hide">
 												${ translate('subscription_input_fail') }
 											</div>
 											<input type="email" name="email" placeholder="${pageData.form_email_placeholder}*">
 										</div>
-										<div class="single-contact-form">
-											<img class="js-warning-icon hide" src="images/icons/warning_input.svg" alt="warning">
-											<div class="js-warning-text hide">
+										<div class="single-contact-form warning">
+											<div class="js-warning-text-form hide">
 												${ translate('subscription_input_fail') }
 											</div>
 											<input type="text" name="subject" placeholder="${pageData.form_subject_placeholder}*">
 										</div>
-										<div class="single-contact-form message">
+										<div class="single-contact-form message warning">
+											<div class="js-warning-text-form hide">
+												${ translate('subscription_input_fail') }
+											</div>
 											<textarea name="message" placeholder="${pageData.form_text_placeholder}"></textarea>
 										</div>
 										<div class="contact-btn">
