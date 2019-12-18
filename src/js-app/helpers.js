@@ -11,18 +11,12 @@ const getHash = $elem => $elem.get(0).hash || $elem.get(0).dataset.hash;
 // Get value from data-product-id attr
 const getProductIdFromDataSet = $elem => $elem.get(0).dataset.productId;
 
-// // get value from data-category or data-subcategory attr
-// const getCategoryOrSubcategoryFromDataSet = $elem => {
-//     const { category, subcategory } = $elem.get(0).dataset;
-//     return category || subcategory;
-// };
-
 // get value from data-category or data-subcategory attr
 const getCategoryFromDataSet = $elem => $elem.get(0).dataset.category;
 const getSubcategoryFromDataSet = $elem => $elem.get(0).dataset.subcategory;
 
 // Price template X.XX
-const priceTemplate = price => Math.round(price * 100) / 100;
+const priceTemplate = price => Math.round(price * 100) / 100; // (Math.round(price * 100) / 100).toFixed(2)
 
 // Alternative of typeof
 const toType = val => {
@@ -164,24 +158,6 @@ const tempStorage = {
         return sessionStorage.setItem(key, dataJSON);
     },
 };
-
-//! TODO: DELETE!!!
-// const storedFilterParameters = {
-//     key: 'web-shop-thingy_filterParameters',
-
-//     seveToSessionStorage(obj) {
-//         return tempStorage.setItem(this.key, obj);
-//     },
-
-//     getFromSessionStorage() {
-//         return tempStorage.getItem(this.key);
-//     },
-// }
-
-
-
-
-
 
 const savedPagesParameters = {
     key: 'web-shop-thingy_pagesParameters',
