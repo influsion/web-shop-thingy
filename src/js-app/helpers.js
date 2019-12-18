@@ -97,7 +97,7 @@ const getCategoriesStructure = function() {
 };
 
 const getFilterConditions = function(params) {
-    return fetch(`${serverURL}/filterconditions/${params}`)
+    return fetch(`${serverURL}/filterconditions?${qs.stringify(params)}`)
         .then(data => data.json());
 };
 
@@ -191,8 +191,6 @@ const renderProductsOnShoppage = (params = {}) => {
     // Origin
     pageParameters.origin && (filterParameters.origin = pageParameters.origin);
 
-    console.error(filterParameters);
-
     promises.addPromise({
         name: 'filteredDataOfProducts',
         body: getProducts(filterParameters),
@@ -200,7 +198,10 @@ const renderProductsOnShoppage = (params = {}) => {
 
     promises.addPromise({
         name: 'filterConditions',
-        body: getFilterConditions(pageParameters.menu.value),
+        body: getFilterConditions({
+            categoryOrSubcategory: pageParameters.menu.value,
+            price: pageParameters.price,
+        }),
     });
 
     promises.allPromises(res => {
