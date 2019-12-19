@@ -3,8 +3,8 @@
 const searchHandler = e => {
     const { target } = e;
 
-    clearTimeout(target._setTimeoutId)
-    target._setTimeoutId = setTimeout(() => processInputData(), 1000 / 3 * 2)
+    clearTimeout(target._setTimeoutId);
+    target._setTimeoutId = setTimeout(() => processInputData(), 1000 / 2);
 
     async function processInputData() {
         const inputValue = $(target).val().trim().replace(/\s+/, ' ');
