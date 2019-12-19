@@ -168,13 +168,13 @@ function renderProductPage(e, $target) {
                                 <div class="shop__sidebar">
                                     ${categoriesHTML}
 
-                                    ${`<aside class="wedget__categories sidebar--banner">
+                                    ${`<!-- <aside class="wedget__categories sidebar--banner">
                                             <img src="images/others/banner_left.jpg" alt="banner images">
                                             <div class="text">
                                                 <h2>new products</h2>
                                                 <h6>save up to <br> <strong>40%</strong>off</h6>
                                             </div>
-                                        </aside>`}
+                                        </aside> -->`}
                                 </div>
                             </div>
                         </div>
