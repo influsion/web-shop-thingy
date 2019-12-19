@@ -1,6 +1,5 @@
 'use strict';
 
-// Get
 const getAppSettings = function() {
     return fetch(`${serverURL}/settings`)
         .then(data => data.json())
@@ -56,31 +55,5 @@ const getPageData = function ({ page }) {
         .then(data => data.json())
         .catch(error => {
             console.error('fetch, getPageData: ', error);
-        });
-};
-
-
-// Post
-const postEmail = email => {
-    return fetch(`${serverURL}/subscribe`, {
-            method: 'post',
-            body: JSON.stringify({value: email}),
-            headers: new Headers({'Content-Type': 'application/json'})
-        })
-        .then(response => response.json())
-        .catch(error => {
-            console.error('fetch, postEmail: ', error);
-        });
-};
-
-const postContactForm = formData => {
-    return fetch(`${serverURL}/contacform`, {
-            method: 'post',
-            body: JSON.stringify(formData),
-            headers: new Headers({'Content-Type': 'application/json'}),
-        })
-        .then(response => response.json())
-        .catch(error => {
-            console.error('fetch, postContactForm: ', error);
         });
 };
