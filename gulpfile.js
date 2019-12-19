@@ -1,6 +1,8 @@
 const gulp = require("gulp");
 const sourcemaps = require('gulp-sourcemaps');
-const babel = require("gulp-babel");
+// const babel = require("gulp-babel");
+const stripDebug = require('gulp-strip-debug');
+const uglify = require('gulp-uglify-es').default;
 const concat = require('gulp-concat');
 const cleanCSS = require('gulp-clean-css');
 const browserSync = require('browser-sync').create();
@@ -115,6 +117,8 @@ gulp.task("scripts", () => {
         //     ]
         // }))
         .pipe(concat("bundle.js"))
+        .pipe(ifProdRun(uglify, [{ toplevel: true }]))
+        .pipe(ifProdRun(stripDebug))
         .pipe(ifDevRun(sourcemaps.write, [`./`]))
         .pipe(gulp.dest(outputPath.scripts))
         .pipe(browserSync.stream());
