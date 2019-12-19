@@ -46,7 +46,7 @@ const searchHandler = e => {
 
                 return (`
                     <li>
-                        <a href="#product" data-product-id="${item.id}" class="js-switch-page js-clear-search-field" title="${item.name}">
+                        <a href="#product" data-product-id="${item.id}" data-mandatory="true" class="js-switch-page js-clear-search-field" title="${item.name}">
                             ${item.searchedName}
                             ${labelHTML}
                         </a>

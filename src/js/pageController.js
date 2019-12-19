@@ -28,7 +28,8 @@ const pageController = {
         const hasSavedHash = !!tempStorage.getItem('web-shop-thingy_anchor');
         const isSavedHash = hasSavedHash && tempStorage.getItem('web-shop-thingy_anchor');
         const isReRender = !!e && isExisting && hasSavedHash && (isHash === isSavedHash);
-        console.log('This is an attempt to re-render: ', isReRender);
+        const isMandatory = $target && `${$target.get(0).dataset.mandatory}`.toLowerCase() === 'true';
+        console.log('This is an attempt to re-render: ', isReRender, isMandatory);
 
         const anchor = $target
             ? getHash($target)
@@ -46,7 +47,7 @@ const pageController = {
                 : this.$links.first();
 
             this.setActivePage(e, $target);
-        } else if (!isReRender) {
+        } else if (!isReRender || isMandatory) {
             console.info('Hash available', anchor);
 
             $('html').scrollTop(0);
