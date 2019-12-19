@@ -49,6 +49,8 @@ const pageController = {
         } else if (!isReRender) {
             console.info('Hash available', anchor);
 
+            $('html').scrollTop(0);
+
             const $menuItem = this.$links.filter(`[href="${anchor}"]`).eq(0);
             const fromMenu = $menuItem.length > 0;
             const $createdTarget = fromMenu ? $menuItem : $(`<a href="${anchor}"></a>`);
