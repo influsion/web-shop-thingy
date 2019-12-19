@@ -292,7 +292,5 @@ function renderCheckoutPage(e, $target) {
     global.$main.first().html(page);
     afterChangingTheDOM();
 
-    function afterChangingTheDOM() {
-        // Код, который нужно запустить после изменения DOM
-    }
+    function afterChangingTheDOM() {}
 }

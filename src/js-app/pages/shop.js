@@ -85,28 +85,7 @@ function renderShopPage(e, $target) {
     });
 
     const afterRendering = function() {
-        // Код, который нужно запустить после изменения DOM
-
         // render products
         pageParametersAreExisting && renderProductsOnShopPage();
-
-        // /*====== Price Slider Active ======*/
-        // const $sliderRange = $('#slider-range');
-        // const $amount = $('#amount');
-
-        // $sliderRange.slider({
-        //     range: true,
-        //     min: 10,
-        //     max: 500,
-        //     values: [110, 400],
-        //     slide: function(event, ui) {
-        //         $amount.val('$' + ui.values[0] + ' - $' + ui.values[1]);
-        //     }
-        // });
-
-        // //! Set value $('#slider-range').slider( "values", 0, 0 );
-        // //! Set value $('#slider-range').slider( "option", "max", 50000 );
-
-        // $amount.val(`$${ $sliderRange.slider('values', 0) } - $${ $sliderRange.slider('values', 1) }`);
     };
 };

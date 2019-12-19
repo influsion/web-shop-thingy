@@ -43,34 +43,34 @@ function renderContactPage(e, $target) {
 
 											<div class="block-contact-form warning">
 												<div class="js-warning-text-form hide">
-													${ translate('subscription_input_fail') }
+													${ translate('feedback_input_fail_first_name') }
 												</div>
 												<input type="text" name="firstname" placeholder="${pageData.form_first_name_placeholder}*">
 											</div>
 
 											<div class="block-contact-form warning">
 												<div class="js-warning-text-form hide">
-													${ translate('subscription_input_fail') }
+													${ translate('feedback_input_fail_last_name') }
 												</div>
 												<input type="text" name="lastname" placeholder="${pageData.form_last_name_placeholder}*">
 											</div>
 
 										</div>
-										<div class="single-contact-form space-between warning">
+										<div class="single-contact-form warning">
 											<div class="js-warning-text-form hide">
-												${ translate('subscription_input_fail') }
+												${ translate('feedback_input_fail_email') }
 											</div>
 											<input type="email" name="email" placeholder="${pageData.form_email_placeholder}*">
 										</div>
 										<div class="single-contact-form warning">
 											<div class="js-warning-text-form hide">
-												${ translate('subscription_input_fail') }
+												${ translate('feedback_input_fail_subject') }
 											</div>
 											<input type="text" name="subject" placeholder="${pageData.form_subject_placeholder}*">
 										</div>
 										<div class="single-contact-form message warning">
 											<div class="js-warning-text-form hide">
-												${ translate('subscription_input_fail') }
+												${ translate('feedback_input_fail_text') }
 											</div>
 											<textarea name="message" placeholder="${pageData.form_text_placeholder}"></textarea>
 										</div>
@@ -168,98 +168,6 @@ function renderContactPage(e, $target) {
 				// The latitude and longitude to center the map (always required)
 				// center: new google.maps.LatLng(23.7286, 90.3854),
 				center: new google.maps.LatLng(46.479731, 30.747954),
-
-				// How you would like to style the map.
-				// This is where you would paste any style found on Snazzy Maps.
-					// styles: [
-					// 	{
-					// 		"featureType": "administrative",
-					// 		"elementType": "labels.text.fill",
-					// 		"stylers": [
-					// 			{
-					// 				"color": "#444444"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "landscape",
-					// 		"elementType": "all",
-					// 		"stylers": [
-					// 			{
-					// 				"color": "#f2f2f2"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "poi",
-					// 		"elementType": "all",
-					// 		"stylers": [
-					// 			{
-					// 				"visibility": "off"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "road",
-					// 		"elementType": "all",
-					// 		"stylers": [
-					// 			{
-					// 				"saturation": -100
-					// 			},
-					// 			{
-					// 				"lightness": 45
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "road.highway",
-					// 		"elementType": "all",
-					// 		"stylers": [
-					// 			{
-					// 				"visibility": "simplified"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "road.arterial",
-					// 		"elementType": "labels.icon",
-					// 		"stylers": [
-					// 			{
-					// 				"visibility": "off"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "transit",
-					// 		"elementType": "all",
-					// 		"stylers": [
-					// 			{
-					// 				"visibility": "off"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "transit.station.bus",
-					// 		"elementType": "labels.icon",
-					// 		"stylers": [
-					// 			{
-					// 				"saturation": "-16"
-					// 			}
-					// 		]
-					// 	},
-					// 	{
-					// 		"featureType": "water",
-					// 		"elementType": "all",
-					// 		"stylers": [
-					// 			{
-					// 				"color": "#04b7ff"
-					// 			},
-					// 			{
-					// 				"visibility": "on"
-					// 			}
-					// 		]
-					// 	}
-					// ]
 			};
 
 			// Get the HTML DOM element that will contain your map

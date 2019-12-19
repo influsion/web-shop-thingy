@@ -38,13 +38,7 @@
 					</div>
 					<div class="col-lg-8 d-none d-lg-block">
 						<nav class="mainmenu__nav">
-							<!-- <ul class="meninmenu d-flex justify-content-start">
-								<li class=""><a class="mainmenu-link js-switch-page" href="#home">Home</a></li>
-								<li class=""><a class="mainmenu-link js-switch-page" href="#shop">Shop</a></li>
-								<li class=""><a class="mainmenu-link js-switch-page" href="#faq">FAQ</a></li>
-								<li class=""><a class="mainmenu-link js-switch-page" href="#contact">Contact</a></li>
-								<li class=""><a class="mainmenu-link js-switch-page" href="#about">About</a></li>
-							</ul> -->
+							<!-- <ul class="meninmenu d-flex justify-content-start"></ul> -->
 						</nav>
 					</div>
 					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
@@ -310,42 +304,7 @@
 		                <div class="modal-header modal__header">
 		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		                </div>
-		                <div class="modal-body">
-		                    <!-- <div class="modal-product">\
-
-		                        <div class="product-images">
-		                            <div class="main-image images">
-		                                <img alt="big images" src="images/product/big-img/1.jpg">
-		                            </div>
-								</div>
-
-		                        <div class="product-info">
-		                            <h1>Simple Fabric Bags</h1>
-		                            <div class="price-box-3">
-		                                <div class="s-price-box">
-		                                    <span class="new-price">$17.20</span>
-		                                </div>
-		                            </div>
-		                            <div class="quick-desc">
-		                                Designed for simplicity and made from high quality materials. Its sleek geometry and material combinations creates a modern look.
-		                            </div>
-		                            <div class="social-sharing">
-		                                <div class="widget widget_socialsharing_widget">
-		                                    <h3 class="widget-title-modal">Share this product</h3>
-		                                    <ul class="social__net social__net--2 d-flex justify-content-start">
-		                                        <li class="facebook"><a href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
-		                                        <li class="linkedin"><a href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
-		                                        <li class="pinterest"><a href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
-		                                        <li class="tumblr"><a href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
-		                                    </ul>
-		                                </div>
-		                            </div>
-		                            <div class="addtocart-btn">
-		                                <a href="#">Add to cart</a>
-		                            </div>
-		                        </div>
-		                    </div> -->
-		                </div>
+		                <div class="modal-body"></div>
 		            </div>
 		        </div>
 		    </div>
@@ -356,138 +315,5 @@
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo"></script>
 	<script src="js/bundle.js"></script>
-
-	<!-- Google Map js -->
-	<script>
-		// // When the window has finished loading create our google map below
-		// google.maps.event.addDomListener(window, 'load', init);
-
-		// function init() {
-		// 	// Basic options for a simple Google Map
-		// 	// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-		// 	var mapOptions = {
-		// 		// How zoomed in you want the map to start at (always required)
-		// 		zoom: 12,
-
-		// 		scrollwheel: false,
-
-		// 		// The latitude and longitude to center the map (always required)
-		// 		center: new google.maps.LatLng(23.7286, 90.3854), // New York
-
-		// 		// How you would like to style the map.
-		// 		// This is where you would paste any style found on Snazzy Maps.
-		// 			styles:
-		// 		[
-
-		// 			{
-		// 				"featureType": "administrative",
-		// 				"elementType": "labels.text.fill",
-		// 				"stylers": [
-		// 					{
-		// 						"color": "#444444"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "landscape",
-		// 				"elementType": "all",
-		// 				"stylers": [
-		// 					{
-		// 						"color": "#f2f2f2"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "poi",
-		// 				"elementType": "all",
-		// 				"stylers": [
-		// 					{
-		// 						"visibility": "off"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "road",
-		// 				"elementType": "all",
-		// 				"stylers": [
-		// 					{
-		// 						"saturation": -100
-		// 					},
-		// 					{
-		// 						"lightness": 45
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "road.highway",
-		// 				"elementType": "all",
-		// 				"stylers": [
-		// 					{
-		// 						"visibility": "simplified"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "road.arterial",
-		// 				"elementType": "labels.icon",
-		// 				"stylers": [
-		// 					{
-		// 						"visibility": "off"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "transit",
-		// 				"elementType": "all",
-		// 				"stylers": [
-		// 					{
-		// 						"visibility": "off"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "transit.station.bus",
-		// 				"elementType": "labels.icon",
-		// 				"stylers": [
-		// 					{
-		// 						"saturation": "-16"
-		// 					}
-		// 				]
-		// 			},
-		// 			{
-		// 				"featureType": "water",
-		// 				"elementType": "all",
-		// 				"stylers": [
-		// 					{
-		// 						"color": "#04b7ff"
-		// 					},
-		// 					{
-		// 						"visibility": "on"
-		// 					}
-		// 				]
-		// 			}
-		// 		]
-		// 	};
-
-		// 	// Get the HTML DOM element that will contain your map
-		// 	// We are using a div with id="map" seen below in the <body>
-		// 	var mapElement = document.getElementById('googleMap');
-
-		// 	// Create the Google Map using our element and options defined above
-		// 	var map = new google.maps.Map(mapElement, mapOptions);
-
-		// 	// Let's also add a marker while we're at it
-		// 	var marker = new google.maps.Marker({
-		// 		position: new google.maps.LatLng(23.7286, 90.3854),
-		// 		map: map,
-		// 		title: 'Dcare!',
-		// 		icon: 'images/icons/map.png',
-		// 		animation:google.maps.Animation.BOUNCE
-
-		// 	});
-		// }
-	</script>
-
-
 </body>
 </html>

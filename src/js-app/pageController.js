@@ -11,7 +11,7 @@ const pageController = {
         '#faq': (e, $target) => renderFaqPage(e, $target),
         '#contact': (e, $target) => renderContactPage(e, $target),
         '#about': (e, $target) => renderAboutPage(e, $target),
-// +
+
         '#product': (e, $target) => renderProductPage(e, $target),
         '#cart': (e, $target) => renderCartPage(e, $target),
         '#checkout': (e, $target) => renderCheckoutPage(e, $target),
@@ -51,10 +51,7 @@ const pageController = {
 
             const $menuItem = this.$links.filter(`[href="${anchor}"]`).eq(0);
             const fromMenu = $menuItem.length > 0;
-            const $createdTarget = fromMenu ? $menuItem : $(`<a href="${anchor}"></a>`)
-
-            // console.log('////////////////////////////////////////////////////////////////');
-            // console.log($createdTarget);
+            const $createdTarget = fromMenu ? $menuItem : $(`<a href="${anchor}"></a>`);
 
             tempStorage.setItem('web-shop-thingy_anchor', anchor);
             this.pagesController[anchor](e, $target || $createdTarget);

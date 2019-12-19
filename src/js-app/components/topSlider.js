@@ -12,7 +12,7 @@ const topSliderComponent = () => {
                             <div class="slider__content">
                                 <div class="contentbox">
                                     <h2>Enjoy life<br>in color <span>with MEIZU</span></h2>
-<!--                                    <a class="shopbtn" href="#">shop now</a>-->
+                                    <!-- <a class="shopbtn" href="#">shop now</a>-->
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@ const topSliderComponent = () => {
                                 <div class="contentbox">
                                     <h2>A perfectly <span>balanced</span><br> image quality.<br></h2>
                                     <h3>As everything in life should be.</h3>
-<!--                                    <a class="shopbtn" href="#">shop now</a>-->
+                                    <!-- <a class="shopbtn" href="#">shop now</a>-->
                                 </div>
                             </div>
                         </div>

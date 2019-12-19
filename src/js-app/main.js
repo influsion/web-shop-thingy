@@ -97,7 +97,6 @@ const bindEvents = function() {
 
 // Main
 (() => {
-    console.log('----------------------------');
     findElements();
     bindEvents();
 

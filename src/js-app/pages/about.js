@@ -94,7 +94,5 @@ function renderAboutPage(e, $target) {
         afterChangingTheDOM();
     });
 
-    function afterChangingTheDOM() {
-        // Код, который нужно запустить после изменения DOM
-    }
+    function afterChangingTheDOM() {}
 }

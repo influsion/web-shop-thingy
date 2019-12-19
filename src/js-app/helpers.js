@@ -195,7 +195,7 @@ const renderProductsOnShopPage = (params = {}) => {
         // Show products
         global.$main.find('.js-filtered-products').html(productsHTML);
 
-        // TODO: Show filter
+        // Show filter
         global.$main.find('.js-product-filter').html(filterHTML);
 
         /*====== Price Slider Active ======*/

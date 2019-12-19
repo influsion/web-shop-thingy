@@ -53,8 +53,6 @@ function renderHomePage(e, $target) {
             `);
         };
 
-		// console.log(popularSliderHTML, newSliderHTML);
-
 		const page = template();
 
 		global.$main.first().html(page);
@@ -63,7 +61,6 @@ function renderHomePage(e, $target) {
 
 
 	function afterChangingTheDOM() {
-		// Код, который нужно запустить после изменения DOM
 
 		/*=============  Slider Activation  ==============*/
 		global.$main.find('.slide__activation').owlCarousel({
