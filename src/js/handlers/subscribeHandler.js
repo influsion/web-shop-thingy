@@ -12,6 +12,8 @@ const formSubmission = (e, $target) => {
         $warningIcon.addClass('hide');
 
         postEmail(value);
+        $inputEmail.val('');
+
     } else {
         $inputEmail.val('');
         $warningIcon.removeClass('hide');

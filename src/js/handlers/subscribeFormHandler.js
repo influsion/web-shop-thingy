@@ -29,6 +29,11 @@ const contactFormSubmission = (e, $target) => {
     if (isCorrectValue.email && isCorrectValue.firstName && isCorrectValue.lastName && isCorrectValue.subject && textareaString !== '') {
         $warningIcon.addClass('hide');
         postContactForm({firstNameString, lastNameString, emailString, subjectString, textareaString});
+        $firstName.val('');
+        $lastName.val('');
+        $inputEmail.val('');
+        $inputSubject.val('');
+        $textareaSubject.val('');
     };
 
     if(!isCorrectValue.email) {
